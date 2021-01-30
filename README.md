@@ -12,6 +12,7 @@ I can enter search criteria in search field
 5. Detail page should have details like Name, adders, hours, distance 
 6. Detail page - user should be able to navigate to that place 
 6. Details page -user should be able to view street view 
+https://app.moqups.com/53Vl5RFqOD/view/page/a9deca8fe
 
 https://app.moqups.com/53Vl5RFqOD/view/page/a9deca8fe
 
@@ -32,5 +33,4 @@ https://developers.google.com/maps/documentation/javascript/examples/geometry-he
 https://maps.googleapis.com/maps/api/directions/json?
 origin=Toronto&destination=Montreal
 &key=YOUR_API_KEY
-
 
