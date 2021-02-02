@@ -1,0 +1,95 @@
+
+*, ::after, ::before {
+  box-sizing: border-box;
+}
+
+header {
+  background-color: #ffffff;
+  height: 50px;
+}
+.logo {
+  padding-top: 20px;
+}
+.topbar-center-logo .top-bar-center {
+  flex: 1 0 auto;
+}
+.topbar-center-logo-mobile {
+  
+  .menu-icon {
+    vertical-align: text-top;
+  }
+}
+
+section {
+  padding: 100px;
+  height: 100%;
+  background: url('https://d19m59y37dris4.cloudfront.net/places/1-1-3/img/hero-bg.jpg') no-repeat;
+  width: 100%;
+  height: 100vh;
+  top: cover;
+  position: relative;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center center;
+  
+}
+.text-hero {
+  color: white;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-size: 15px;
+}
+.container {
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+.text-primary {
+  color: #4dcb44 !important;
+}
+p .text-hero {
+  font-weight: 300;
+}
+.search-bar {
+  border-radius: 100px;
+  background: #fff;
+  -webkit-box-shadow: 0 0 5px rgb(0 0 0 / 15%);
+  box-shadow: 0 0 5px rgb(0 0 0 / 15%);
+  padding-top: 15px;
+  margin-top: 30px;
+  padding-left: 30px;
+}
+.mr-1, .mx-1 {
+  margin-right: .25rem!important;
+}
+p {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+section h1 {
+  margin-bottom: .5rem;
+  font-family: "Vidaloka",serif;
+  font-weight: 500;
+  line-height: 1.1;
+  color: white;
+}
+.backgroundblue {
+  background-color: rebeccapurple;
+}
+.search-bar input , select  {
+  border: none;
+  height: 50px;
+  border-radius: 20px;
+  border-color:  #fff;
+}
+.search-bar button {
+  height: 50px;
+  width: 100px;
+}
+.top-listings {
+    padding-top: 30px;
+}
+
+

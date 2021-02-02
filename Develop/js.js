@@ -1,4 +1,4 @@
-var myurl = "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=by-chloe&location=austin";
+var myurl = "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=by-burrito&location=Torrance";
 
 $.ajax({
    url: myurl,
