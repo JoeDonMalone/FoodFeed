@@ -6,12 +6,27 @@ Favorite places :
 Description:
 user can search and save favorite places and its reviews at one place along with directions.
 
-User story:
+# User story:
 
-1. As A user - 
-I can enter search criteria in search field 
-2. As a user - I can select radius from the dropdown
-3. As a user - I can select category from dropdown
+USERS 
+    Area locals, and tourists alike
+    
+I WANT 
+    We want an app to search places, reviews, addresses and see these thing on live map which drop down for greater detail, within radius of current location. 
+
+SO THAT 
+    I can save, recall, 'Go-to' directions, leave reviews, remove pin/favorites
+
+
+GIVEN a dashboard with form inputs and Dropdowns
+WHEN I select the category dropdown
+THEN I am preseneted with a list of categories to choose from
+WHEN I select a category
+THEN I can select a search radius from a dropdown
+WHEN I enter a serch radius
+THEN I am provided with a list of results within a give radius preference
+
+
 4. When user enter search criteria and click on Submit, list detail is open with corresponding category m radius.
 4. When user clicks on any list item - detail page is open 
 5. Detail page should have details like Name, adders, hours, distance 
@@ -20,7 +35,7 @@ I can enter search criteria in search field
 
 https://app.moqups.com/53Vl5RFqOD/view/page/a9deca8fe
 
-API:
+# API:
 
 google search API https://developers.google.com/places/web-service/search?hl=en_US
 https://maps.googleapis.com/maps/api/place/findplacefromtext/output?parameters 
@@ -34,14 +49,14 @@ navigation API:
 https://developers.google.com/maps/documentation/javascript/examples/geometry-headings 
 https://maps.googleapis.com/maps/api/directions/json? origin=Toronto&destination=Montreal &key=YOUR_API_KEY
 
-Tasks: 
+# Tasks: 
 1. HTMl page - index.html - 
 detail page.html - 
 2. CSS - Kyle
-3. Javascript 
-google search api: Arti
-google detail api:  Arti 
-google navigation api: Kyle
-street view api: Brodie
-Yelp API - reviews:  Joe
-
+3. Javascript {
+    google search api: Arti
+    google detail api:  Arti 
+    google navigation api: Kyle
+    street view api: Brodie
+    Yelp API - reviews:  Joe
+    }
