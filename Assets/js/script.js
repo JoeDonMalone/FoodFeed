@@ -6,13 +6,16 @@ var searchEl = $("#search-text");
 var categoryEl = $("#category");
 
 /*================Page load method  ================*/
-$(document).ready(function() { 
-  
+$(document).ready(function() {
+  historyAssign();
   callSearchAPI();
   callDetailAPI();
   callPhotosAPI();
   callReviews();
+  // callCategories(); -JDM
   
+
+
   ///=====   Button click events  ===== ////
   $( "#submit" ).click(function() {
     alert("submit button clicked" + " AND searchtext: " + searchEl.val() +  " ANd category: "+ categoryEl.val());
@@ -75,3 +78,20 @@ function callReviews() {
   });
   
 }
+
+function historyAssign() {
+  let recentSearches = JSON.parse(localStorage.getItem('Recent Places Searches'));
+  if (!recentSearches) {
+      let recentSearches = [ { 
+        'categories':[], 
+        'searchString': ''
+            // 'results': {
+            //   ''
+            // }
+          }
+      ]
+      localStorage.setItem('Recent Places Searches', JSON.stringify(recentSearches));
+  } 
+};
+
+
