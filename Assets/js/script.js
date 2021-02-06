@@ -150,20 +150,6 @@ var response =
   }
 }
 var searchEl = $("#search-text");
-var categoryEl = $("#category option:selected");
-var locationEl = $("#location");
-
-/*================Page load method  ================*/
-$(document).ready(function() {
-  initializeSearchHistory();
-  // callSearchAPI();
-  // callDetailAPI();
-  // callPhotosAPI();
-  // callReviews();
-  console.log(searchEl.val());
-  console.log(categoryEl.text());
-  console.log(locationEl.val());
-=======
 var categoryEl = $("#category");
 var businessDetailContainerEl = $("#business-detail");
 var business = {
@@ -180,28 +166,33 @@ var business = {
 }
 var result = [];
 /*================Page load method  ================*/
-
 $(document).ready(function() { 
   
-  getLocation();
+    getLocation();
     callSearchAPI();
     // callDetailAPI();
     // callPhotosAPI();
     // callReviews();
-  historyAssign();
-  callSearchAPI();
-  callDetailAPI();
-  callPhotosAPI();
-  callReviews();
-  // callCategories(); -JDM
 
-
+  
   ///=====   Button click events  ===== ////
   $( "#submit" ).click(function() {
-    addToSearchHistory();
-    console.log("submit button clicked" + " AND searchtext: " + searchEl.val() +  " ANd category: "+ categoryEl.val());
+    alert("submit button clicked" + " AND searchtext: " + searchEl.val() +  " ANd category: "+ categoryEl.val());
   })
 });
+
+function getRestaurant() {
+  var settings = {
+    "async": true,
+    "crossDomain": true,
+    "url": "https://developers.zomato.com/api/v2.1/search?entity_id=" + valueDropdown + "&entity_type=city" + searchCity + "&count=100",
+    "method": "GET",
+    "headers": {
+     "user-key": "d710754ce67200fb6fb9b5e26139f50e",
+     'Content-Type': 'application/x-www-form-urlencoded'
+    }
+   }
+}
 // https://itunes.apple.com/search?term=jack+johnson
 function getLocation() {
   let latText = document.getElementById("latitude");
@@ -331,7 +322,6 @@ function callReviews() {
   });
   
 }
-function initializeSearchHistory() {
 
 function getseachList(data) {
 
@@ -411,32 +401,3 @@ const getVenuePhotos = async (venueId) => {
     console.log(error);
   }
 }
-
-function historyAssign() {
-  let recentSearches = JSON.parse(localStorage.getItem('Recent Places Searches'));
-  if (!recentSearches) {
-      let recentSearches = [ {
-        'searchString': '',
-        'location':'',
-        'categories':[] 
-            // 'results': {
-            //   ''
-            // }
-          }
-      ]
-      localStorage.setItem('Recent Places Searches', JSON.stringify(recentSearches));
-  } 
-};
-
-function addToSearchHistory() {
-  let recentSearches = [ {
-    'searchString':searchEl.val(),
-    'location': locationEl.val(),
-    'categories':categoryEl.text()    
-        // 'results': {
-        //   ''
-        // }
-      }
-  ]
-  localStorage.setItem('Recent Places Searches', JSON.stringify(recentSearches));
-};
