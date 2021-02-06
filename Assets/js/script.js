@@ -100,7 +100,55 @@ var pic2 = {
     }
   }
 }
+// 20210206103330
+// https://api.foursquare.com/v2/venues/search?client_secret=LMDVNIUMOK4AA2MODOR1MQNRK2WCOII4IWHSIBVPR3RWOVSE&client_id=2SCGL344NNRYIHGXIFUBEUL3L0YWO0OPGLYYHTMDDIFZSQGH&radius=20&limit=50&near=Los%20Angeles&query=burrito&v=20161101
 
+
+var response = 
+{
+  "meta": {
+    "code": 200,
+    "requestId": "601ee11d5964966eb9ba4982"
+  },
+  "response": {
+    "venues": [
+    ],
+    "geocode": {
+      "what": "",
+      "where": "los angeles",
+      "feature": {
+        "cc": "US",
+        "name": "Los Angeles",
+        "displayName": "Los Angeles, CA, United States",
+        "matchedName": "Los Angeles, CA, United States",
+        "highlightedName": "<b>Los Angeles</b>, CA, United States",
+        "woeType": 7,
+        "slug": "los-angeles-california",
+        "id": "geonameid:5368361",
+        "longId": "72057594043296297",
+        "geometry": {
+          "center": {
+            "lat": 34.05223,
+            "lng": -118.24368
+          },
+          "bounds": {
+            "ne": {
+              "lat": 34.337306,
+              "lng": -118.155289
+            },
+            "sw": {
+              "lat": 33.703652,
+              "lng": -118.668176
+            }
+          }
+        }
+      },
+      "parents": [
+        
+      ]
+    }
+  }
+}
 var searchEl = $("#search-text");
 var categoryEl = $("#category");
 var businessDetailContainerEl = $("#business-detail");
@@ -121,7 +169,7 @@ var result = [];
 $(document).ready(function() { 
   
   getLocation();
-    // callSearchAPI();
+    callSearchAPI();
     // callDetailAPI();
     // callPhotosAPI();
     // callReviews();
@@ -190,7 +238,6 @@ function itunes() {
   
   fetch(url)
   .then(function(response) {
-
     return response.json()
   })
   .then(function(myJson) {
