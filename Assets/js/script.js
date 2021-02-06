@@ -4,6 +4,20 @@ var apiKey = "662057d093b416978d68fd9b93c95087";
 var searchEl = $("#search-text");
 var categoryEl = $("#category option:selected");
 var locationEl = $("#location");
+var businessDetailContainerEl = $("#business-detail");
+var business = {
+  id: "",
+  name: "",
+  summary: "",
+  address: "",
+  postalCode: "",
+  state: "",
+  phoneNo: "",
+  lat: "",
+  lon: "",
+  tipCount:""
+}
+var result = [];
 
 var pic1 = 
   {
@@ -108,23 +122,13 @@ $(document).ready(function() {
   // callDetailAPI();
   // callPhotosAPI();
   // callReviews();
-
-  var businessDetailContainerEl = $("#business-detail");
-  var business = {
-    id: "",
-    name: "",
-    summary: "",
-    address: "",
-    postalCode: "",
-    state: "",
-    phoneNo: "",
-    lat: "",
-    lon: "",
-    tipCount:""
-  }
-  var result = [];
-
-
+  $("#getMessage").on("click", function() {
+    var valueSearchBox = $('#getText').val()
+    if (valueSearchBox === "") {
+     return;
+    }
+    select();
+   });
     ///=====   Button click events  ===== ////
     $( "#submit" ).click(function() {
       addToSearchHistory();
@@ -385,4 +389,55 @@ $(document).ready(function() {
     ]
     localStorage.setItem('Recent Places Searches', JSON.stringify(recentSearches));
   };
+  function select() {
+    var valueDropdown = $('#select_id').val();
+    var valueSearchBox = $('#getText').val()
+    var searchCity = "&q=" + valueSearchBox;
+    var settings = {
+     "async": true,
+     "crossDomain": true,
+     "url": "https://developers.zomato.com/api/v2.1/search?entity_id=" + valueDropdown + "&entity_type=city" + searchCity + "&count=5",
+     "method": "GET",
+     "headers": {
+      "user-key": "d710754ce67200fb6fb9b5e26139f50e",
+      'Content-Type': 'application/x-www-form-urlencoded'
+     }
+    }
+    $.getJSON(settings, function(data) {
+     data = data.restaurants;
+     var html = "";
+     $.each(data, function(index, value) {
+      var x = data[index];
+       console.log(typeof x);
+       console.log(x);
+      $.each(x, function(index, value) {
+        console.log(value.thumb);
+        console.log(value.url);
+       var location = x.restaurant.location;
+       var userRating = x.restaurant.user_rating;
+       html += "<div class='data img-rounded'>";
+       html += "<div class='rating'>";
+       html += "<span title='" + userRating.rating_text + "'><p style='color:white;background-color:#" + userRating.rating_color + ";border-radius:4px;border:none;padding:2px 10px 2px 10px;text-align: center;text-decoration:none;display:inline-block;font-size:16px;float:right;'><strong>" + userRating.aggregate_rating + "</strong></p></span><br>";
+       html += "  <strong class='text-info'>" + userRating.votes + " votes</strong>";
+       html += "</div>";
+       html += "<img  src=" + value.thumb + " alt='Restaurant Image' height='185' width='185'>";
+       html += "<a href=" + value.url + " target='_blank' class='action_link'><h2 style='color:red;'><strong>" + value.name + "</strong></h2></a>";
+       html += "  <strong class='text-primary'>" + location.locality + "</strong><br>";
+       html += "  <h6 style='color:grey;'><strong>" + location.address + "</strong></h6><hr>";
+       html += "  <strong>CUISINES</strong>: " + value.cuisines + "<br>";
+       html += "  <strong>COST FOR TWO</strong>: " + value.currency + value.average_cost_for_two + "<br>";
+       html += "</div><br>";
+      });
+     });
+     $(".message").html(html);
+    });
+   }
+
+
+
+
+
+
+
 });
+
