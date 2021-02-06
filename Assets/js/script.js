@@ -3,22 +3,26 @@ var clientID = "2SCGL344NNRYIHGXIFUBEUL3L0YWO0OPGLYYHTMDDIFZSQGH";
 var secretID= "HB5KHXH5XHJ3HYVAW3OBW5PBUB0BTIK3U4GNPSHB0DWSY013";
 var baseURl = "https://api.foursquare.com/v2/venues/45f29bb2f964a520e0431fe3?client_secret=HB5KHXH5XHJ3HYVAW3OBW5PBUB0BTIK3U4GNPSHB0DWSY013&client_id=2SCGL344NNRYIHGXIFUBEUL3L0YWO0OPGLYYHTMDDIFZSQGH&v=20161101"
 var searchEl = $("#search-text");
-var categoryEl = $("#category");
+var categoryEl = $("#category option:selected");
+var locationEl = $("#location");
+
 
 /*================Page load method  ================*/
 $(document).ready(function() {
-  historyAssign();
-  callSearchAPI();
-  callDetailAPI();
-  callPhotosAPI();
-  callReviews();
-  // callCategories(); -JDM
-  
+  initializeSearchHistory();
+  // callSearchAPI();
+  // callDetailAPI();
+  // callPhotosAPI();
+  // callReviews();
+  console.log(searchEl.val());
+  console.log(categoryEl.text());
+  console.log(locationEl.val());
 
 
   ///=====   Button click events  ===== ////
   $( "#submit" ).click(function() {
-    alert("submit button clicked" + " AND searchtext: " + searchEl.val() +  " ANd category: "+ categoryEl.val());
+    addToSearchHistory();
+    console.log("submit button clicked" + " AND searchtext: " + searchEl.val() +  " ANd category: "+ categoryEl.val());
   })
 });
 
@@ -79,12 +83,13 @@ function callReviews() {
   
 }
 
-function historyAssign() {
+function initializeSearchHistory() {
   let recentSearches = JSON.parse(localStorage.getItem('Recent Places Searches'));
   if (!recentSearches) {
-      let recentSearches = [ { 
-        'categories':[], 
-        'searchString': ''
+      let recentSearches = [ {
+        'searchString': '',
+        'location':'',
+        'categories':[] 
             // 'results': {
             //   ''
             // }
@@ -92,6 +97,19 @@ function historyAssign() {
       ]
       localStorage.setItem('Recent Places Searches', JSON.stringify(recentSearches));
   } 
+};
+
+function addToSearchHistory() {
+  let recentSearches = [ {
+    'searchString':searchEl.val(),
+    'location': locationEl.val(),
+    'categories':categoryEl.text()    
+        // 'results': {
+        //   ''
+        // }
+      }
+  ]
+  localStorage.setItem('Recent Places Searches', JSON.stringify(recentSearches));
 };
 
 
