@@ -1,5 +1,29 @@
 # Project-1-Group-4
 
+# App Criteria & Status
+01)
+     1) Foursquare
+     2) Maybe weather api
+02)
+    1) Foundation
+03) 
+    Joe Needs to implement recents searches
+04)
+    In progress
+05)
+    Its perfect
+06)
+    Too many alerts that will go away
+07)
+    deployed
+08)
+    Interactive 
+
+
+
+
+
+
 
 Favorite places : 
 
