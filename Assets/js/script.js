@@ -150,6 +150,20 @@ var response =
   }
 }
 var searchEl = $("#search-text");
+var categoryEl = $("#category option:selected");
+var locationEl = $("#location");
+
+/*================Page load method  ================*/
+$(document).ready(function() {
+  initializeSearchHistory();
+  // callSearchAPI();
+  // callDetailAPI();
+  // callPhotosAPI();
+  // callReviews();
+  console.log(searchEl.val());
+  console.log(categoryEl.text());
+  console.log(locationEl.val());
+=======
 var categoryEl = $("#category");
 var businessDetailContainerEl = $("#business-detail");
 var business = {
@@ -166,6 +180,7 @@ var business = {
 }
 var result = [];
 /*================Page load method  ================*/
+
 $(document).ready(function() { 
   
   getLocation();
@@ -173,11 +188,18 @@ $(document).ready(function() {
     // callDetailAPI();
     // callPhotosAPI();
     // callReviews();
+  historyAssign();
+  callSearchAPI();
+  callDetailAPI();
+  callPhotosAPI();
+  callReviews();
+  // callCategories(); -JDM
 
-  
+
   ///=====   Button click events  ===== ////
   $( "#submit" ).click(function() {
-    alert("submit button clicked" + " AND searchtext: " + searchEl.val() +  " ANd category: "+ categoryEl.val());
+    addToSearchHistory();
+    console.log("submit button clicked" + " AND searchtext: " + searchEl.val() +  " ANd category: "+ categoryEl.val());
   })
 });
 // https://itunes.apple.com/search?term=jack+johnson
@@ -309,6 +331,7 @@ function callReviews() {
   });
   
 }
+function initializeSearchHistory() {
 
 function getseachList(data) {
 
@@ -388,3 +411,32 @@ const getVenuePhotos = async (venueId) => {
     console.log(error);
   }
 }
+
+function historyAssign() {
+  let recentSearches = JSON.parse(localStorage.getItem('Recent Places Searches'));
+  if (!recentSearches) {
+      let recentSearches = [ {
+        'searchString': '',
+        'location':'',
+        'categories':[] 
+            // 'results': {
+            //   ''
+            // }
+          }
+      ]
+      localStorage.setItem('Recent Places Searches', JSON.stringify(recentSearches));
+  } 
+};
+
+function addToSearchHistory() {
+  let recentSearches = [ {
+    'searchString':searchEl.val(),
+    'location': locationEl.val(),
+    'categories':categoryEl.text()    
+        // 'results': {
+        //   ''
+        // }
+      }
+  ]
+  localStorage.setItem('Recent Places Searches', JSON.stringify(recentSearches));
+};
