@@ -742,7 +742,7 @@ $(document).ready(function() {
    var valueDropdown = $('#select_id').val();
    var valueSearchBox = $('#getText').val()
    var searchCity = "&q=" + valueSearchBox;
-   let url = "https://developers.zomato.com/api/v2.1/search?entity_id="+ valueDropdown + "&entity_type=city&q="+ valueSearchBox+  "&count=" + 12;
+   let url = "https://developers.zomato.com/api/v2.1/search?entity_id="+ valueDropdown + "&entity_type=city&q="+ valueSearchBox+  "&count=" + 9;
 
    var settings = {
     "async": true,
@@ -848,9 +848,9 @@ function createCard(response) {
       }
 
       if (i%3 == 0) {
-         string += '<div class="grid-x grid-margin-x small-up-2 medium-up-3">';
+         string += '<div class="grid-x small-up-2 medium-up-3">';
       }
-      string += '<div class="cell"> <div class="card" onclick="clickCard(this.id)" data-open="modalDetail" id='+ i + '"> <img class="card-image" src=' + icon + '> <h6 class="card-title">' + name + '</h6> <p class="card-author">' + cuisines + '<span class="card-icon">  ' + dist +   'miles </span></p> </div> </div>';
+      string += '<div class="cell"> <div class="card" onclick="clickCard(this.id)" data-open="modalDetail" id='+ i + '"> <div class= "text-center">  <img class="card-image" src=' + icon + '> </div> <h6 class="card-title">' + name + '</h6> <p> <span class="card-cuisine">' + cuisines + '<br> </span> <span class="card-rating">  ' + rating +   '</span> <span class="card-dist">' + dist+ ' miles </span> </p> </div> </div>';
   })
   $('#card').append(string);
 }
