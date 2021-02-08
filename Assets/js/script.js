@@ -24,21 +24,21 @@ $(document).ready(function() {
    });
    
    $("#modalFavorite").click( function() {
-
+      
       var className = $(this).find("i") .attr("class");
       if (className == "fa fa-thumbs-up") {
          console.log("make it fav");
          // make it favorite
-          makeItFavorite();
+         makeItFavorite();
          $(this).find("i").removeClass().addClass("fa fa-thumbs-down");
-
+         
       } else {
          $(this).find("i").removeClass().addClass("fa fa-thumbs-up");
          console.log("make it non-fav");
          makeItNonFavorite(result[selectedIndex].restaurant.id);
       }
-
- });
+      
+   });
    
    $(".card").click(function(e) {
       alert("card" + $(this) + "clicked");
@@ -51,8 +51,7 @@ $(document).ready(function() {
    $("#submit").on("click", function() {
       var valueSearchBox = $('#getText').val()
       if (valueSearchBox === "") {
-         alert("Please enter search criteria");
-         
+         showPopUp("Please enter search Query!");
          return;
       }
       select();
@@ -76,6 +75,13 @@ $(document).ready(function() {
          callWeatherInfo(lat, long);
          
       });
+   }
+   function showPopUp(message) {
+      console.log($("#alert"));
+      $("#alert").find("#alertMessage").text(message);
+      
+      var popup = new Foundation.Reveal($('#alert'));
+      popup.open();
    }
    function callWeatherInfo( latitude, longitude ) {
       var url = "https://api.openweathermap.org/data/2.5/onecall?lat=" + latitude+ "&lon=" + longitude +"&units=imperial&appid=" + apiKey;
@@ -109,8 +115,8 @@ $(document).ready(function() {
       });
    }
    
-  
-  
+   
+   
    function initializeSearchHistory() {
       let recentSearches = JSON.parse(localStorage.getItem('Recent Places Searches'));
       if (!recentSearches) {
@@ -157,23 +163,33 @@ function addToSearchHistory() {
 localStorage.setItem('Recent Places Searches', JSON.stringify(recentSearches));
 };
 
-function select() {
-   var valueDropdown = $('#select_id').val();
-   var valueSearchBox = $('#getText').val()
-   var searchCity = "&q=" + valueSearchBox;
-   let url = "https://developers.zomato.com/api/v2.1/search?entity_id="+ valueDropdown + "&entity_type=city&q="+ valueSearchBox+  "&count=" + 9;
-   
-   var settings = {
+function createRequest(myurl) {
+   var request = {
       "async": true,
-      "url": url,
-      //"url": "https://developers.zomato.com/api/v2.1/search?entity_id=281&entity_type=city&q=burrito&count=10",
+      "url": myurl,
       "method": "GET",
       "headers": {
          "user-key": "481db5811d8a67ef43f399d26909b835",
          'Content-Type': 'application/x-www-form-urlencoded'
       }
    }
-   $.getJSON(settings, function(data) {
+   return request;
+}
+function createURL(search, cityID) {
+   return "https://developers.zomato.com/api/v2.1/search?entity_id="+ cityID + "&entity_type=city&q="+  search +  "&count=" + 20;
+   
+}
+function select() {
+   var valueDropdown = $('#select_id').val();
+   var valueSearchBox = $('#getText').val()
+   let url = createURL(valueSearchBox, valueDropdown);
+   let request = createRequest(url);
+   
+   $.getJSON(request, function(data) {
+      data.responseJSON
+      if (data.restaurants == null || data.restaurants == "") {
+         showPopUp("Something went wrong, Please try again!");
+      }
       result = data.restaurants;
       createCard(data.restaurants);
    });
@@ -184,7 +200,7 @@ function displayMapAt(lat, lon) {
    $("#map")
    .html(
       "<iframe src=\"http://maps.google.com/maps?q=" + lat +  "," + lon + "&z=15&output=embed\"></iframe>");
-}
+   }
    
    function distance(lat1, lon1, lat2, lon2) {
       if ((lat1 == lat2) && (lon1 == lon2)) {
@@ -218,27 +234,27 @@ function displayMapAt(lat, lon) {
       }
       return false;
    }
-
+   
    function makeItNonFavorite(_id) {
       var savedData = localStorage.getItem("FavoritePlaces");
-
+      
       if (savedData != null) { 
          savedData =  JSON.parse(savedData);
          savedData= removeItem(savedData, _id);
          localStorage.setItem('FavoritePlaces', JSON.stringify(savedData));
       }
    }
-
+   
    function makeItFavorite() {
       let object = createFavorite(result[selectedIndex]);
       console.log(object);
-
+      
       var savedData = localStorage.getItem("FavoritePlaces");
-
+      
       if (savedData === null) { 
          favorites = [object];
       } else {
-
+         
          if (filterItem(JSON.parse(savedData), object.id)) {
             favorites = JSON.parse(savedData);
             favorites.push(object);
@@ -246,36 +262,36 @@ function displayMapAt(lat, lon) {
       }   
       localStorage.setItem('FavoritePlaces', JSON.stringify(favorites));
    }
-  
-   /*--------------------------------------------------------------
-# Method to save Favorite 
---------------------------------------------------------------*/
-
-function removeItem(array, _item) {
    
-   for (var i=0; i<array.length; i++) {
-      console.log(array[i].id, _item);
-     if (array[i].id == _item) {
-        console.log("in delete" + array[i].id + _item);
-
-      array.splice(1, 1);
-             return array;
-     } 
+   /*--------------------------------------------------------------
+   # Method to save Favorite 
+   --------------------------------------------------------------*/
+   
+   function removeItem(array, _item) {
+      
+      for (var i=0; i<array.length; i++) {
+         console.log(array[i].id, _item);
+         if (array[i].id == _item) {
+            console.log("in delete" + array[i].id + _item);
+            
+            array.splice(1, 1);
+            return array;
+         } 
+      }
+      return array;
    }
-   return array;
- }
-// Method to filter items from array
-function filterItem(array, _item) {
-  
-   for (var i=0; i<array.length; i++) {
-      console.log(array[i].id, _item);
-     if (array[i].id == _item) {
-       return false;
-     } 
+   // Method to filter items from array
+   function filterItem(array, _item) {
+      
+      for (var i=0; i<array.length; i++) {
+         console.log(array[i].id, _item);
+         if (array[i].id == _item) {
+            return false;
+         } 
+      }
+      return true;
    }
-   return true;
- }
-
+   
    /*--------------------------------------------------------------
    # Create object variable for saving Favorite details
    --------------------------------------------------------------*/
@@ -288,7 +304,7 @@ function filterItem(array, _item) {
       return object;
    }
    function clickCard(id) {
-       selectedIndex = parseInt(id);
+      selectedIndex = parseInt(id);
       
       var modal = $("#modalDetail");
       var name = modal.find( "#name");
@@ -302,7 +318,7 @@ function filterItem(array, _item) {
       var offers = modal.find( "#modalDelivery");
       var delivery = modal.find( "#modalDelivery");
       var favButton = modal.find( "#modalFavorite");
-
+      
       cusine.text(result[selectedIndex].restaurant.cuisines);
       name.text(result[selectedIndex].restaurant.name);
       rating.text(result[selectedIndex].restaurant.user_rating.aggregate_rating);
@@ -339,16 +355,16 @@ function filterItem(array, _item) {
       }
       var savedData = localStorage.getItem("FavoritePlaces");
       savedData = JSON.parse(savedData);
-
+      
       favButton.find("i").removeClass().addClass("fa fa-thumbs-up");
-
+      
       if (checkIfItemIsFavorite(savedData, result[selectedIndex].restaurant.id)) {
          favButton.find("i").removeClass().addClass("fa fa-thumbs-up");
       } else {
          favButton.find("i").removeClass().addClass("fa fa-thumbs-down");
-
+         
       }
-
+      
    }
    function createCard(response) {      
       var string = "";
@@ -357,7 +373,7 @@ function filterItem(array, _item) {
       var rating = "";
       var icon = "";
       var favButton = "";
-
+      
       $.each(response, function (i) {
          var dist = distance(response[i].restaurant.location.latitude,response[i].restaurant.location.longitude, currentLocation.lat, currentLocation.lon );
          name = response[i].restaurant.name;
@@ -367,7 +383,7 @@ function filterItem(array, _item) {
          if (icon == "" || icon == null) {
             icon = "./Assets/images/img.jpeg";
          }
-        
+         
          
          if (i%3 == 0) {
             string += '<div class="grid-x small-up-2 medium-up-3">';
