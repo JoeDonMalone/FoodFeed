@@ -5,7 +5,7 @@
 
 header {
   background-color: #ffffff;
-  height: 50px;
+  height: 10%;
 }
 .logo {
   padding-top: 20px;
@@ -13,13 +13,12 @@ header {
 .topbar-center-logo .top-bar-center {
   flex: 1 0 auto;
 }
-.topbar-center-logo-mobile {
-  
-  .menu-icon {
-    vertical-align: text-top;
-  }
-}
+/* .topbar-center-logo-mobile {
 
+} */
+.menu-icon {
+  vertical-align: text-top;
+}
 section {
   padding: 100px;
   height: 100%;
@@ -34,10 +33,11 @@ section {
   background-position: center center;
   
 }
-.text-hero {
+.weather-text-hero {
   color: white;
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   font-size: 15px;
+  font-weight: 300;
 }
 .container {
   width: 100%;
@@ -46,12 +46,17 @@ section {
   margin-right: auto;
   margin-left: auto;
 }
+
+.lets-go {
+  border-radius: 10px;
+  width:100px;
+  height: 30px;
+  background-color: #4dcb44
+}
 .text-primary {
   color: #4dcb44 !important;
 }
-p .text-hero {
-  font-weight: 300;
-}
+
 .search-bar {
   border-radius: 100px;
   background: #fff;
