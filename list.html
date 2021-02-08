@@ -1,89 +1,61 @@
-
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Places | Directory Template </title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="robots" content="all,follow">
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./Assets/css/style.css">
+
+    <title>Anywhere But Here</title>
+
+</head>
+<body>
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a href="#"><img src="https://d19m59y37dris4.cloudfront.net/places/1-1-3/img/logo.png" alt="" /></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon">
+      </span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
+        <a class="nav-item nav-link" href="#">Features</a>
+        <a class="nav-item nav-link" href="#">Pricing</a>
+        <a class="nav-item nav-link disabled" href="#">Disabled</a>
+        <img src="./Assets/images/img.jpeg" id="weathericon" width="30px" height="30px" style="float: right;">
+        <span id="temp"></span>
+        <span id="weather"></span>
+        <span> <img src="" id="weather"></span>
+      </div>
+    </div>
+  </nav>
+  </header>
+  
+ 
+
+  <!-- Contact Section starts -->
+  <section id="detail">
+   paragraph 
+   <ul class="breadcrumb">
+    <li><a href="#">Home</a></li>
+    <li><a href="#">Pictures</a></li>
+    <li><a href="#">Summer 15</a></li>
+    <li>Italy</li>
+  </ul>
+  <h1>New York</h1>
+  </section>
+
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  <!-- End Contact Section  -->
+    <script>
+      $(document).foundation();
+    </script>
     
-    <link rel="stylesheet" href="./Foundation/assets/css/foundation.css">
-
-
-    <link rel="stylesheet" href="https://d19m59y37dris4.cloudfront.net/places/1-1-3/css/custom-fonticons.css">
-    <link rel="stylesheet" href= "./Assets/css/style.css">
-  </head>
-  <body>
-    <header>
-      <div class="top-bar topbar-center-logo" id="topbar-center-logo">
-        <div class="top-bar-center">
-          <a href="#"><img src="https://d19m59y37dris4.cloudfront.net/places/1-1-3/img/logo.png" alt="" /></a>
-        </div>
-        <div class="top-bar-right">
-          <ul class="menu vertical medium-horizontal">
-            <li><a href="#">Home </a></li>
-            <li><a href="#">Saved</a></li>
-            <li><a href="#">Contact </a></li>
-          </ul>
-        </div>
-      </div>
-    </header>
-
-    <section class="top-listings"> 
-      <div class="grid-container">
-        <div class="grid-x grid-margin-x small-up-2 medium-up-3">
-          <div class="cell">
-            <div class="card">
-              <img src="https://d19m59y37dris4.cloudfront.net/places/1-1-3/img/photo-top-1.jpg">
-              <div class="card-section">
-              </div>
-            </div>
-          </div>
-          <div class="cell">
-            <div class="card">
-              <img src="https://d19m59y37dris4.cloudfront.net/places/1-1-3/img/photo-top-1.jpg">
-              <div class="card-section">
-              </div>
-            </div>
-          </div>
-          <div class="cell">
-            <div class="card">
-              <img src="https://d19m59y37dris4.cloudfront.net/places/1-1-3/img/photo-top-1.jpg">
-              <div class="card-section">
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="grid-x grid-margin-x small-up-2 medium-up-3">
-          <div class="cell">
-            <div class="card">
-              <img src="https://d19m59y37dris4.cloudfront.net/places/1-1-3/img/photo-top-1.jpg">
-              <div class="card-section">
-              </div>
-            </div>
-          </div>
-          <div class="cell">
-            <div class="card">
-              <img src="https://d19m59y37dris4.cloudfront.net/places/1-1-3/img/photo-top-1.jpg">
-              <div class="card-section">
-              </div>
-            </div>
-          </div>
-          <div class="cell">
-            <div class="card">
-              <img src="https://d19m59y37dris4.cloudfront.net/places/1-1-3/img/photo-top-1.jpg">
-              <div class="card-section">
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script type="text/javascript" src="./Assets/js/list.js"></script>
+    
+    
+    <script type="text/javascript" src="./Assets/js/script.js"></script>
   </body>
-</html>
+  </html>

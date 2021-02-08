@@ -2,42 +2,101 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.0.1/js/vendor/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.5.1/dist/js/foundation.min.js" integrity="sha256-WUKHnLrIrx8dew//IpSEmPN/NT3DGAEmIePQYIEJLLs= sha384-53StQWuVbn6figscdDC3xV00aYCPEz3srBdV/QGSXw3f19og3Tq2wTRe0vJqRTEO sha512-X9O+2f1ty1rzBJOC8AXBnuNUdyJg0m8xMKmbt9I3Vu/UOWmSg5zG+dtnje4wAZrKtkopz/PEDClHZ1LXx5IeOw==" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="./Foundation/assets/css/foundation.css">
   <link rel="stylesheet" href="./Assets/css/style.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Anywhere But Here</title>
+  <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.5.1/dist/js/foundation.min.js" integrity="sha256-WUKHnLrIrx8dew//IpSEmPN/NT3DGAEmIePQYIEJLLs= sha384-53StQWuVbn6figscdDC3xV00aYCPEz3srBdV/QGSXw3f19og3Tq2wTRe0vJqRTEO sha512-X9O+2f1ty1rzBJOC8AXBnuNUdyJg0m8xMKmbt9I3Vu/UOWmSg5zG+dtnje4wAZrKtkopz/PEDClHZ1LXx5IeOw==" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="./Assets/css/style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Anywhere But Here</title>
+  <script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.0.1/js/vendor/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.5.1/dist/js/foundation.min.js" integrity="sha256-WUKHnLrIrx8dew//IpSEmPN/NT3DGAEmIePQYIEJLLs= sha384-53StQWuVbn6figscdDC3xV00aYCPEz3srBdV/QGSXw3f19og3Tq2wTRe0vJqRTEO sha512-X9O+2f1ty1rzBJOC8AXBnuNUdyJg0m8xMKmbt9I3Vu/UOWmSg5zG+dtnje4wAZrKtkopz/PEDClHZ1LXx5IeOw==" crossorigin="anonymous"></script>
+  <script src="/js/vendor/modernizr.js"></script>
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+     <link rel="stylesheet" href="./Foundation/assets/css/foundation.css">
+     <script src="js/vendor/modernizr.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/motion-ui/1.1.1/motion-ui.min.css"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.0.1/js/vendor/jquery.min.js"></script>
+     <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.5.1/dist/js/foundation.min.js" integrity="sha256-WUKHnLrIrx8dew//IpSEmPN/NT3DGAEmIePQYIEJLLs= sha384-53StQWuVbn6figscdDC3xV00aYCPEz3srBdV/QGSXw3f19og3Tq2wTRe0vJqRTEO sha512-X9O+2f1ty1rzBJOC8AXBnuNUdyJg0m8xMKmbt9I3Vu/UOWmSg5zG+dtnje4wAZrKtkopz/PEDClHZ1LXx5IeOw==" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="./Assets/css/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anywhere But Here</title>
+
 </head>
 <body>
   <header>
-    <div class="top-bar topbar-center-logo" id="topbar-center-logo">
-      <div class="top-bar-center">
-        <a href="#"><img src="https://d19m59y37dris4.cloudfront.net/places/1-1-3/img/logo.png" alt="" /></a>
-      </div>
-      <div class="top-bar-right">
-        <ul class="menu vertical medium-horizontal">
-          <li><a href="#">Home </a></li>
-          <li><a href="#">Saved</a></li>
-          <li><a href="#">Contact </a></li>
-        </ul>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a href="#"><img src="https://d19m59y37dris4.cloudfront.net/places/1-1-3/img/logo.png" alt="" /></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon">
+  
+      </span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
+        <a class="nav-item nav-link" href="#">Features</a>
+        <a class="nav-item nav-link" href="#">Pricing</a>
+        <a class="nav-item nav-link disabled" href="#">Disabled</a>
+        <img src="./Assets/images/img.jpeg" id="weathericon" width="30px" height="30px" style="float: right;">
+        <span id="temp"></span>
+        <span id="weather"></span>
+        <span> <img src="" id="weather"></span>
+
+        
+       
       </div>
     </div>
+  </nav>
   </header>
   
-  <section class="align-center">
-    <p class="text-hero text-center">
-       <span id="temp">   </span>
-      <img src="" id="weathericon">
-       <span id="weather">   </span>
+ 
 
-    </p>
+  <!-- Contact Section starts -->
+  <section id="detail">
+    
     <div class="container align-items-center">
-      <h1>Let's <span class="text-primary">go    </span> anywhere</h1>
-      <p class="text-hero">Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
-      <div class="mt-5 text-color">
-        <h1>Find the best Restaurants</h1>
-    </div>
-    <div class="row mx-auto well col-lg-12 mt-5">
-        <div class="col-xs-4 pr-0">
+      <div class="row">
+        <div class="col-md-8">
+          <h1>Find the <span class="text-primary">best Restaurants    </span> anywhere</h1>         
+        </div>
+        <div class="col-md-4">
+                   
+
+          
+        
+        </div>
+      </div>
+      
+      <div class="search-bar">
+        <div class="grid-container">
+          <div class="grid-x grid-padding-x">
+            <div class="medium-3 cell grid-x">
+              <input id="getText" type="text" class="form-control" placeholder="What are you searching for?">
+            </div>
+            <div class="medium-3">
+              <input type="text" name="location" placeholder="Location" id="location">
+            </label>
+          </div>
+          <div class="medium-3 cell">
             <select id="select_id" class="form-control form-control-lg">
               <option value="Select City" hidden>Select City</option>
               <option value="281">Los Angeles</option>
@@ -45,92 +104,155 @@
               <option value="283">Washington</option>
               <option value="284">Seattle</option>
             </select>
-        </div>
-        <div class="col-xs-6 pl-0 pr-0">
-            <input id="getText" type="text" class="form-control" placeholder="Search for Restaurant">
-            </div>
-            <button id = "getMessage"  class="button success">Search</button>
-    </div>
-    <div class="container">
-      <div>
-          <div class = "message col-md-12"></div>
-      </div>
-  </div>
-      <div class="search-bar">
-        <form>
-          <div class="grid-container">
-            <div class="grid-x grid-padding-x">
-              <div class="medium-3 cell grid-x">
-                <input type="search" name="search" placeholder="What are you searching for?" id="getText">
-            </div>
-            <div class="medium-3">
-              <input type="text" name="location" placeholder="Location" id="location">
-            </label>
           </div>
           <div class="medium-3 cell">
             <select id="select_id" class="form-control form-control-lg">
-              <option value="Select City" hidden>Select City</option>
-              <option value="281">Los Angeles</option>
-              <option value="282" >Austin</option>
-              <option value="283">New York</option>
-              <option value="6">Seattle</option>
-          </select>
-         <!--   <select id="category" title="Categories &lt;i class=&quot;fa fa-angle-down&quot;&gt;&lt;/i&gt;" class="listing-categories">
-              <option value="1">Restaurants</option>
-              <option value="2">Hotels</option>
-              <option value="3">Cafes</option>
+              <option value="Select Category" hidden>Select Category</option>
+              <option value="1">Delivery</option>
+              <option value="2" >Dine-In</option>
+              <option value="283">Cafes</option>
+              <option value="8">Breakfast</option>
+              <option value="9">Lunch</option>
+              <option value="10">Dinner</option>
+              <option value="11">Pubs/Bar</option>
             </select>
-            -->
           </div>
+          
+          
           <div class="medium-3 cell align-center">
-            <button id = "getMessage" class = "btn button-success col-xs-2">Gte result </button>
-           <!-- <button class="button success" id="submit"> Submit  </button>
+            <button id = "getMessage"  class="button success">Search</button>
+            <!-- <button class="button success" id="submit"> Submit  </button>
             -->
           </div>
         </div>
       </div>
-    </form>
+      </div>
   </div>
-  </div>
-    <div class="container align-items-center">
-      <h1>Let's <span class="text-primary">go    </span> anywhere</h1>
-      <p class="text-hero">Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
-      <div class="search-bar">
-        <form>
-          <div class="grid-container">
-            <div class="grid-x grid-padding-x">
-              <div class="medium-3 cell grid-x">
-                <input type="search" name="search" placeholder="What are you searching for?" id="search-text">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4">
+          <ul>
+            <li class="selected">
+              <h6>Pizza Hut </h6>
+              <p> Rating: 4.2
+               Addres: 1234 West blvd, Torrance 90345
+              Time: 9AM - 9PM </p>
+            </li>
+            <li>
+              <h6>Pizza Hut </h6>
+              <p> Rating: 4.2
+               Addres: 1234 West blvd, Torrance 90345
+              Time: 9AM - 9PM </p>
+            </li>
+
+            <li>
+              <h6>Pizza Hut </h6>
+              <p> Rating: 4.2
+               Addres: 1234 West blvd, Torrance 90345
+              Time: 9AM - 9PM </p>
+            </li>
+            
+          </ul>
+
+          <div class="container">
+          
+            <p><a data-open="exampleModal1">Click me for a modal</a></p>
+            
+            <div class="reveal" id="exampleModal1" data-reveal>
+              <h1 class="lead" id="name"> 
+                Pizza Hut.
+                <br>
+                <span id="cuisines" class="text-center" style="font-size: smaller;"> Americamn, Italian, Mexican </span>
+                <span id="range" class="text-center" style="font-size: smaller;"> $$ </span>
+              </h1>
+              <p class="text-center">
+                <img id="icon-img" src="./Assets/images/img.jpeg" class="text-center" style="margin-left:10px;margin-right:10px; max-height:250px;max-width:250px;"/>
+              </p>
+              <p class="text-center">
+                <button type="button" class="alert button text-center" id="alert">4.2 Very Good</button>
+                <button type="button" class="success button text-center" id="alert">Delivery Available: YES</button>
+                <p> <strong> Highlights: </strong> Delivery, Lunch, Serves Alcohol, Credit Card, Takeaway Available,Dinner
+                  Vegetarian Friendly, Kid Friendly, Wifi, Fullbar, Indoor Seating</p>
+                </p>
+                <p>
+                  <span id="address"> <strong> Address: </strong>3453 emerald st , 90324 CA </span> <br>
+                  <span id="phone "> <strong>Phone:</strong> 444-234-2424243 </span> <br>
+                  <span id="timing"> <strong>Hours:</strong> 11 AM to 11 PM (Mon-Wed, Sun), 11 AM to 12 Midnight (Thu), 11 AM to 4 AM (Fri-Sat) </span> <br>
+                  <span id="offers "> <strong> Offers: </strong> 20% off  </span>
+                </p>
+                <p class="text-center">
+                  <button type="button" class="success button"> Website  </button>
+                  <button type="button" class="success button"> Favorite/Non-Favorite  </button>
+                  <button type="button" class="success button"> Menu  </button>
+                </p>
+                
+                <button class="close-button" data-close aria-label="Close reveal" type="button">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+        </div>
+          
+        </div>
+        <div class="col-lg-8">
+          <div class="row">
+            
+              <h1 class="lead" id="name"> 
+                Pizza Hut.
+                <br>
+                <span id="cuisines" class="text-center" style="font-size: smaller;"> Americamn, Italian, Mexican </span>
+                <span id="range" class="text-center" style="font-size: smaller;"> $$ </span>
+              </h1>
+              <p>
+                <img id="icon-img" src="./Assets/images/img.jpeg" style="margin-left:10px;margin-right:10px; max-height:250px;max-width:100%;"/>
+              </p>
+              <p>
+                <button type="button" class="btn btn-bg bg-dark" style="color: wheat;" id="alert">4.2 Very Good</button>
+                <button type="button" class="btn btn-bg bg-dark" style="color: wheat;" id="alert">Delivery Available: YES</button>
+              <p>
+                <span id="address"> <strong>  <i class="fa fa-map-marker"></i> Address: </strong>3453 emerald st , 90324 CA </span> <br>
+                <span id="phone "> <strong>  <i class="fa fa-phone"></i>Phone:</strong> 444-234-2424243 </span> <br>
+                <span id="timing"> <strong>  <i class="fa fa-time"></i>Hours:</strong> 11 AM to 11 PM (Mon-Wed, Sun), 11 AM to 12 Midnight (Thu), 11 AM to 4 AM (Fri-Sat) </span> <br>
+                <span id="offers "> <strong> Offers: </strong> 20% off  </span>
+              </p>
             </div>
-            <div class="medium-3">
-              <input type="text" name="location" placeholder="Location" id="location">
-            </label>
+                
+              <p> <strong> Highlights: </strong> Delivery, Lunch, Serves Alcohol, Credit Card, Takeaway Available,Dinner
+                  Vegetarian Friendly, Kid Friendly, Wifi, Fullbar, Indoor Seating</p>
+                </p>
+               
+                <p class="text-center">
+                  <button type="button" class="success button"> Website  </button>
+                  <button type="button" class="success button"> Favorite/Non-Favorite  </button>
+                  <button type="button" class="success button"> Menu  </button>
+                </p>
+
+                <div id="map">
+                  <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12097.433213460943!2d-74.0062269!3d40.7101282!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xb89d1fe6bc499443!2sDowntown+Conference+Center!5e0!3m2!1smk!2sbg!4v1539943755621"
+                  style="border:0; width: 100%; height: 100%;" allowfullscreen></iframe>
+                </div>
           </div>
-          <div class="medium-3 cell">
-            <select id="category" title="Categories &lt;i class=&quot;fa fa-angle-down&quot;&gt;&lt;/i&gt;" class="listing-categories">
-              <option value="1">Restaurants</option>
-              <option value="2">Hotels</option>
-              <option value="3">Cafes</option>
-            </select>      
-          </div>
-          <div class="medium-3 cell align-center">
-            <button class="button success" id="submit"> Submit  </button>
+          
+          
+           
           </div>
         </div>
+       
       </div>
-    </form>
-  </div>
-</div>
-</form>
-</div>
-<div class="container">
-  <div>
-      <div class = "message col-md-12"></div>
-  </div>
-</div>
-</div>
-</section>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script type="text/javascript" src="./Assets/js/script.js"></script>
-</body>
-</html>
+     
+    </div>
+  </section>
+
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  <!-- End Contact Section  -->
+    <script>
+      $(document).foundation();
+    </script>
+    
+    
+    
+    <script type="text/javascript" src="./Assets/js/script.js"></script>
+  </body>
+  </html>
