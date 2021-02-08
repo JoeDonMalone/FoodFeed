@@ -619,7 +619,6 @@ let map, infoWindow;
 $(document).ready(function() {
  //  initializeSearchHistory();
    getLocation();
-  
    $("#modalLauncher").click(function (e) {
       $('#exampleModal1').foundation('reveal', 'open');
   });
@@ -629,7 +628,6 @@ $(document).ready(function() {
       alert("card" + $(this) + "clicked");
 
   });
-     // createCard();
   //displayMapAt(38.9168127,-77.0309828,5);
  // initializeSearchHistory();
  // getLocation();
@@ -710,9 +708,6 @@ $(document).ready(function() {
         localStorage.setItem('Recent Places Searches', JSON.stringify(recentSearches));
     } 
   };
-
-  
-
   
   function initializeSearchHistory() {
     let recentSearches = JSON.parse(localStorage.getItem('Recent Places Searches'));
@@ -755,56 +750,16 @@ $(document).ready(function() {
     //"url": "https://developers.zomato.com/api/v2.1/search?entity_id=281&entity_type=city&q=burrito&count=10",
     "method": "GET",
     "headers": {
-       //
        "user-key": "481db5811d8a67ef43f399d26909b835",
-
-    // "user-key": "d710754ce67200fb6fb9b5e26139f50e",
-     'Content-Type': 'application/x-www-form-urlencoded'
+        'Content-Type': 'application/x-www-form-urlencoded'
     }
    }
-   console.log(settings);
-
- 
    $.getJSON(settings, function(data) {
- 
-      console.log(data);
-      result = data.restaurants;
-      console.log("result: "+ result[0].restaurant.name);
-
+       result = data.restaurants;
       createCard(data.restaurants);
-
-    /*var html = "";
- 
-    $.each(data, function(index, value) {
- 
-     var x = data[index];
-      console.log(typeof x);
-     $.each(x, function(index, value) {
-      var location = x.restaurant.location;
-      var userRating = x.restaurant.user_rating;
-      html += "<div class='data img-rounded'>";
-      html += "<div class='rating'>";
- 
-      html += "<span title='" + userRating.rating_text + "'><p style='color:white;background-color:#" + userRating.rating_color + ";border-radius:4px;border:none;padding:2px 10px 2px 10px;text-align: center;text-decoration:none;display:inline-block;font-size:16px;float:right;'><strong>" + userRating.aggregate_rating + "</strong></p></span><br>";
-      html += "  <strong class='text-info'>" + userRating.votes + " votes</strong>";
-      html += "</div>";
-      html += "<img class='resimg img-rounded' src=" + value.thumb + " alt='Restaurant Image' height='185' width='185'>";
-      html += "<a href=" + value.url + " target='_blank' class='action_link'><h2 style='color:red;'><strong>" + value.name + "</strong></h2></a>";
-      html += "  <strong class='text-primary'>" + location.locality + "</strong><br>";
-      html += "  <h6 style='color:grey;'><strong>" + location.address + "</strong></h6><hr>";
-      html += "  <strong>CUISINES</strong>: " + value.cuisines + "<br>";
-      html += "  <strong>COST FOR TWO</strong>: " + value.currency + value.average_cost_for_two + "<br>";
-      html += "</div><br>";
-     });
-    });
-    $(".message").html(html);*/
-
    });
- 
   }
- 
  });
-
 
 function displayMapAt(lat, lon, zoom) {
 
