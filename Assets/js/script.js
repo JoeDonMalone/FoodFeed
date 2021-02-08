@@ -1,5 +1,3 @@
-var clientID = "2SCGL344NNRYIHGXIFUBEUL3L0YWO0OPGLYYHTMDDIFZSQGH";
-var secretID= "LMDVNIUMOK4AA2MODOR1MQNRK2WCOII4IWHSIBVPR3RWOVSE";
 var apiKey = "662057d093b416978d68fd9b93c95087";
 var searchEl = $("#search-text");
 var categoryEl = $("#category option:selected");
@@ -11,611 +9,9 @@ var currentLocation = {
    lon: ""
 }
 var result = "";
-
-var response = {
-   id: "",
-   name: "",
-   address: "",
-   url: "",
-   lat: "",
-   lon: "",
-   cuisines: "",
-   currency: "",
-   average_cost_for_two: "",
-   highlights: "",
-   timings: "",
-   aggregate_rating: "",
-   rating_text: "",
-   featured_image: "",
-   phone_numbers: "",
-   offers: "",
-}
 var selected = 0;
 
-var response2 = [
-   {
-      "restaurant":{
-         "R":{
-            "res_id":16876154,
-            "is_grocery_store":false,
-            "has_menu_status":{
-               "delivery":-1,
-               "takeaway":-1
-            }
-         },
-         "apikey":"d710754ce67200fb6fb9b5e26139f50e",
-         "id":"16876154",
-         "name":"&pizza",
-         "url":"https://www.zomato.com/washington-dc/pizza-atlas-district?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1",
-         "location":{
-            "address":"1118 H Street Ne 20002",
-            "locality":"Atlas District",
-            "city":"Washington DC",
-            "city_id":283,
-            "latitude":"38.9003780000",
-            "longitude":"-76.9907811000",
-            "zipcode":"20002",
-            "country_id":216,
-            "locality_verbose":"Atlas District, Washington DC"
-         },
-         "switch_to_order_menu":0,
-         "cuisines":"Italian, Pizza, Vegetarian",
-         "timings":"11 AM to 11 PM (Mon-Wed, Sun), 11 AM to 12 Midnight (Thu), 11 AM to 4 AM (Fri-Sat)",
-         "average_cost_for_two":10,
-         "price_range":1,
-         "currency":"$",
-         "highlights":[
-            "Delivery",
-            "Lunch",
-            "Serves Alcohol",
-            "Credit Card",
-            "Takeaway Available",
-            "Dinner",
-            "Vegetarian Friendly",
-            "Kid Friendly",
-            "Wifi",
-            "Fullbar",
-            "Indoor Seating"
-         ],
-         "offers":[
-            
-         ],
-         "opentable_support":0,
-         "is_zomato_book_res":0,
-         "mezzo_provider":"OTHER",
-         "is_book_form_web_view":0,
-         "book_form_web_view_url":"",
-         "book_again_url":"",
-         "thumb":"",
-         "user_rating":{
-            "aggregate_rating":"4.0",
-            "rating_text":"Very Good",
-            "rating_color":"5BA829",
-            "rating_obj":{
-               "title":{
-                  "text":"4.0"
-               },
-               "bg_color":{
-                  "type":"lime",
-                  "tint":"600"
-               }
-            },
-            "votes":41
-         },
-         "all_reviews_count":12,
-         "photos_url":"https://www.zomato.com/washington-dc/pizza-atlas-district/photos?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1#tabtop",
-         "photo_count":132,
-         "menu_url":"https://www.zomato.com/washington-dc/pizza-atlas-district/menu?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1&openSwipeBox=menu&showMinimal=1#tabtop",
-         "featured_image":"",
-         "medio_provider":false,
-         "has_online_delivery":0,
-         "is_delivering_now":0,
-         "store_type":"",
-         "include_bogo_offers":true,
-         "deeplink":"zomato://restaurant/16876154",
-         "is_table_reservation_supported":0,
-         "has_table_booking":0,
-         "events_url":"https://www.zomato.com/washington-dc/pizza-atlas-district/events#tabtop?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1",
-         "phone_numbers":"(202) 839-8576, (202) 558-7549",
-         "all_reviews":{
-            "reviews":[
-               {
-                  "review":[
-                     
-                  ]
-               },
-               {
-                  "review":[
-                     
-                  ]
-               },
-               {
-                  "review":[
-                     
-                  ]
-               },
-               {
-                  "review":[
-                     
-                  ]
-               },
-               {
-                  "review":[
-                     
-                  ]
-               }
-            ]
-         },
-         "establishment":[
-            "Pizzeria"
-         ],
-         "establishment_types":[
-            
-         ]
-      }
-   },
-   {
-      "restaurant":{
-         "R":{
-            "res_id":16876829,
-            "is_grocery_store":false,
-            "has_menu_status":{
-               "delivery":-1,
-               "takeaway":-1
-            }
-         },
-         "apikey":"d710754ce67200fb6fb9b5e26139f50e",
-         "id":"16876829",
-         "name":"pizza hut",
-         "url":"https://www.zomato.com/washington-dc/pizza-u-street-shaw?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1",
-         "location":{
-            "address":"1250 U Street NW, Washington 20001",
-            "locality":"U Street/Shaw",
-            "city":"Washington DC",
-            "city_id":283,
-            "latitude":"38.9168127000",
-            "longitude":"-77.0287941000",
-            "zipcode":"20001",
-            "country_id":216,
-            "locality_verbose":"U Street/Shaw, Washington DC"
-         },
-         "switch_to_order_menu":0,
-         "cuisines":"Italian, Pizza, Vegetarian",
-         "timings":"11 AM to 11 PM (Mon, Tue, Wed, Sun), 11 AM to 1 AM (Thu),11 AM to 4 AM (Fri-Sat)",
-         "average_cost_for_two":0,
-         "price_range":1,
-         "currency":"$",
-         "highlights":[
-            "Dinner",
-            "Credit Card",
-            "Takeaway Available",
-            "Lunch",
-            "Serves Alcohol",
-            "Vegetarian Friendly",
-            "Beer",
-            "Wine",
-            "Indoor Seating",
-            "Wifi",
-            "Vegan Options"
-         ],
-         "offers":[
-            
-         ],
-         "opentable_support":0,
-         "is_zomato_book_res":0,
-         "mezzo_provider":"OTHER",
-         "is_book_form_web_view":0,
-         "book_form_web_view_url":"",
-         "book_again_url":"",
-         "thumb":"",
-         "user_rating":{
-            "aggregate_rating":"3.7",
-            "rating_text":"Good",
-            "rating_color":"9ACD32",
-            "rating_obj":{
-               "title":{
-                  "text":"3.7"
-               },
-               "bg_color":{
-                  "type":"lime",
-                  "tint":"600"
-               }
-            },
-            "votes":14
-         },
-         "all_reviews_count":4,
-         "photos_url":"https://www.zomato.com/washington-dc/pizza-u-street-shaw/photos?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1#tabtop",
-         "photo_count":5,
-         "menu_url":"https://www.zomato.com/washington-dc/pizza-u-street-shaw/menu?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1&openSwipeBox=menu&showMinimal=1#tabtop",
-         "featured_image":"",
-         "medio_provider":false,
-         "has_online_delivery":0,
-         "is_delivering_now":0,
-         "store_type":"",
-         "include_bogo_offers":true,
-         "deeplink":"zomato://restaurant/16876829",
-         "is_table_reservation_supported":0,
-         "has_table_booking":0,
-         "events_url":"https://www.zomato.com/washington-dc/pizza-u-street-shaw/events#tabtop?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1",
-         "phone_numbers":"(202) 733-1286",
-         "all_reviews":{
-            "reviews":[
-               {
-                  "review":[
-                     
-                  ]
-               },
-               {
-                  "review":[
-                     
-                  ]
-               },
-               {
-                  "review":[
-                     
-                  ]
-               },
-               {
-                  "review":[
-                     
-                  ]
-               }
-            ]
-         },
-         "establishment":[
-            "Pizzeria"
-         ],
-         "establishment_types":[
-            
-         ]
-      }
-   },
-   {
-      "restaurant":{
-         "R":{
-            "res_id":16878349,
-            "is_grocery_store":false,
-            "has_menu_status":{
-               "delivery":-1,
-               "takeaway":-1
-            }
-         },
-         "apikey":"d710754ce67200fb6fb9b5e26139f50e",
-         "id":"16878349",
-         "name":"pizzerai ",
-         "url":"https://www.zomato.com/washington-dc/pizza-1-downtown?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1",
-         "location":{
-            "address":"1400 K Street North West, Washington 20005",
-            "locality":"Downtown",
-            "city":"Washington DC",
-            "city_id":283,
-            "latitude":"38.9023488000",
-            "longitude":"-77.0326246000",
-            "zipcode":"20005",
-            "country_id":216,
-            "locality_verbose":"Downtown, Washington DC"
-         },
-         "switch_to_order_menu":0,
-         "cuisines":"Italian, Pizza, Vegetarian",
-         "timings":"11 AM to 11 PM (Mon, Tue, Wed, Sun), 11 AM to 12 Midnight (Thu),11 AM to 4 AM (Fri-Sat)",
-         "average_cost_for_two":10,
-         "price_range":1,
-         "currency":"$",
-         "highlights":[
-            "Credit Card",
-            "Takeaway Available",
-            "Lunch",
-            "Delivery",
-            "No Alcohol Available",
-            "Dinner",
-            "Kid Friendly",
-            "Vegetarian Friendly",
-            "Table booking recommended",
-            "Indoor Seating",
-            "Vegan Options"
-         ],
-         "offers":[
-            
-         ],
-         "opentable_support":0,
-         "is_zomato_book_res":0,
-         "mezzo_provider":"OTHER",
-         "is_book_form_web_view":0,
-         "book_form_web_view_url":"",
-         "book_again_url":"",
-         "thumb":"",
-         "user_rating":{
-            "aggregate_rating":"3.5",
-            "rating_text":"Good",
-            "rating_color":"9ACD32",
-            "rating_obj":{
-               "title":{
-                  "text":"3.5"
-               },
-               "bg_color":{
-                  "type":"lime",
-                  "tint":"500"
-               }
-            },
-            "votes":9
-         },
-         "all_reviews_count":5,
-         "photos_url":"https://www.zomato.com/washington-dc/pizza-1-downtown/photos?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1#tabtop",
-         "photo_count":7,
-         "menu_url":"https://www.zomato.com/washington-dc/pizza-1-downtown/menu?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1&openSwipeBox=menu&showMinimal=1#tabtop",
-         "featured_image":"",
-         "medio_provider":false,
-         "has_online_delivery":0,
-         "is_delivering_now":0,
-         "store_type":"",
-         "include_bogo_offers":true,
-         "deeplink":"zomato://restaurant/16878349",
-         "is_table_reservation_supported":0,
-         "has_table_booking":0,
-         "events_url":"https://www.zomato.com/washington-dc/pizza-1-downtown/events#tabtop?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1",
-         "phone_numbers":"(202) 682-1503",
-         "all_reviews":{
-            "reviews":[
-               {
-                  "review":[
-                     
-                  ]
-               },
-               {
-                  "review":[
-                     
-                  ]
-               },
-               {
-                  "review":[
-                     
-                  ]
-               },
-               {
-                  "review":[
-                     
-                  ]
-               },
-               {
-                  "review":[
-                     
-                  ]
-               }
-            ]
-         },
-         "establishment":[
-            "Pizzeria"
-         ],
-         "establishment_types":[
-            
-         ]
-      }
-   },
-   {
-      "restaurant":{
-         "R":{
-            "res_id":16879091,
-            "is_grocery_store":false,
-            "has_menu_status":{
-               "delivery":-1,
-               "takeaway":-1
-            }
-         },
-         "apikey":"d710754ce67200fb6fb9b5e26139f50e",
-         "id":"16879091",
-         "name":"pizza place",
-         "url":"https://www.zomato.com/washington-dc/pizza-2-downtown?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1",
-         "location":{
-            "address":"1215 Connecticut Avenue North West, Washington 20036",
-            "locality":"Downtown",
-            "city":"Washington DC",
-            "city_id":283,
-            "latitude":"38.9064300000",
-            "longitude":"-77.0410470000",
-            "zipcode":"20036",
-            "country_id":216,
-            "locality_verbose":"Downtown, Washington DC"
-         },
-         "switch_to_order_menu":0,
-         "cuisines":"Italian, Pizza, Vegetarian",
-         "timings":"11 AM to 11 PM (Mon, Tue, Wed, Sun), 11 AM to 3 AM (Thu),11 AM to 4 AM (Fri-Sat)",
-         "average_cost_for_two":10,
-         "price_range":1,
-         "currency":"$",
-         "highlights":[
-            "Credit Card",
-            "Takeaway Available",
-            "Lunch",
-            "Delivery",
-            "Dinner",
-            "Kid Friendly",
-            "Indoor Seating",
-            "Vegetarian Friendly"
-         ],
-         "offers":[
-            
-         ],
-         "opentable_support":0,
-         "is_zomato_book_res":0,
-         "mezzo_provider":"OTHER",
-         "is_book_form_web_view":0,
-         "book_form_web_view_url":"",
-         "book_again_url":"",
-         "thumb":"",
-         "user_rating":{
-            "aggregate_rating":"3.3",
-            "rating_text":"Average",
-            "rating_color":"CDD614",
-            "rating_obj":{
-               "title":{
-                  "text":"3.3"
-               },
-               "bg_color":{
-                  "type":"lime",
-                  "tint":"500"
-               }
-            },
-            "votes":7
-         },
-         "all_reviews_count":4,
-         "photos_url":"https://www.zomato.com/washington-dc/pizza-2-downtown/photos?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1#tabtop",
-         "photo_count":6,
-         "menu_url":"https://www.zomato.com/washington-dc/pizza-2-downtown/menu?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1&openSwipeBox=menu&showMinimal=1#tabtop",
-         "featured_image":"",
-         "medio_provider":false,
-         "has_online_delivery":0,
-         "is_delivering_now":0,
-         "store_type":"",
-         "include_bogo_offers":true,
-         "deeplink":"zomato://restaurant/16879091",
-         "is_table_reservation_supported":0,
-         "has_table_booking":0,
-         "events_url":"https://www.zomato.com/washington-dc/pizza-2-downtown/events#tabtop?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1",
-         "phone_numbers":"(202) 450-4926",
-         "all_reviews":{
-            "reviews":[
-               {
-                  "review":[
-                     
-                  ]
-               },
-               {
-                  "review":[
-                     
-                  ]
-               },
-               {
-                  "review":[
-                     
-                  ]
-               },
-               {
-                  "review":[
-                     
-                  ]
-               }
-            ]
-         },
-         "establishment":[
-            "Pizzeria"
-         ],
-         "establishment_types":[
-            
-         ]
-      }
-   },
-   {
-      "restaurant":{
-         "R":{
-            "res_id":16878346,
-            "is_grocery_store":false,
-            "has_menu_status":{
-               "delivery":-1,
-               "takeaway":-1
-            }
-         },
-         "apikey":"d710754ce67200fb6fb9b5e26139f50e",
-         "id":"16878346",
-         "name":"pizza palace ",
-         "url":"https://www.zomato.com/washington-dc/pizza-downtown?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1",
-         "location":{
-            "address":"1005 E Street NW, Washington 20037",
-            "locality":"Downtown",
-            "city":"Washington DC",
-            "city_id":283,
-            "latitude":"38.8962554000",
-            "longitude":"-77.0263564000",
-            "zipcode":"20037",
-            "country_id":216,
-            "locality_verbose":"Downtown, Washington DC"
-         },
-         "switch_to_order_menu":0,
-         "cuisines":"Italian, Pizza, Vegetarian",
-         "timings":"11 AM to 11 PM (Mon, Tue, Wed, Thu, Sun), 11 AM to 12 Midnight (Fri-Sat)",
-         "average_cost_for_two":10,
-         "price_range":1,
-         "currency":"$",
-         "highlights":[
-            "Credit Card",
-            "Takeaway Available",
-            "Lunch",
-            "Delivery",
-            "No Alcohol Available",
-            "Dinner",
-            "Kid Friendly",
-            "Vegetarian Friendly",
-            "Table booking recommended",
-            "Indoor Seating",
-            "Vegan Options"
-         ],
-         "offers":[
-            
-         ],
-         "opentable_support":0,
-         "is_zomato_book_res":0,
-         "mezzo_provider":"OTHER",
-         "is_book_form_web_view":0,
-         "book_form_web_view_url":"",
-         "book_again_url":"",
-         "thumb":"",
-         "user_rating":{
-            "aggregate_rating":"3.1",
-            "rating_text":"Average",
-            "rating_color":"CDD614",
-            "rating_obj":{
-               "title":{
-                  "text":"3.1"
-               },
-               "bg_color":{
-                  "type":"lime",
-                  "tint":"500"
-               }
-            },
-            "votes":8
-         },
-         "all_reviews_count":3,
-         "photos_url":"https://www.zomato.com/washington-dc/pizza-downtown/photos?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1#tabtop",
-         "photo_count":4,
-         "menu_url":"https://www.zomato.com/washington-dc/pizza-downtown/menu?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1&openSwipeBox=menu&showMinimal=1#tabtop",
-         "featured_image":"",
-         "medio_provider":false,
-         "has_online_delivery":0,
-         "is_delivering_now":0,
-         "store_type":"",
-         "include_bogo_offers":true,
-         "deeplink":"zomato://restaurant/16878346",
-         "is_table_reservation_supported":0,
-         "has_table_booking":0,
-         "events_url":"https://www.zomato.com/washington-dc/pizza-downtown/events#tabtop?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1",
-         "phone_numbers":"(202) 347-5056",
-         "all_reviews":{
-            "reviews":[
-               {
-                  "review":[
-                     
-                  ]
-               },
-               {
-                  "review":[
-                     
-                  ]
-               },
-               {
-                  "review":[
-                     
-                  ]
-               }
-            ]
-         },
-         "establishment":[
-            "Pizzeria"
-         ],
-         "establishment_types":[
-            
-         ]
-      }
-   }
-]
+
 let map, infoWindow;
 var favorites; 
 
@@ -640,9 +36,6 @@ $(document).ready(function() {
          $(this).find("i").removeClass().addClass("fa fa-thumbs-up");
          console.log("make it non-fav");
          makeItNonFavorite(result[selectedIndex].restaurant.id);
-
-         //removeItem();
-
       }
 
  });
@@ -788,14 +181,10 @@ function select() {
 });
 
 function displayMapAt(lat, lon) {
-   
-   //let la1= "33.8404245";
-   //   let lon1 = "-118.3574995";
-   
    $("#map")
    .html(
       "<iframe src=\"http://maps.google.com/maps?q=" + lat +  "," + lon + "&z=15&output=embed\"></iframe>");
-   }
+}
    
    function distance(lat1, lon1, lat2, lon2) {
       if ((lat1 == lat2) && (lon1 == lon2)) {
@@ -817,7 +206,6 @@ function displayMapAt(lat, lon) {
          return dist.toFixed(2);
       }
    }
-
    
    function checkIfItemIsFavorite(array, _item) {
       if (array == null) {
@@ -832,16 +220,12 @@ function displayMapAt(lat, lon) {
    }
 
    function makeItNonFavorite(_id) {
-      console.log("in non favotite");
-
       var savedData = localStorage.getItem("FavoritePlaces");
 
       if (savedData != null) { 
          savedData =  JSON.parse(savedData);
          savedData= removeItem(savedData, _id);
-         console.log(savedData);
-
-          localStorage.setItem('FavoritePlaces', JSON.stringify(savedData));
+         localStorage.setItem('FavoritePlaces', JSON.stringify(savedData));
       }
    }
 
@@ -864,7 +248,7 @@ function displayMapAt(lat, lon) {
    }
   
    /*--------------------------------------------------------------
-# Method to save Score 
+# Method to save Favorite 
 --------------------------------------------------------------*/
 
 function removeItem(array, _item) {
@@ -892,7 +276,7 @@ function filterItem(array, _item) {
    return true;
  }
 
-    /*--------------------------------------------------------------
+   /*--------------------------------------------------------------
    # Create object variable for saving Favorite details
    --------------------------------------------------------------*/
    function createFavorite(info) {
@@ -904,11 +288,7 @@ function filterItem(array, _item) {
       return object;
    }
    function clickCard(id) {
-      
-      console.log("click " + id);
-      console.log("click " + parseInt(id));
-      selectedIndex = parseInt(id);
-      console.log(result[selectedIndex].restaurant);
+       selectedIndex = parseInt(id);
       
       var modal = $("#modalDetail");
       var name = modal.find( "#name");
@@ -958,15 +338,16 @@ function filterItem(array, _item) {
          
       }
       var savedData = localStorage.getItem("FavoritePlaces");
+      savedData = JSON.parse(savedData);
 
       favButton.find("i").removeClass().addClass("fa fa-thumbs-up");
 
-      /*if (checkIfItemIsFavorite(savedData, result[selectedIndex].restaurant.id)) {
+      if (checkIfItemIsFavorite(savedData, result[selectedIndex].restaurant.id)) {
          favButton.find("i").removeClass().addClass("fa fa-thumbs-up");
       } else {
          favButton.find("i").removeClass().addClass("fa fa-thumbs-down");
 
-      }*/
+      }
 
    }
    function createCard(response) {      
