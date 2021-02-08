@@ -186,12 +186,11 @@ function select() {
    let request = createRequest(url);
    
    $.getJSON(request, function(data) {
-      data.responseJSON
       if (data.restaurants == null || data.restaurants == "") {
          showPopUp("Something went wrong, Please try again!");
       }
       result = data.restaurants;
-      createCard(data.restaurants);
+      createCard(result);
    });
 }
 });
@@ -303,11 +302,10 @@ function displayMapAt(lat, lon) {
       }
       return object;
    }
+
    function clickCard(id) {
       selectedIndex = parseInt(id);
-      
-      // console.log("click " + id);
-      // console.log("click " + parseInt(id));
+     
       let index = parseInt(id);
       console.log(result[index].restaurant);
       var modal = $("#modalDetail");
@@ -322,7 +320,8 @@ function displayMapAt(lat, lon) {
       var offers = modal.find( "#modalDelivery");
       var delivery = modal.find( "#modalDelivery");
       var favButton = modal.find( "#modalFavorite");
-      
+      var highlights = modal.find( "#Highlights");
+
       cusine.text(result[selectedIndex].restaurant.cuisines);
       name.text(result[selectedIndex].restaurant.name);
       rating.text(result[selectedIndex].restaurant.user_rating.aggregate_rating);
@@ -334,15 +333,7 @@ function displayMapAt(lat, lon) {
       displayMapAt(result[selectedIndex].restaurant.location.latitude, result[selectedIndex].restaurant.location.longitude);
       var thumb = $("#icon-img");
       // var website = $("#modalWebsite");
-
-      cusine.text(result[index].restaurant.cuisines);
-      name.text(result[index].restaurant.name);
-      rating.text(result[index].restaurant.user_rating.aggregate_rating);
-      address.text(result[index].restaurant.location.address);
-      phone.text(result[index].restaurant.phone_numbers);
-      timing.text(result[index].restaurant.timings);
-      offers.text(result[index].restaurant.offers);
-      thumb.attr("src", result[index].restaurant.thumb);
+      thumb.attr("src", result[selectedIndex].restaurant.thumb);
       thumb.attr("onError", "this.onerror=null;this.src='./Assets/images/img.png';")
 
       // website.attr("onclick", open(result[index].restaurant.url));
@@ -366,24 +357,26 @@ function displayMapAt(lat, lon) {
       price.text(" - " + pricetext);
 
 
-      let hasdelivery = result[index].restaurant.has_online_delivery;
+      let hasdelivery = result[selectedIndex].restaurant.has_online_delivery;
       
       if (hasdelivery == "1") {
          delivery.text("YES");
-         delivery.style.color = "green";
+         delivery.attr("color", "green");
       } else {
          delivery.text("NO");
-         delivery.style.color = "red";
+         delivery.attr("color", "red");
 
       }
-      var highlights = result[selectedIndex].restaurant.highlights;
-      if (highlights.length > 0 ){
+      var highlight = result[selectedIndex].restaurant.highlights;
+      if (highlight.length > 0 ){
          let text = "";
-         for (var i=0 ; i<highlights.length; i++) {
-            text += " " + highlights[i];
-               text += highlights[i] + ", ";
+         for (var i=0 ; i<highlight.length; i++) {
+            text += " " + highlight[i];
+               text += highlight[i] + ", ";
          }
-         $("#Highlights").text(text);
+         console.log("higj " + highlight);
+
+        highlights.text(text);
          
       }
       var savedData = localStorage.getItem("FavoritePlaces");
@@ -399,6 +392,7 @@ function displayMapAt(lat, lon) {
       }
       
    }
+}
    function createCard(response) {      
       var string = "";
       var name = "";
@@ -406,8 +400,8 @@ function displayMapAt(lat, lon) {
       var rating = "";
       var icon = "";
       var favButton = "";
+      $('#card').html('');
       
-      console.log(response);
       $.each(response, function (i) {
          var dist = distance(response[i].restaurant.location.latitude,response[i].restaurant.location.longitude, currentLocation.lat, currentLocation.lon );
          name = response[i].restaurant.name;
@@ -417,7 +411,7 @@ function displayMapAt(lat, lon) {
          if (icon == "" || icon == null) {
             icon = "./Assets/images/img.png";
          }
-         
+         console.log(icon);
          
          if (i%3 == 0) {
             string += '<div class="grid-x small-up-2 medium-up-3">';
@@ -428,4 +422,3 @@ function displayMapAt(lat, lon) {
       
       $('#card').append(string);
    }
-}

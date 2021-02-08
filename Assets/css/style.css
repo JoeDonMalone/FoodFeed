@@ -194,6 +194,8 @@ section h1 , .text-hero {
   width: 60%;
   height: 100%;
   overflow: hidden;
+  border-radius: 10px;
+  border: lightblue solid 1px;
 }
 .card-rating {
   background-color: LightBlue;
