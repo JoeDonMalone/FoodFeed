@@ -1,4 +1,4 @@
-[
+var response2 = [
    {
       "restaurant":{
          "R":{
@@ -132,7 +132,7 @@
          },
          "apikey":"d710754ce67200fb6fb9b5e26139f50e",
          "id":"16876829",
-         "name":"&pizza",
+         "name":"pizza hut",
          "url":"https://www.zomato.com/washington-dc/pizza-u-street-shaw?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1",
          "location":{
             "address":"1250 U Street NW, Washington 20001",
@@ -248,7 +248,7 @@
          },
          "apikey":"d710754ce67200fb6fb9b5e26139f50e",
          "id":"16878349",
-         "name":"&pizza",
+         "name":"pizzerai ",
          "url":"https://www.zomato.com/washington-dc/pizza-1-downtown?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1",
          "location":{
             "address":"1400 K Street North West, Washington 20005",
@@ -369,7 +369,7 @@
          },
          "apikey":"d710754ce67200fb6fb9b5e26139f50e",
          "id":"16879091",
-         "name":"&pizza",
+         "name":"pizza place",
          "url":"https://www.zomato.com/washington-dc/pizza-2-downtown?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1",
          "location":{
             "address":"1215 Connecticut Avenue North West, Washington 20036",
@@ -482,7 +482,7 @@
          },
          "apikey":"d710754ce67200fb6fb9b5e26139f50e",
          "id":"16878346",
-         "name":"&pizza",
+         "name":"pizza palace ",
          "url":"https://www.zomato.com/washington-dc/pizza-downtown?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1",
          "location":{
             "address":"1005 E Street NW, Washington 20037",

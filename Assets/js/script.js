@@ -30,6 +30,8 @@ var response = {
    phone_numbers: "",
    offers: "",
 }
+var selected = 0;
+
 var response2 = [
    {
       "restaurant":{
@@ -615,6 +617,8 @@ var response2 = [
    }
 ]
 let map, infoWindow;
+var favorites; 
+
 /*================Page load method  ================*/
 $(document).ready(function() {
    //  initializeSearchHistory();
@@ -623,6 +627,25 @@ $(document).ready(function() {
       $('#exampleModal1').foundation('reveal', 'open');
    });
    
+   $("#modalFavorite").click( function() {
+
+      var className = $(this).find("i") .attr("class");
+      if (className == "fa fa-thumbs-up") {
+         console.log("make it fav");
+         // make it favorite
+          makeItFavorite();
+         $(this).find("i").removeClass().addClass("fa fa-thumbs-down");
+
+      } else {
+         $(this).find("i").removeClass().addClass("fa fa-thumbs-up");
+         console.log("make it non-fav");
+         makeItNonFavorite(result[selectedIndex].restaurant.id);
+
+         //removeItem();
+
+      }
+
+ });
    
    $(".card").click(function(e) {
       alert("card" + $(this) + "clicked");
@@ -693,6 +716,8 @@ $(document).ready(function() {
       });
    }
    
+  
+  
    function initializeSearchHistory() {
       let recentSearches = JSON.parse(localStorage.getItem('Recent Places Searches'));
       if (!recentSearches) {
@@ -726,6 +751,7 @@ function initializeSearchHistory() {
 };
 
 function addToSearchHistory() {
+   
    let recentSearches = [ {
       'searchString':searchEl.val(),
       'location': locationEl.val(),
@@ -763,8 +789,8 @@ function select() {
 
 function displayMapAt(lat, lon) {
    
-  //let la1= "33.8404245";
-//   let lon1 = "-118.3574995";
+   //let la1= "33.8404245";
+   //   let lon1 = "-118.3574995";
    
    $("#map")
    .html(
@@ -791,12 +817,99 @@ function displayMapAt(lat, lon) {
          return dist.toFixed(2);
       }
    }
+
+   
+   function checkIfItemIsFavorite(array, _item) {
+      if (array == null) {
+         return false;
+      }
+      for (var i=0; i<array.length; i++) {
+         if (array[i].id == _item) {
+            return true;
+         }
+      }
+      return false;
+   }
+
+   function makeItNonFavorite(_id) {
+      console.log("in non favotite");
+
+      var savedData = localStorage.getItem("FavoritePlaces");
+
+      if (savedData != null) { 
+         savedData =  JSON.parse(savedData);
+         savedData= removeItem(savedData, _id);
+         console.log(savedData);
+
+          localStorage.setItem('FavoritePlaces', JSON.stringify(savedData));
+      }
+   }
+
+   function makeItFavorite() {
+      let object = createFavorite(result[selectedIndex]);
+      console.log(object);
+
+      var savedData = localStorage.getItem("FavoritePlaces");
+
+      if (savedData === null) { 
+         favorites = [object];
+      } else {
+
+         if (filterItem(JSON.parse(savedData), object.id)) {
+            favorites = JSON.parse(savedData);
+            favorites.push(object);
+         }
+      }   
+      localStorage.setItem('FavoritePlaces', JSON.stringify(favorites));
+   }
+  
+   /*--------------------------------------------------------------
+# Method to save Score 
+--------------------------------------------------------------*/
+
+function removeItem(array, _item) {
+   
+   for (var i=0; i<array.length; i++) {
+      console.log(array[i].id, _item);
+     if (array[i].id == _item) {
+        console.log("in delete" + array[i].id + _item);
+
+      array.splice(1, 1);
+             return array;
+     } 
+   }
+   return array;
+ }
+// Method to filter items from array
+function filterItem(array, _item) {
+  
+   for (var i=0; i<array.length; i++) {
+      console.log(array[i].id, _item);
+     if (array[i].id == _item) {
+       return false;
+     } 
+   }
+   return true;
+ }
+
+    /*--------------------------------------------------------------
+   # Create object variable for saving Favorite details
+   --------------------------------------------------------------*/
+   function createFavorite(info) {
+      
+      var object = {
+         "id": info.restaurant.id,
+         "restaurant": info, 
+      }
+      return object;
+   }
    function clickCard(id) {
+      
       console.log("click " + id);
       console.log("click " + parseInt(id));
-      let index = parseInt(id);
-      console.log(result[index].restaurant);
-
+      selectedIndex = parseInt(id);
+      console.log(result[selectedIndex].restaurant);
+      
       var modal = $("#modalDetail");
       var name = modal.find( "#name");
       var cusine = modal.find( "#modalCuisine");
@@ -808,41 +921,52 @@ function displayMapAt(lat, lon) {
       var offers = modal.find( "#offers");
       var offers = modal.find( "#modalDelivery");
       var delivery = modal.find( "#modalDelivery");
+      var favButton = modal.find( "#modalFavorite");
 
-      cusine.text(result[index].restaurant.cuisines);
-      name.text(result[index].restaurant.name);
-      rating.text(result[index].restaurant.user_rating.aggregate_rating);
-      address.text(result[index].restaurant.location.address);
-      phone.text(result[index].restaurant.phone_numbers);
-      timing.text(result[index].restaurant.timings);
-      offers.text(result[index].restaurant.offers);
-
-      displayMapAt(result[index].restaurant.location.latitude, result[index].restaurant.location.longitude);
+      cusine.text(result[selectedIndex].restaurant.cuisines);
+      name.text(result[selectedIndex].restaurant.name);
+      rating.text(result[selectedIndex].restaurant.user_rating.aggregate_rating);
+      address.text(result[selectedIndex].restaurant.location.address);
+      phone.text(result[selectedIndex].restaurant.phone_numbers);
+      timing.text(result[selectedIndex].restaurant.timings);
+      offers.text(result[selectedIndex].restaurant.offers);
+      
+      displayMapAt(result[selectedIndex].restaurant.location.latitude, result[selectedIndex].restaurant.location.longitude);
       let pricetext = "";
-
-      for (var i=0; i<parseInt(result[index].restaurant.price_range); i++) {
+      
+      for (var i=0; i<parseInt(result[selectedIndex].restaurant.price_range); i++) {
          pricetext += "$";
       }
       price.text(pricetext);
-
-
-      let hasdelivery = result[index].restaurant.has_online_delivery;
+      
+      
+      let hasdelivery = result[selectedIndex].restaurant.has_online_delivery;
       
       if (hasdelivery == "1") {
-            delivery.text(" :YES");
+         delivery.text(" :YES");
       } else {
          delivery.text(" :NO");
-
+         
       }
-      var highlights = result[index].restaurant.highlights;
+      var highlights = result[selectedIndex].restaurant.highlights;
       if (highlights.length > 0 ){
          let text = "";
          for (var i=0 ; i<highlights.length; i++) {
-               text += " " + highlights[i];
+            text += " " + highlights[i];
          }
          $("#Highlights").text(text);
-
+         
       }
+      var savedData = localStorage.getItem("FavoritePlaces");
+
+      favButton.find("i").removeClass().addClass("fa fa-thumbs-up");
+
+      /*if (checkIfItemIsFavorite(savedData, result[selectedIndex].restaurant.id)) {
+         favButton.find("i").removeClass().addClass("fa fa-thumbs-up");
+      } else {
+         favButton.find("i").removeClass().addClass("fa fa-thumbs-down");
+
+      }*/
 
    }
    function createCard(response) {      
@@ -851,10 +975,10 @@ function displayMapAt(lat, lon) {
       var cuisines = "";
       var rating = "";
       var icon = "";
-      
+      var favButton = "";
+
       $.each(response, function (i) {
          var dist = distance(response[i].restaurant.location.latitude,response[i].restaurant.location.longitude, currentLocation.lat, currentLocation.lon );
-         
          name = response[i].restaurant.name;
          cuisines = response[i].restaurant.cuisines;
          rating = response[i].restaurant.user_rating.aggregate_rating;
@@ -862,11 +986,12 @@ function displayMapAt(lat, lon) {
          if (icon == "" || icon == null) {
             icon = "./Assets/images/img.jpeg";
          }
+        
          
          if (i%3 == 0) {
             string += '<div class="grid-x small-up-2 medium-up-3">';
          }
-         string += '<div class="cell"> <div class="card" onclick="clickCard(this.id)" data-open="modalDetail" id='+ i + '"> <div class= "text-center">  <img class="card-image" src=' + icon + '> </div> <h6 class="card-title">' + name + '</h6> <p> <span class="card-cuisine">' + cuisines + '<br> </span> <span class="card-rating">  ' + rating +   '</span> <span class="card-dist">' + dist+ ' miles </span> </p> </div> </div>';
+         string += '<div class="cell"> <div class="card" onclick="clickCard(this.id)" data-open="modalDetail" id='+ i + '"> <div class= "text-center">  <img class="card-image" src=' + icon + '> </div> <h6 class="card-title">' + name + '</h6> <p> <span class="card-cuisine">' + cuisines + '<br> </span> <span class="card-rating">  ' + rating +   '</span> <span class="card-dist">' + dist+ ' miles </span> </p> <button type="button" class="success button">Save</button> <i class="fa fa-map-marker"></i><i class="fa fa-heart-o" aria-hidden="true"></i>   test  </button>  </div> </div>';
       })
       
       $('#card').append(string);
