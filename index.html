@@ -4,9 +4,13 @@
     <link rel="stylesheet" href="./Foundation/css/foundation.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.0.1/js/vendor/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.5.1/dist/js/foundation.min.js" integrity="sha256-WUKHnLrIrx8dew//IpSEmPN/NT3DGAEmIePQYIEJLLs= sha384-53StQWuVbn6figscdDC3xV00aYCPEz3srBdV/QGSXw3f19og3Tq2wTRe0vJqRTEO sha512-X9O+2f1ty1rzBJOC8AXBnuNUdyJg0m8xMKmbt9I3Vu/UOWmSg5zG+dtnje4wAZrKtkopz/PEDClHZ1LXx5IeOw==" crossorigin="anonymous"></script>
+<<<<<<< HEAD
     <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.0.1/js/vendor/jquery.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
+=======
+    
+>>>>>>> 406b7eb79fae9156f2ffa4b46e32fa09a629d956
     <link rel="stylesheet" href="./Assets/css/style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
@@ -16,11 +20,17 @@
     <script src="js/vendor/modernizr.js"></script>
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="./Foundation/css/foundation.css ">
+<<<<<<< HEAD
+=======
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+
+    
+>>>>>>> 406b7eb79fae9156f2ffa4b46e32fa09a629d956
     <link href="/Foundation/css/foundation.min.css" rel="stylesheet" />
 
     <title>Anywhere But Here</title>
 </head>
-<body>
+<body style="background: url('https://d19m59y37dris4.cloudfront.net/places/1-1-4/img/hero-bg.jpg');" class="hero d-flex align-items-center background-style">
     <header>
         <!-- mobile nav bar -->
         <div class="title-bar topbar-center-logo-mobile" data-responsive-toggle="topbar-center-logo" data-hide-for="medium">
@@ -40,6 +50,7 @@
             </div>
             <div class="top-bar-center">
                 <ul class="menu vertical medium-horizontal">
+<<<<<<< HEAD
                     <li><a href="#">Home </a></li>
                     <li><a href="#">Favorite List</a></li>
                     
@@ -50,19 +61,27 @@
                     <li> <span> 75 F </span> </li>
                     <li> <img src="" alt="icon" style="max-width: 30px; max-height: 30px;" id=""> </li>
                     <li> <span> Clear Sky </span> </li>
+=======
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="list.html">Favorites</a></li>
+>>>>>>> 406b7eb79fae9156f2ffa4b46e32fa09a629d956
                 </ul>
             </div>
         </div>
     </header>
     
-    <section style="background: url('https://d19m59y37dris4.cloudfront.net/places/1-1-4/img/hero-bg.jpg') no-repeat;" class="hero d-flex align-items-center">
-        <h1>Let's <span class="text-primary">go    </span> anywhere</h1>
-        <p class="text-hero">Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+    <section>
+        <h1 class="motto">Find the <span class="text-primary">Best</span> Restaurant For <span class="text-primary">You</span></h1>
+        <div class="current-weather">
+                <div> <span id="temp"></span> </div>
+                <div> <img id="weather-icon"></img> </div>
+                <div> <span id="weather"></span> </div>
+        </div>
         
         <div class="searchbar">
             <div class="grid-x grid-padding-x">
                 <div class="small-4 cell">
-                    <input id="getText" type="text" class="form-control" placeholder="What are you searching for?">
+                    <input id="getText" type="text" class="form-control" placeholder="Search for a food type">
                 </div>
                 <div class="small-4 cell">
                     <select id="select_id" class="form-control form-control-lg">
@@ -101,14 +120,13 @@
                 </div>
             </div>
             <div class=" success button align-center">
-                <button id = "submit"  class="btn btn-primary">Search Restaurants </button>
+                <button id="submit" class="btn">Search</button>
                 
             </div>
         </div>
     </section>
     <button id="modalLauncher" data-reveal="exampleModal1"> open modal  </button>
-    <div class="grid-container" id="card">
-    </div>
+    <div class="grid-container" id="card"></div>
 
     <div class="reveal" id="exampleModal1" data-reveal>
     <h1>Awesome. I Have It.</h1>
@@ -129,7 +147,7 @@
 
       <div class="row">
         <div class="columns">
-            <div class="reveal" id="modalDetail" data-reveal>
+            <div class="reveal text-center" id="modalDetail" data-reveal>
                 <h1 class="lead">
                     <span id="name"></span> 
                     <br>
@@ -137,13 +155,14 @@
                     <span id="modalPrice" class="text-center" style="font-size: smaller;"> </span>
                 </h1>
                 <p>
-                  <img id="icon-img" src="./Assets/images/img.jpeg" class="text-center" style="margin-left:10px;margin-right:10px; max-height:250px;max-width:250px;"/>
-                  <p> 
-                    <button type="button" class="success button text-center">Delivery Available: <span id="modalDelivery">  </span></button>
+                  <img id="icon-img" src="" class="text-center" style="margin-left:10px;margin-right:10px; max-height:250px;max-width:250px;"/>
+                <p> 
+                    <div class="text-center"><strong>Delivery Available: </strong> <span id="modalDelivery"> </span></div>
 
-                    <button type="button" class="alert button text-center" id="modalRatingText"></button>
+                    <div class="text-center"><strong>Rating: </strong> <i class='fas fa-star'></i><span id="modalRatingText"></span></div>
                     <br>
                     
+<<<<<<< HEAD
                     <strong> Highlights: </strong> <span id="Highlights"> </span></p>
                        <strong> Address: </strong> <span id="modaladdres"> </span> <br>
                       <strong>Phone:</strong>  <span id="modalphone"></span> <br>
@@ -152,18 +171,29 @@
                       <button type="button" class="success button"> Website  </button>
                       <button type="button" class="success button" id="modalFavorite"> <i class="fa fa-thumbs-down"></i>  </button>
                       <button type="button" class="success button"> Menu  </button>
+=======
+                    <!-- <strong>Highlights: </strong> <span id="Highlights"> </span></p> -->
+                    <strong>Address: </strong> <span id="modaladdres"> </span> <br>
+                    <strong>Phone:</strong>  <span id="modalphone"></span> <br>
+                    <strong>Hours:</strong> <span id="timing"></span> <br><br>
+                    <!-- <strong>Offers: </strong> <span id="offers ">    </span> <br> -->
+                    <button type="button" class="success button" id="modalWebsite">Website  </button>
+                    <button type="button" class="success button">Favorite This Location</button>
+>>>>>>> 406b7eb79fae9156f2ffa4b46e32fa09a629d956
                
                 </p>
                 <div id="map" style="width: 100%;">
                         
                 </div>
-
-                
                     <button class="close-button" data-close aria-label="Close reveal" type="button">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
             </div>
+      </div>
+      <!-- Footer -->
+      <div class="mobile-bottom-bar footer">
+        <p>Website Name</p>
       </div>
        
       <script src="./Foundation/js/vendor.js"></script>
