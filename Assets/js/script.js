@@ -663,24 +663,24 @@ $(document).ready(function() {
    }
    function callWeatherInfo( latitude, longitude ) {
       var url = "https://api.openweathermap.org/data/2.5/onecall?lat=" + latitude+ "&lon=" + longitude +"&units=imperial&appid=" + apiKey;
-      console.log(url);
+      // console.log(url);
       
       fetch(url)  
       .then(function(resp) { return resp.json() }) // Convert data to json
       .then(function(data) {
          //
-         console.log(data);
-         console.log(data.current.temp);
+         // console.log(data);
+         // console.log(data.current.temp);
          
          let temp = document.getElementById("temp");
-         temp.innerText = "Your Temp is: " +  data.current.temp;
-         let icon = document.getElementById("weathericon");
+         temp.innerText = "Current Temperature: " +  Math.floor(data.current.temp) + "\u00B0" + "F";
+         let icon = document.getElementById("weather-icon");
          let details = document.getElementById("weather");
          
-         var todayiconurl = "http://openweathermap.org/img/wn/" +  data.current.weather[0].icon + "@2x.png";
-         console.log(todayiconurl);
+         var todayiconurl = "http://openweathermap.org/img/wn/" +  data.current.weather[0].icon + ".png";
+         // console.log(todayiconurl);
          icon.setAttribute("src", todayiconurl);
-         console.log(data.current.weather[0].description);
+         // console.log(data.current.weather[0].description);
          
          details.innerText = data.current.weather[0].description;
          
@@ -792,8 +792,8 @@ function displayMapAt(lat, lon) {
       }
    }
    function clickCard(id) {
-      console.log("click " + id);
-      console.log("click " + parseInt(id));
+      // console.log("click " + id);
+      // console.log("click " + parseInt(id));
       let index = parseInt(id);
       console.log(result[index].restaurant);
 
@@ -808,6 +808,8 @@ function displayMapAt(lat, lon) {
       var offers = modal.find( "#offers");
       var offers = modal.find( "#modalDelivery");
       var delivery = modal.find( "#modalDelivery");
+      var thumb = $("#icon-img");
+      // var website = $("#modalWebsite");
 
       cusine.text(result[index].restaurant.cuisines);
       name.text(result[index].restaurant.name);
@@ -816,6 +818,10 @@ function displayMapAt(lat, lon) {
       phone.text(result[index].restaurant.phone_numbers);
       timing.text(result[index].restaurant.timings);
       offers.text(result[index].restaurant.offers);
+      thumb.attr("src", result[index].restaurant.thumb);
+      thumb.attr("onError", "this.onerror=null;this.src='./Assets/images/img.png';")
+
+      // website.attr("onclick", open(result[index].restaurant.url));
 
       displayMapAt(result[index].restaurant.location.latitude, result[index].restaurant.location.longitude);
       let pricetext = "";
@@ -823,22 +829,24 @@ function displayMapAt(lat, lon) {
       for (var i=0; i<parseInt(result[index].restaurant.price_range); i++) {
          pricetext += "$";
       }
-      price.text(pricetext);
+      price.text(" - " + pricetext);
 
 
       let hasdelivery = result[index].restaurant.has_online_delivery;
       
       if (hasdelivery == "1") {
-            delivery.text(" :YES");
+         delivery.text("YES");
+         delivery.style.color = "green";
       } else {
-         delivery.text(" :NO");
+         delivery.text("NO");
+         delivery.style.color = "red";
 
       }
       var highlights = result[index].restaurant.highlights;
       if (highlights.length > 0 ){
          let text = "";
          for (var i=0 ; i<highlights.length; i++) {
-               text += " " + highlights[i];
+               text += highlights[i] + ", ";
          }
          $("#Highlights").text(text);
 
@@ -851,7 +859,7 @@ function displayMapAt(lat, lon) {
       var cuisines = "";
       var rating = "";
       var icon = "";
-      
+      console.log(response);
       $.each(response, function (i) {
          var dist = distance(response[i].restaurant.location.latitude,response[i].restaurant.location.longitude, currentLocation.lat, currentLocation.lon );
          
@@ -860,13 +868,13 @@ function displayMapAt(lat, lon) {
          rating = response[i].restaurant.user_rating.aggregate_rating;
          icon = response[i].restaurant.thumb;
          if (icon == "" || icon == null) {
-            icon = "./Assets/images/img.jpeg";
+            icon = "./Assets/images/img.png";
          }
          
          if (i%3 == 0) {
             string += '<div class="grid-x small-up-2 medium-up-3">';
          }
-         string += '<div class="cell"> <div class="card" onclick="clickCard(this.id)" data-open="modalDetail" id='+ i + '"> <div class= "text-center">  <img class="card-image" src=' + icon + '> </div> <h6 class="card-title">' + name + '</h6> <p> <span class="card-cuisine">' + cuisines + '<br> </span> <span class="card-rating">  ' + rating +   '</span> <span class="card-dist">' + dist+ ' miles </span> </p> </div> </div>';
+         string += '<div class="cell"> <div class="card card-size" onclick="clickCard(this.id)" data-open="modalDetail" id='+ i + '"> <div class= "text-center">  <img class="card-image" src=' + icon + '> </div> <h6 class="card-title">' + name + " - <i class='fas fa-star'></i>" + rating + '</h6> <br> <p><span class="card-cuisine">Cuisine(s): </span><br>' + cuisines + '<br> <span class="card-dist text-primary">Distance:<br> ' + dist+ ' miles </span> </p> </div> </div>';
       })
       
       $('#card').append(string);
