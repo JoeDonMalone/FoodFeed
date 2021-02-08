@@ -5,20 +5,14 @@ var searchEl = $("#search-text");
 var categoryEl = $("#category option:selected");
 var locationEl = $("#location");
 var businessDetailContainerEl = $("#business-detail");
-var business = {
-  id: "",
-  name: "",
-  summary: "",
-  address: "",
-  postalCode: "",
-  state: "",
-  phoneNo: "",
-  lat: "",
-  lon: "",
-  tipCount:""
-}
 var result = [];
-var restaurant = {
+var currentLocation = {
+   lat: "",
+   lon: ""
+}
+var result = "";
+
+var response = {
   id: "",
   name: "",
   address: "",
@@ -36,7 +30,7 @@ var restaurant = {
   phone_numbers: "",
   offers: "",
 }
-var response = [
+var response2 = [
   {
      "restaurant":{
         "R":{
@@ -170,7 +164,7 @@ var response = [
         },
         "apikey":"d710754ce67200fb6fb9b5e26139f50e",
         "id":"16876829",
-        "name":"&pizza",
+        "name":"pizza hut",
         "url":"https://www.zomato.com/washington-dc/pizza-u-street-shaw?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1",
         "location":{
            "address":"1250 U Street NW, Washington 20001",
@@ -286,7 +280,7 @@ var response = [
         },
         "apikey":"d710754ce67200fb6fb9b5e26139f50e",
         "id":"16878349",
-        "name":"&pizza",
+        "name":"pizzerai ",
         "url":"https://www.zomato.com/washington-dc/pizza-1-downtown?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1",
         "location":{
            "address":"1400 K Street North West, Washington 20005",
@@ -407,7 +401,7 @@ var response = [
         },
         "apikey":"d710754ce67200fb6fb9b5e26139f50e",
         "id":"16879091",
-        "name":"&pizza",
+        "name":"pizza place",
         "url":"https://www.zomato.com/washington-dc/pizza-2-downtown?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1",
         "location":{
            "address":"1215 Connecticut Avenue North West, Washington 20036",
@@ -520,7 +514,7 @@ var response = [
         },
         "apikey":"d710754ce67200fb6fb9b5e26139f50e",
         "id":"16878346",
-        "name":"&pizza",
+        "name":"pizza palace ",
         "url":"https://www.zomato.com/washington-dc/pizza-downtown?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1",
         "location":{
            "address":"1005 E Street NW, Washington 20037",
@@ -620,55 +614,51 @@ var response = [
      }
   }
 ]
-
 let map, infoWindow;
-
-
 /*================Page load method  ================*/
 $(document).ready(function() {
-  //select();
-  //showMap();
-
-  displayMapAt(38.9168127,-77.0309828,5);
-  initializeSearchHistory();
-  getLocation();
- // callSearchAPI();
-  // callDetailAPI();
-  // callPhotosAPI();
-  // callReviews();
-
+ //  initializeSearchHistory();
+   getLocation();
   
-  $("#getMessage").on("click", function() {
-    var valueSearchBox = $('#getText').val()
-    if (valueSearchBox === "") {
-     return;
-    }
-    select1();
-   });
-    ///=====   Button click events  ===== ////
-    $( "#submit" ).click(function() {
-      addToSearchHistory();
-      var valueSearchBox = $('#getText').val()
-      if (valueSearchBox === "") {
-       return;
-      }
-    select1();
-      console.log("submit button clicked" + " AND searchtext: " + searchEl.val() +  " ANd category: "+ categoryEl.val());
-    })
+   $("#modalLauncher").click(function (e) {
+      $('#exampleModal1').foundation('reveal', 'open');
+  });
+  
+
+  $(".card").click(function(e) {
+      alert("card" + $(this) + "clicked");
+
+  });
+     // createCard();
+  //displayMapAt(38.9168127,-77.0309828,5);
+ // initializeSearchHistory();
+ // getLocation();
+ 
+ $("#submit").on("click", function() {
+   var valueSearchBox = $('#getText').val()
+   if (valueSearchBox === "") {
+      alert("Please enter search criteria");
+
+    return;
+   }
+   select();
+  });
+   ///=====   Button click events  ===== ////
+   $( "#submi2t" ).click(function() {
+      
+     addToSearchHistory();
+     console.log("submit button clicked" + " AND searchtext: " + searchEl.val() +  " ANd category: "+ categoryEl.val());
+   })
 
 
   // https://itunes.apple.com/search?term=jack+johnson
   function getLocation() {
-    let latText = document.getElementById("latitude");
-    let longText = document.getElementById("longitude");
-
-
     navigator.geolocation.getCurrentPosition(function(position) {
       let lat = position.coords.latitude;
       let long = position.coords.longitude;
+      currentLocation.lat = lat;
+      currentLocation.lon = long;
 
-    //  latText.innerText = lat.toFixed(2);
-    //  longText.innerText = long.toFixed(2);
       callWeatherInfo(lat, long);
 
     });
@@ -705,63 +695,6 @@ $(document).ready(function() {
       });
   }
    
-  function callSearchAPI() {
-    var location = "Los Angeles";
-    var query = "burrito";
-    var radius = 20;
-    var url = "https://api.foursquare.com/v2/venues/search?client_secret=" + secretID +"&client_id=" + clientID  + "&radius=" + radius +"&limit=50&near=" + location +"&query=" + query + "&v=20161101" ;
-    
-    console.log(url);
-    
-    fetch(url)
-    .then(function(response) {
-      console.log(response);
-
-      return response.json()
-    })
-    .then(function(myJson) {
-      getseachList(myJson);
-    });
-  }
-
-  function callDetailAPI() {
-    var venueID = "45f29bb2f964a520e0431fe3";
-    var url = "https://api.foursquare.com/v2/venues/" + venueID+ "?client_secret=" + secretID + "&client_id=" + clientID + "&v=20161101";
-    
-    console.log(url);
-    
-    fetch(url)
-    .then(function(response) {
-      return response.json()
-    })
-    .then(function(myJson) {
-      console.log(myJson);
-    });
-  }
-
-  function callPhotosAPI() {
-    var prefix = "https://fastly.4sqi.net/img/general/";
-    var size = "300x500";
-    var suffix = "/yAzQ76qVZVdlkLyV5hi7wOEwZ4_kMzXBtl013qwcU28.jpg";
-    // https://igx.4sqi.net/img/general/300x500/5163668_xXFcZo7sU8aa1ZMhiQ2kIP7NllD48m7qsSwr1mJnFj4.jpg
-    var url = prefix + size + suffix;
-    console.log(url);
-  }
-  function callReviews() {
-    var venueID = "45f29bb2f964a520e0431fe3";
-    
-    var url = "https://api.foursquare.com/v2/venues/" + venueID +"/tips?client_secret=" + secretID + "&client_id=" + clientID + "&v=20161101";
-    console.log(url);
-    
-    fetch(url)
-    .then(function(response) {
-      return response.json()
-    })
-    .then(function(myJson) {
-      console.log(myJson);
-    });
-    
-  }
   function initializeSearchHistory() {
     let recentSearches = JSON.parse(localStorage.getItem('Recent Places Searches'));
     if (!recentSearches) {
@@ -778,89 +711,7 @@ $(document).ready(function() {
     } 
   };
 
-  function getseachList(data) {
-
-    console.log(data.response.groups[0].items);
-    var itemList = data.response.groups[0].items;
-
-      for (var i=0; i<itemList.length; i++ ){
-        var businessModel = Object.create(business);
-        businessModel.id = itemList[i].venue.id;
-        businessModel.name = itemList[i].venue.name;
-        businessModel.postalCode = itemList[i].venue.location.postalCode;
-        businessModel.state = itemList[i].venue.location.state;
-        businessModel.lat = itemList[i].venue.location.lat;
-        businessModel.location = itemList[i].venue.location.lon;
-        businessModel.tipCount = itemList[i].venue.id;
-
-        let address = itemList[i].venue.location.formattedAddress;
-
-        for (var j=0; j<address.length; j++) {
-          businessModel.address += address[j];
-        }
-        result.push(businessModel);
-    }
-
-    showList();
-    console.log(result);
-  }
-
-  // Example POST method implementation:
-async function getCategory(myurl = '') {
-  console.log(myurl);
-
-  // Default options are marked with *
-  const response = await fetch(myurl, {
-    method: 'GET', // *GET, POST, PUT, DELETE, etc.
-    crossDomain: true,
-    async: true, // no-cors, *cors, same-origin
-    url: myurl, // *default, no-cache, reload, force-cache, only-if-cached
-    headers: {
-      'user-key': 'd710754ce67200fb6fb9b5e26139f50e',
-      'Content-Type': 'application/x-www-form-urlencoded',
-    },
-    redirect: 'follow', // manual, *follow, error
-    referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
-  });
-
-  console.log(response.json());
-
-  return response.json(); // parses JSON response into native JavaScript objects
-}
-  function showList() {
-    for (var i=0; i<result.length; i++) {
-        var divEl = $('<div></div>');
-        divEl.addClass("grid-x grid-margin-x small-up-2 medium-up-3");
-
-        var divCellEl = $('<div></div>');
-        divCellEl.addClass("cell");
-
-        var divCardEl = $('<div></div>');
-        divCardEl.addClass('card');
-
-        var imgEl = $('<img></img>');
-        imgEl.attr('src',"https://d19m59y37dris4.cloudfront.net/places/1-1-3/img/photo-top-1.jpg");
-        //const venuePhotoSrc = getVenuePhotos(result.id);
-      //console.log(venuePhotoSrc);
-
-        var divSection = $('<div></div>');
-        var h4El = $('<h4></h4>');
-        h4El.text(result[i].name);
-        var pEl = $('<p></p>');
-        pEl.text(result[i].address);
-
-        divSection.append(imgEl);
-        divSection.append(h4El);
-        divSection.append(pEl);
-        divCardEl.append(divSection);
-        divCellEl.append(divCardEl);
-        
-        businessDetailContainerEl.append(divCellEl);
-
-        callVenueIconAPI(result[i].id);
-
-    }
-  }
+  
 
   
   function initializeSearchHistory() {
@@ -893,121 +744,66 @@ async function getCategory(myurl = '') {
   };
 
   function select() {
+   var valueDropdown = $('#select_id').val();
+   var valueSearchBox = $('#getText').val()
+   var searchCity = "&q=" + valueSearchBox;
+   let url = "https://developers.zomato.com/api/v2.1/search?entity_id="+ valueDropdown + "&entity_type=city&q="+ valueSearchBox+  "&count=" + 12;
 
-    var settings = {
-     "async": true,
-     "crossDomain": true,
-     "url": "https://developers.zomato.com/api/v2.1/search?entity_id=" + 281 + "&entity_type=city&q=" + "Los Angeles" + "&count=5&category=2&cuisines=" ,
-     "method": "GET",
-     "headers": {
-      "user-key": "d710754ce67200fb6fb9b5e26139f50e",
-      'Content-Type': 'application/x-www-form-urlencoded'
-     }
+   var settings = {
+    "async": true,
+    "url": url,
+    //"url": "https://developers.zomato.com/api/v2.1/search?entity_id=281&entity_type=city&q=burrito&count=10",
+    "method": "GET",
+    "headers": {
+       //
+       "user-key": "481db5811d8a67ef43f399d26909b835",
+
+    // "user-key": "d710754ce67200fb6fb9b5e26139f50e",
+     'Content-Type': 'application/x-www-form-urlencoded'
     }
-    $.getJSON(settings, function(data) {
-      console.log(data);
-      data = data.restaurants;
-      $.each(data, function(index, value) {
-        var x = data[index];
-        var location = x.restaurant.location;
+   }
+   console.log(settings);
 
-        console.log(x.restaurant.cuisines);
-        console.log(x.restaurant.menu_url);
-
-      });
-     
-
-    });
-  }
-  function getResponse() {
-    var settings = {
-      "async": true,
-      "crossDomain": true,
-      "url": "https://developers.zomato.com/api/v2.1/search?entity_id=" + valueDropdown + "&entity_type=city" + searchCity + "&count=5",
-      "method": "GET",
-      "headers": {
-       "user-key": "d710754ce67200fb6fb9b5e26139f50e",
-       'Content-Type': 'application/x-www-form-urlencoded'
-      }
-     }
-
-     $.getJSON(settings, function(data) {
-       data = data.restaurants;
-        var html = "";
-      $.each(data, function(index, value) {
-       var x = data[index];
-        console.log(typeof x);
-            $.each(x, function(index, value) {
-              console.log(value.thumb);
-              console.log(value.url);
-              var location = x.restaurant.location;
-              var userRating = x.restaurant.user_rating;
-              html += "<a href=" + value.url + " target='_blank' class='action_link'><h2 style='color:red;'><strong>" + value.name + "</strong></h2></a>";
-
-              html += "<div class='data img-rounded'>";
-              html += "<div class='rating'>";
-              html += "<span title='" + userRating.rating_text + "'><p style='color:white;background-color:#" + userRating.rating_color + ";border-radius:4px;border:none;padding:2px 10px 2px 10px;text-align: center;text-decoration:none;display:inline-block;font-size:16px;float:right;'><strong>" + userRating.aggregate_rating + "</strong></p></span><br>";
-              html += "  <strong class='text-info'>" + userRating.votes + " votes</strong>";
-              html += "</div>";
-              html += "<img  src=" + value.thumb + " alt='Restaurant Image' height='185' width='185'>";
-              html += "<img  src= "+ "./"  + "alt='Restaurant Image' height='185' width='185'>";
-
-              html += "  <strong class='text-primary'>" + location.locality + "</strong><br>";
-              html += "  <h6 style='color:grey;'><strong>" + location.address + "</strong></h6><hr>";
-              html += "  <strong>CUISINES</strong>: " + value.cuisines + "<br>";
-              html += "  <strong>COST FOR TWO</strong>: " + value.currency + value.average_cost_for_two + "<br>";
-              html += "</div><br>";
-            });
-            });
-      $(".message").html(html);
-
-      return data;
-     });
-  }
-
-  function showRestaurantDetail() {
-
-  }
-  
-  function select1() {
-    var valueDropdown = $('#select_id').val();
-    var valueSearchBox = $('#getText').val()
-    var searchCity = "&q=" + valueSearchBox;
-
-    var mydata;
-   // mydata = getResponse();
-    mydata = response;
-
-   // mydata = getResponse();
-    console.log(mydata);
-           var html = "";
-     $.each(mydata, function(index, value) {
-      var x = mydata[index];
-       console.log(typeof x);
-           $.each(x, function(index, value) {
-             console.log(value.thumb);
-             console.log(value.url);
-             var location = x.restaurant.location;
-             var userRating = x.restaurant.user_rating;
-             html += "<div class='data img-rounded'>";
-             html += "<div class='rating'>";
-             html += "<span title='" + userRating.rating_text + "'><p style='color:white;background-color:#" + userRating.rating_color + ";border-radius:4px;border:none;padding:2px 10px 2px 10px;text-align: center;text-decoration:none;display:inline-block;font-size:16px;float:right;'><strong>" + userRating.aggregate_rating + "</strong></p></span><br>";
-             html += "  <strong class='text-info'>" + userRating.votes + " votes</strong>";
-             html += "</div>";
-             html += "<img  src=" + value.thumb + " alt='Restaurant Image' height='185' width='185'>";
-             html += "<a href=" + value.url + " target='_blank' class='action_link'><h2 style='color:red;'><strong>" + value.name + "</strong></h2></a>";
-             html += "  <strong class='text-primary'>" + location.locality + "</strong><br>";
-             html += "  <h6 style='color:grey;'><strong>" + location.address + "</strong></h6><hr>";
-             html += "  <strong>CUISINES</strong>: " + value.cuisines + "<br>";
-             html += "  <strong>COST FOR TWO</strong>: " + value.currency + value.average_cost_for_two + "<br>";
-             html += "</div><br>";
-           });
-           });
-     $("#list").html(html);
-    }
  
- // }
-});
+   $.getJSON(settings, function(data) {
+ 
+      console.log(data);
+      result = data.restaurants;
+      console.log("result: "+ result[0].restaurant.name);
+
+      createCard(data.restaurants);
+
+    /*var html = "";
+ 
+    $.each(data, function(index, value) {
+ 
+     var x = data[index];
+      console.log(typeof x);
+     $.each(x, function(index, value) {
+      var location = x.restaurant.location;
+      var userRating = x.restaurant.user_rating;
+      html += "<div class='data img-rounded'>";
+      html += "<div class='rating'>";
+ 
+      html += "<span title='" + userRating.rating_text + "'><p style='color:white;background-color:#" + userRating.rating_color + ";border-radius:4px;border:none;padding:2px 10px 2px 10px;text-align: center;text-decoration:none;display:inline-block;font-size:16px;float:right;'><strong>" + userRating.aggregate_rating + "</strong></p></span><br>";
+      html += "  <strong class='text-info'>" + userRating.votes + " votes</strong>";
+      html += "</div>";
+      html += "<img class='resimg img-rounded' src=" + value.thumb + " alt='Restaurant Image' height='185' width='185'>";
+      html += "<a href=" + value.url + " target='_blank' class='action_link'><h2 style='color:red;'><strong>" + value.name + "</strong></h2></a>";
+      html += "  <strong class='text-primary'>" + location.locality + "</strong><br>";
+      html += "  <h6 style='color:grey;'><strong>" + location.address + "</strong></h6><hr>";
+      html += "  <strong>CUISINES</strong>: " + value.cuisines + "<br>";
+      html += "  <strong>COST FOR TWO</strong>: " + value.currency + value.average_cost_for_two + "<br>";
+      html += "</div><br>";
+     });
+    });
+    $(".message").html(html);*/
+
+   });
+ 
+  }
+ 
+ });
 
 
 function displayMapAt(lat, lon, zoom) {
@@ -1020,3 +816,86 @@ function displayMapAt(lat, lon, zoom) {
     "<iframe src=\"http://maps.google.com/maps?q=" + la1 +  "," + lon1 + "&z=15&output=embed\"></iframe>");
 }
 
+function distance(lat1, lon1, lat2, lon2) {
+	if ((lat1 == lat2) && (lon1 == lon2)) {
+		return 0;
+	}
+	else {
+		var radlat1 = Math.PI * lat1/180;
+		var radlat2 = Math.PI * lat2/180;
+		var theta = lon1-lon2;
+		var radtheta = Math.PI * theta/180;
+		var dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
+		if (dist > 1) {
+			dist = 1;
+		}
+		dist = Math.acos(dist);
+		dist = dist * 180/Math.PI;
+      dist = dist * 60 * 1.1515;
+      dist = dist * 0.8684;
+		return dist.toFixed(2);
+	}
+}
+function clickCard(id) {
+   console.log("click " + id);
+   console.log("click " + parseInt(id));
+   let index = parseInt(id);
+
+      var modal = $("#modalDetail");
+
+      console.log(result[index]);
+
+      console.log("result1 : "+ result[index].restaurant.name);
+      $("#name").text(result[index].restaurant.name);
+
+        $("#modalCuisine").text(result[index].restaurant.cuisines);
+         $("#modalPrice").text(result[index].restaurant.price_range);
+         $("#modalRatingText").text(result[index].restaurant.userRating.aggregate_rating + " " + info.userRating.rating_text);
+
+         $("#Highlights").text(result[index].restaurant.highlights);
+         $("#modaladdres").text(result[index].restaurant.location.address);
+         $("#modalphone").text(result[index].restaurant.phone_numbers);
+         $("#timing").text(result[index].restaurant.timings);
+         $("#offers").text(result[index].restaurant.offers);
+         $("#modalDelivery").text(result[index].restaurant.has_online_delivery);
+
+   
+         /*   var highlights = $("#modalHighlights")
+      var address = $("#modaladdres")
+      var phoneNo = $("#modalphone")
+      var hours = $("#timing")
+      var offers = $("#offers")
+      var delivery  = $("#modalDelivery")
+*/
+
+  // alert(id);
+
+}
+function createCard(response) {
+
+   console.log("result1 : "+ result[1].restaurant.name);
+
+   var string = "";
+   var name = "";
+   var cuisines = "";
+   var rating = "";
+   var icon = "";
+
+   $.each(response, function (i) {
+      var dist = distance(response[i].restaurant.location.latitude,response[i].restaurant.location.longitude, currentLocation.lat, currentLocation.lon );
+
+      name = response[i].restaurant.name;
+      cuisines = response[i].restaurant.cuisines;
+      rating = response[i].restaurant.user_rating.aggregate_rating;
+      icon = response[i].restaurant.thumb;
+      if (icon == "" || icon == null) {
+         icon = "./Assets/images/img.jpeg";
+      }
+
+      if (i%3 == 0) {
+         string += '<div class="grid-x grid-margin-x small-up-2 medium-up-3">';
+      }
+      string += '<div class="cell"> <div class="card" onclick="clickCard(this.id)" data-open="modalDetail" id='+ i + '"> <img class="card-image" src=' + icon + '> <h6 class="card-title">' + name + '</h6> <p class="card-author">' + cuisines + '<span class="card-icon">  ' + dist +   'miles </span></p> </div> </div>';
+  })
+  $('#card').append(string);
+}
