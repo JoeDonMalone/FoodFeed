@@ -8,82 +8,492 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="all,follow">
-
-    
+    <link rel="stylesheet" href="https://d19m59y37dris4.cloudfront.net/places/1-1-4/vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Vidaloka">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500">
+    <link rel="stylesheet" href="https://d19m59y37dris4.cloudfront.net/places/1-1-4/vendor/bootstrap-select/css/bootstrap-select.min.css">
+    <link rel="stylesheet" href="https://d19m59y37dris4.cloudfront.net/places/1-1-4/vendor/owl.carousel/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="https://d19m59y37dris4.cloudfront.net/places/1-1-4/vendor/owl.carousel/assets/owl.theme.default.min.css">
+    <link rel="stylesheet" href="https://d19m59y37dris4.cloudfront.net/places/1-1-4/css/style.default.css" id="theme-stylesheet">
+    <link rel="stylesheet" href="https://d19m59y37dris4.cloudfront.net/places/1-1-4/vendor/@fancyapps/fancybox/jquery.fancybox.css">
+    <link rel="stylesheet" href="https://d19m59y37dris4.cloudfront.net/places/1-1-4/css/custom.css">
+    <link rel="shortcut icon" href="https://d19m59y37dris4.cloudfront.net/places/1-1-4/img/favicon.ico">
+    <link rel="stylesheet" href="https://d19m59y37dris4.cloudfront.net/places/1-1-4/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://d19m59y37dris4.cloudfront.net/places/1-1-4/css/custom-fonticons.css">
     <link rel="stylesheet" href="./Foundation/assets/css/foundation.css">
-
-
-    <link rel="stylesheet" href="https://d19m59y37dris4.cloudfront.net/places/1-1-3/css/custom-fonticons.css">
-    <link rel="stylesheet" href= "./Assets/css/style.css">
+     <script src="js/vendor/modernizr.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/motion-ui/1.1.1/motion-ui.min.css"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.0.1/js/vendor/jquery.min.js"></script>
+     <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.5.1/dist/js/foundation.min.js" integrity="sha256-WUKHnLrIrx8dew//IpSEmPN/NT3DGAEmIePQYIEJLLs= sha384-53StQWuVbn6figscdDC3xV00aYCPEz3srBdV/QGSXw3f19og3Tq2wTRe0vJqRTEO sha512-X9O+2f1ty1rzBJOC8AXBnuNUdyJg0m8xMKmbt9I3Vu/UOWmSg5zG+dtnje4wAZrKtkopz/PEDClHZ1LXx5IeOw==" crossorigin="anonymous"></script>
   </head>
   <body>
-    <header>
-      <div class="top-bar topbar-center-logo" id="topbar-center-logo">
-        <div class="top-bar-center">
-          <a href="#"><img src="https://d19m59y37dris4.cloudfront.net/places/1-1-3/img/logo.png" alt="" /></a>
-        </div>
-        <div class="top-bar-right">
-          <ul class="menu vertical medium-horizontal">
-            <li><a href="#">Home </a></li>
-            <li><a href="#">Saved</a></li>
-            <li><a href="#">Contact </a></li>
-          </ul>
+    <header class="header">
+      <!-- Top bar-->
+      <div class="top-bar">
+        <div class="container">
+          <div class="content-holder d-flex justify-content-between">
+            <div class="info d-flex">
+              <div class="dropdowns d-flex">
+                <div class="dropdown"><a id="currency" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">USD<i class="fa fa-angle-down"></i></a>
+                  <div aria-labelledby="currency" class="dropdown-menu"><a href="#" class="dropdown-item">USD</a><a href="#" class="dropdown-item">EUR</a><a href="#" class="dropdown-item">JPY</a></div>
+                </div>
+                <div class="dropdown"><a id="language" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">EN<i class="fa fa-angle-down"></i></a>
+                  <div aria-labelledby="language" class="dropdown-menu"><a href="#" class="dropdown-item">EN</a><a href="#" class="dropdown-item">ES</a><a href="#" class="dropdown-item">FR</a></div>
+                </div>
+              </div>
+              <div class="contact d-flex">
+                <p><a href="mailto:info@company.com"> <i class="fa fa-envelope-o text-primary"></i><span class="d-none d-md-inline">info@company.com</span></a></p>
+                <p> <i class="fa fa-phone text-primary"></i><span class="d-none d-md-inline">020 123-456-789</span></p>
+              </div>
+            </div>
+            <div class="CTAs"><a href="#" class="login"><i class="fa fa-sign-in"></i><span class="d-none d-md-inline">Login</span></a><a href="#" class="login"> <i class="fa fa-user"></i><span class="d-none d-md-inline">Register</span></a></div>
+          </div>
         </div>
       </div>
+      <!-- Main Navbar-->
+      <nav class="navbar navbar-expand-lg">
+        <div class="container">
+          <!-- Navbar Brand --><a href="index.html" class="navbar-brand"><img src="https://d19m59y37dris4.cloudfront.net/places/1-1-4/img/logo.png" alt="..."></a>
+          <!-- Toggle Button-->
+          <button type="button" data-toggle="collapse" data-target="#navbarcollapse" aria-controls="navbarcollapse" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler"><span>Menu</span><i class="fa fa-bars"></i></button>
+          <!-- Navbar Menu -->
+          <div id="navbarcollapse" class="collapse navbar-collapse">
+            <ul class="navbar-nav ml-auto">
+              <!-- Search-->
+              <li class="nav-item"><a href="index.html" class="nav-link">Home</a>
+              </li>
+              <li class="nav-item"><a href="category.html" class="nav-link active">Listings</a>
+              </li>
+              <li class="nav-item dropdown"><a id="navbarDropdownMenuLink" href="http://example.com" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">Pages</a>
+                <div aria-labelledby="navbarDropdownMenuLink" class="dropdown-menu"><a href="detail.html" class="dropdown-item">Listing detail</a><a href="post.html" class="dropdown-item">Blog post</a><a href="text.html" class="dropdown-item">Text page</a><a href="404.html" class="dropdown-item">404 - Not found</a><a href="contact.html" class="dropdown-item">Contact</a></div>
+              </li>
+              <li class="nav-item"><a href="blog.html" class="nav-link">Blog</a>
+              </li>
+              <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a>
+              </li>
+            </ul><a href="#" class="btn navbar-btn btn-outline-primary mt-3 mt-lg-0 ml-lg-3">Submit a Listing</a>
+          </div>
+        </div>
+      </nav>
     </header>
+      <!-- Hero Section-->   
+    <section class="no-padding-top padding-small">
+      <div class="search-bar">
+        <div class="grid-container">
+          <div class="grid-x grid-padding-x">
+            <div class="medium-3 cell grid-x">
+              <input id="getText" type="text" class="form-control" placeholder="What are you searching for?">
+            </div>
+            <div class="medium-3">
+              <input type="text" name="location" placeholder="Location" id="location">
+            </label>
+          </div>
+          <div class="medium-3 cell">
+            <select id="select_id" class="form-control form-control-lg">
+              <option value="Select City" hidden>Select City</option>
+              <option value="281">Los Angeles</option>
+              <option value="282" >Las Vegas</option>
+              <option value="283">Washington</option>
+              <option value="284">Seattle</option>
+            </select>
+          </div>
+          <div class="medium-3 cell">
+            <select id="select_id" class="form-control form-control-lg">
+              <option value="Select Category" hidden>Select Category</option>
+              <option value="1">Delivery</option>
+              <option value="2" >Dine-In</option>
+              <option value="283">Cafes</option>
+              <option value="8">Breakfast</option>
+              <option value="9">Lunch</option>
+              <option value="10">Dinner</option>
+              <option value="11">Pubs/Bar</option>
+            </select>
+          </div>
+          
+          
+          <div class="medium-3 cell align-center">
+            <button id = "getMessage"  class="btn btn-primary">Search</button>
+            <!-- <button class="button success" id="submit"> Submit  </button>
+            -->
+          </div>
+        </div>
+      </div>
+      </div>
+      <div class="card-group">
+        <div class="card">
+          <img class="card-img-top" src="..." alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+          </div>
+        </div>
+        <div class="card">
+          <img class="card-img-top" src="..." alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+          </div>
+        </div>
+        <div class="card">
+          <img class="card-img-top" src="..." alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+          </div>
+        </div>
+      </div>
+      <div class="container">
+       
+        <p class="lead text-muted block text-center"><strong>12</strong> results found</p>
+        <div class="row block">
+          <div class="col-lg-4">
+            <!-- Item-->
+            <div class="item listing-item">
+              <div class="item-inner">
+                <div class="image"  data-open="exampleModal1">
+                <img src="https://d19m59y37dris4.cloudfront.net/places/1-1-4/img/photo-latest-1.jpg" alt="..." class="img-fluid"></div>
+                <div class="info d-flex align-items-end justify-content-between">
+                  <div><a href="#" class="badge-transparent">Eat &amp; Drink</a>
+                    <h3><a href="detail.html">  Junipoordsffgd fff </a></h3>
+                    <p class="address">23 July Street, Vinece</p>
+                  </div>
+                  <div class="favorite"><i class="icon-heart"> </i></div>
+                </div>
+              </div>
+              <div class="rate-box d-flex align-items-center">
+                <ul class="rate list-inline">
+                  <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                  <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                  <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                  <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                  <li class="list-inline-item"><i class="fa fa-star text-gray"></i></li>
+                </ul><span>(20 Reviews)</span>
+              </div>
+              <div class="description"> 
+                <p>Deserunt eiusmod Lorem proident consequat elit culpa laboris ea cupidatat. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <!-- Item-->
+            <div class="item listing-item">
+              <div class="item-inner">
+                <div class="image"><img src="https://d19m59y37dris4.cloudfront.net/places/1-1-4/img/photo-latest-2.jpg" alt="..." class="img-fluid"></div>
+                <div class="info d-flex align-items-end justify-content-between">
+                  <div><a href="#" class="badge-transparent">See and do</a>
+                    <h3><a href="detail.html">  Musix</a></h3>
+                    <p class="address">6th Ave, Greenwich village </p>
+                  </div>
+                  <div class="favorite"><i class="icon-heart"> </i></div>
+                </div>
+              </div>
+              <div class="rate-box d-flex align-items-center">
+                <ul class="rate list-inline">
+                  <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                  <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                  <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                  <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                  <li class="list-inline-item"><i class="fa fa-star">                                       </i></li>
+                </ul><span>(40 Reviews)</span>
+              </div>
+              <div class="description"> 
+                <p>Cillum sunt reprehenderit ea non irure veniam dolore commodo labore fugiat est consequat velit. Labore et dolore magna aliqua.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <!-- Item-->
+            <div class="item listing-item">
+              <div class="item-inner">
+                <div class="image"><img src="https://d19m59y37dris4.cloudfront.net/places/1-1-4/img/photo-latest-3.jpg" alt="..." class="img-fluid"></div>
+                <div class="info d-flex align-items-end justify-content-between">
+                  <div><a href="#" class="badge-transparent">Sleep</a>
+                    <h3><a href="detail.html">  Prosure</a></h3>
+                    <p class="address">151 Karweg Place, East village</p>
+                  </div>
+                  <div class="favorite"><i class="icon-heart"> </i></div>
+                </div>
+              </div>
+              <div class="rate-box d-flex align-items-center">
+                <ul class="rate list-inline">
+                  <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                  <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                  <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                  <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                  <li class="list-inline-item"><i class="fa fa-star text-gray"></i></li>
+                </ul><span>(66 Reviews)</span>
+              </div>
+              <div class="description"> 
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <!-- Item-->
+            <div class="item listing-item">
+              <div class="item-inner">
+                <div class="image"><img src="https://d19m59y37dris4.cloudfront.net/places/1-1-4/img/photo-latest-3.jpg" alt="..." class="img-fluid"></div>
+                <div class="info d-flex align-items-end justify-content-between">
+                  <div><a href="#" class="badge-transparent">Eat &amp; Drink</a>
+                    <h3><a href="detail.html">  Blue Hill</a></h3>
+                    <p class="address">23 July Street, Vinece</p>
+                  </div>
+                  <div class="favorite"><i class="icon-heart"> </i></div>
+                </div>
+              </div>
+              <div class="rate-box d-flex align-items-center">
+                <ul class="rate list-inline">
+                  <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                  <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                  <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                  <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                  <li class="list-inline-item"><i class="fa fa-star">                                       </i></li>
+                </ul><span>(20 Reviews)</span>
+              </div>
+              <div class="description"> 
+                <p>Deserunt eiusmod Lorem proident consequat elit culpa laboris ea cupidatat. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <!-- Item-->
+            <div class="item listing-item">
+              <div class="item-inner">
+                <div class="image"><img src="https://d19m59y37dris4.cloudfront.net/places/1-1-4/img/photo-latest-2.jpg" alt="..." class="img-fluid"></div>
+                <div class="info d-flex align-items-end justify-content-between">
+                  <div><a href="#" class="badge-transparent">See and do</a>
+                    <h3><a href="detail.html">  Plutorque</a></h3>
+                    <p class="address">6th Ave, Kips Bay </p>
+                  </div>
+                  <div class="favorite"><i class="icon-heart"> </i></div>
+                </div>
+              </div>
+              <div class="rate-box d-flex align-items-center">
+                <ul class="rate list-inline">
+                  <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                  <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                  <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                  <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                  <li class="list-inline-item"><i class="fa fa-star text-gray"></i></li>
+                </ul><span>(40 Reviews)</span>
+              </div>
+              <div class="description"> 
+                <p>Cillum sunt reprehenderit ea non irure veniam dolore commodo labore fugiat est consequat velit. Labore et dolore magna aliqua.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <!-- Item-->
+            <div class="item listing-item">
+              <div class="item-inner">
+                <div class="image"><img src="https://d19m59y37dris4.cloudfront.net/places/1-1-4/img/photo-latest-1.jpg" alt="..." class="img-fluid"></div>
+                <div class="info d-flex align-items-end justify-content-between">
+                  <div><a href="#" class="badge-transparent">Sleep</a>
+                    <h3><a href="detail.html">  Prosure</a></h3>
+                    <p class="address">23 July Street, Vinece</p>
+                  </div>
+                  <div class="favorite"><i class="icon-heart"> </i></div>
+                </div>
+              </div>
+              <div class="rate-box d-flex align-items-center">
+                <ul class="rate list-inline">
+                  <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                  <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                  <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                  <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                  <li class="list-inline-item"><i class="fa fa-star">                                       </i></li>
+                </ul><span>(66 Reviews)</span>
+              </div>
+              <div class="description"> 
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+              </div>
+            </div>
+          </div>
+        </div>
 
-    <section class="top-listings"> 
-      <div class="grid-container">
-        <div class="grid-x grid-margin-x small-up-2 medium-up-3">
-          <div class="cell">
-            <div class="card">
-              <img src="https://d19m59y37dris4.cloudfront.net/places/1-1-3/img/photo-top-1.jpg">
-              <div class="card-section">
-              </div>
-            </div>
+       <!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+  Launch demo modal
+</button>
+
+<div class="card-group">
+  <div class="card">
+    <img class="card-img-top" src="..." alt="Card image cap">
+    <div class="card-body" data-toggle="modal" data-target="#exampleModal">
+      <h5 class="card-title">Card title</h5>
+      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+    </div>
+  </div>
+  <div class="card">
+    <img class="card-img-top" src="..." alt="Card image cap" data-toggle="modal" data-target="#exampleModal">
+    <div class="card-body">
+      <h5 class="card-title">Card title</h5>
+      <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+    </div>
+  </div>
+  <div class="card">
+    <img class="card-img-top" src="..." alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title">Card title</h5>
+      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+    </div>
+  </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="lead" id="name"> 
+          Pizza Hut.
+          <br>
+          <span id="cuisines" class="text-center" style="font-size: smaller;"> Americamn, Italian, Mexican </span>
+          <span id="range" class="text-center" style="font-size: smaller;"> $$ </span>
+        </h1>
+        <p class="text-center">
+          <img id="icon-img" src="./Assets/images/img.jpeg" class="text-center" style="margin-left:10px;margin-right:10px; max-height:250px;max-width:250px;"/>
+        </p>
+        <p class="text-center">
+          <button type="button" class="alert button text-center" id="alert">4.2 Very Good</button>
+          <button type="button" class="success button text-center" id="alert">Delivery Available: YES</button>
+          <p> <strong> Highlights: </strong> Delivery, Lunch, Serves Alcohol, Credit Card, Takeaway Available,Dinner
+            Vegetarian Friendly, Kid Friendly, Wifi, Fullbar, Indoor Seating</p>
+          </p>
+          <p>
+            <span id="address"> <strong> Address: </strong>3453 emerald st , 90324 CA </span> <br>
+            <span id="phone "> <strong>Phone:</strong> 444-234-2424243 </span> <br>
+            <span id="timing"> <strong>Hours:</strong> 11 AM to 11 PM (Mon-Wed, Sun), 11 AM to 12 Midnight (Thu), 11 AM to 4 AM (Fri-Sat) </span> <br>
+            <span id="offers "> <strong> Offers: </strong> 20% off  </span>
+          </p>
+          <p class="text-center">
+            <button type="button" class="success button"> Website  </button>
+            <button type="button" class="success button"> Favorite/Non-Favorite  </button>
+            <button type="button" class="success button"> Menu  </button>
+          </p>
+
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+        <div class="reveal" id="exampleModal1" data-reveal>
+          <h1 class="lead" id="name"> 
+            Pizza Hut.
+            <br>
+            <span id="cuisines" class="text-center" style="font-size: smaller;"> Americamn, Italian, Mexican </span>
+            <span id="range" class="text-center" style="font-size: smaller;"> $$ </span>
+          </h1>
+          <p class="text-center">
+            <img id="icon-img" src="./Assets/images/img.jpeg" class="text-center" style="margin-left:10px;margin-right:10px; max-height:250px;max-width:250px;"/>
+          </p>
+          <p class="text-center">
+            <button type="button" class="alert button text-center" id="alert">4.2 Very Good</button>
+            <button type="button" class="success button text-center" id="alert">Delivery Available: YES</button>
+            <p> <strong> Highlights: </strong> Delivery, Lunch, Serves Alcohol, Credit Card, Takeaway Available,Dinner
+              Vegetarian Friendly, Kid Friendly, Wifi, Fullbar, Indoor Seating</p>
+            </p>
+            <p>
+              <span id="address"> <strong> Address: </strong>3453 emerald st , 90324 CA </span> <br>
+              <span id="phone "> <strong>Phone:</strong> 444-234-2424243 </span> <br>
+              <span id="timing"> <strong>Hours:</strong> 11 AM to 11 PM (Mon-Wed, Sun), 11 AM to 12 Midnight (Thu), 11 AM to 4 AM (Fri-Sat) </span> <br>
+              <span id="offers "> <strong> Offers: </strong> 20% off  </span>
+            </p>
+            <p class="text-center">
+              <button type="button" class="success button"> Website  </button>
+              <button type="button" class="success button"> Favorite/Non-Favorite  </button>
+              <button type="button" class="success button"> Menu  </button>
+            </p>
+            
+            <button class="close-button" data-close aria-label="Close reveal" type="button">
+              <span aria-hidden="true">&times;</span>
+            </button>
           </div>
-          <div class="cell">
-            <div class="card">
-              <img src="https://d19m59y37dris4.cloudfront.net/places/1-1-3/img/photo-top-1.jpg">
-              <div class="card-section">
-              </div>
-            </div>
-          </div>
-          <div class="cell">
-            <div class="card">
-              <img src="https://d19m59y37dris4.cloudfront.net/places/1-1-3/img/photo-top-1.jpg">
-              <div class="card-section">
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="grid-x grid-margin-x small-up-2 medium-up-3">
-          <div class="cell">
-            <div class="card">
-              <img src="https://d19m59y37dris4.cloudfront.net/places/1-1-3/img/photo-top-1.jpg">
-              <div class="card-section">
-              </div>
-            </div>
-          </div>
-          <div class="cell">
-            <div class="card">
-              <img src="https://d19m59y37dris4.cloudfront.net/places/1-1-3/img/photo-top-1.jpg">
-              <div class="card-section">
-              </div>
-            </div>
-          </div>
-          <div class="cell">
-            <div class="card">
-              <img src="https://d19m59y37dris4.cloudfront.net/places/1-1-3/img/photo-top-1.jpg">
-              <div class="card-section">
-              </div>
-            </div>
-          </div>
-        </div>
+        <!-- Pagination -->
+        <nav aria-label="Page navigation example">
+          <ul class="pagination pagination-template d-flex justify-content-center">
+            <li class="page-item"><a href="#" class="page-link"> <i class="fa fa-angle-left"></i></a></li>
+            <li class="page-item"><a href="#" class="page-link active">1</a></li>
+            <li class="page-item"><a href="#" class="page-link">2</a></li>
+            <li class="page-item"><a href="#" class="page-link">3</a></li>
+            <li class="page-item"><a href="#" class="page-link"> <i class="fa fa-angle-right"></i></a></li>
+          </ul>
+        </nav>
       </div>
     </section>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script type="text/javascript" src="./Assets/js/list.js"></script>
+    <div class="container">
+          
+      <p><a data-open="exampleModal1">Click me for a modaldssf</a></p>
+      
+      <div class="reveal" id="exampleModal1" data-reveal>
+        <h1 class="lead" id="name"> 
+          Pizza Hut.
+          <br>
+          <span id="cuisines" class="text-center" style="font-size: smaller;"> Americamn, Italian, Mexican </span>
+          <span id="range" class="text-center" style="font-size: smaller;"> $$ </span>
+        </h1>
+        <p class="text-center">
+          <img id="icon-img" src="./Assets/images/img.jpeg" class="text-center" style="margin-left:10px;margin-right:10px; max-height:250px;max-width:250px;"/>
+        </p>
+        <p class="text-center">
+          <button type="button" class="alert button text-center" id="alert">4.2 Very Good</button>
+          <button type="button" class="success button text-center" id="alert">Delivery Available: YES</button>
+          <p> <strong> Highlights: </strong> Delivery, Lunch, Serves Alcohol, Credit Card, Takeaway Available,Dinner
+            Vegetarian Friendly, Kid Friendly, Wifi, Fullbar, Indoor Seating</p>
+          </p>
+          <p>
+            <span id="address"> <strong> Address: </strong>3453 emerald st , 90324 CA </span> <br>
+            <span id="phone "> <strong>Phone:</strong> 444-234-2424243 </span> <br>
+            <span id="timing"> <strong>Hours:</strong> 11 AM to 11 PM (Mon-Wed, Sun), 11 AM to 12 Midnight (Thu), 11 AM to 4 AM (Fri-Sat) </span> <br>
+            <span id="offers "> <strong> Offers: </strong> 20% off  </span>
+          </p>
+          <p class="text-center">
+            <button type="button" class="success button"> Website  </button>
+            <button type="button" class="success button"> Favorite/Non-Favorite  </button>
+            <button type="button" class="success button"> Menu  </button>
+          </p>
+          
+          <button class="close-button" data-close aria-label="Close reveal" type="button">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+   </div>
+
+    <!-- Page Footer-->
+   
+    <!-- JavaScript files-->
+    <script src="https://d19m59y37dris4.cloudfront.net/places/1-1-4/vendor/jquery/jquery.min.js"></script>
+    <script src="https://d19m59y37dris4.cloudfront.net/places/1-1-4/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="https://d19m59y37dris4.cloudfront.net/places/1-1-4/vendor/jquery.cookie/jquery.cookie.js"> </script>
+    <script src="https://d19m59y37dris4.cloudfront.net/places/1-1-4/vendor/owl.carousel/owl.carousel.min.js"></script>
+    <script src="https://d19m59y37dris4.cloudfront.net/places/1-1-4/vendor/bootstrap-select/js/bootstrap-select.min.js"></script>
+    <script src="https://d19m59y37dris4.cloudfront.net/places/1-1-4/vendor/@fancyapps/fancybox/jquery.fancybox.min.js"></script>
+    <script src="https://d19m59y37dris4.cloudfront.net/places/1-1-4/js/front.js"></script>
+    
+    <script src="/js/vendor/jquery.js"></script>
+    <script src="/js/foundation.min.js"></script>
+
+    <script src="/js/vendor/fastclick.js"></script>
+    <script>
+        $(document).foundation();
+    </script>
+
+    
   </body>
 </html>
