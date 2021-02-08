@@ -1,10 +1,13 @@
 var clientID = "2SCGL344NNRYIHGXIFUBEUL3L0YWO0OPGLYYHTMDDIFZSQGH";
 var secretID= "LMDVNIUMOK4AA2MODOR1MQNRK2WCOII4IWHSIBVPR3RWOVSE";
 var apiKey = "662057d093b416978d68fd9b93c95087";
-var searchEl = $("#search-text");
+// var searchEl = $("#search-text");
+var searchEl = $("#getText");
 var categoryEl = $("#category option:selected");
+var cityEl = $("#form-control form-control-lg option:selected");
 var locationEl = $("#location");
 var businessDetailContainerEl = $("#business-detail");
+var letsGoButton = $("#getMessage")
 var business = {
   id: "",
   name: "",
@@ -130,8 +133,14 @@ $(document).ready(function() {
     select();
    });
     ///=====   Button click events  ===== ////
-    $( "#submit" ).click(function() {
+    // $( "#submit" ).click(function() {
+    //   addToSearchHistory();
+    //   console.log("submit button clicked" + " AND searchtext: " + searchEl.val() +  " ANd category: "+ categoryEl.val());
+    // })
+
+    $( "#getText" ).click(function() {
       addToSearchHistory();
+      console.log(cityEl.val())
       console.log("submit button clicked" + " AND searchtext: " + searchEl.val() +  " ANd category: "+ categoryEl.val());
     })
 
@@ -152,7 +161,8 @@ $(document).ready(function() {
 
     });
   }
-  function callWeatherInfo( latitude, longitude ) {
+
+  function callWeatherInfo(latitude, longitude) {
     var url = "https://api.openweathermap.org/data/2.5/onecall?lat=" + latitude+ "&lon=" + longitude +"&units=imperial&appid=" + apiKey;
     console.log(url);
     
@@ -183,26 +193,26 @@ $(document).ready(function() {
         // catch any errors
       });
   }
-    function itunes() {
-      var location = "Los Angeles";
-      var query = "burrito";
-      var radius = 20;
+    // function itunes() {
+    //   var location = "Los Angeles";
+    //   var query = "burrito";
+    //   var radius = 20;
 
-      var url = "https://api.foursquare.com/v2/venues/search?near=seattle,wa&query=coffee&v=20150214&m=foursquare&client_secret=" + secretID +" &client_id=" + clientID  
+    //   var url = "https://api.foursquare.com/v2/venues/search?near=seattle,wa&query=coffee&v=20150214&m=foursquare&client_secret=" + secretID +" &client_id=" + clientID  
       
-      console.log(url);
+    //   console.log(url);
       
-      fetch(url)
-      .then(function(response) {
+    //   fetch(url)
+    //   .then(function(response) {
 
-        return response.json()
-      })
-      .then(function(myJson) {
-        console.lon(myJson);
+    //     return response.json()
+    //   })
+    //   .then(function(myJson) {
+    //     console.lon(myJson);
 
-        //getseachList(myJson);
-      });
-    }
+    //     //getseachList(myJson);
+    //   });
+    // }
 
 
   function callSearchAPI() {
@@ -213,59 +223,59 @@ $(document).ready(function() {
     
     console.log(url);
     
-    fetch(url)
-    .then(function(response) {
-      console.log(response);
+    // fetch(url)
+    // .then(function(response) {
+    //   console.log(response);
 
-      return response.json()
-    })
-    .then(function(myJson) {
-      getseachList(myJson);
-    });
+    //   return response.json()
+    // })
+    // .then(function(myJson) {
+    //   getseachList(myJson);
+    // });
   }
 
-  function callDetailAPI() {
-    var venueID = "45f29bb2f964a520e0431fe3";
-    var url = "https://api.foursquare.com/v2/venues/" + venueID+ "?client_secret=" + secretID + "&client_id=" + clientID + "&v=20161101";
+  // function callDetailAPI() {
+  //   var venueID = "45f29bb2f964a520e0431fe3";
+  //   var url = "https://api.foursquare.com/v2/venues/" + venueID+ "?client_secret=" + secretID + "&client_id=" + clientID + "&v=20161101";
     
-    console.log(url);
+  //   console.log(url);
     
-    fetch(url)
-    .then(function(response) {
-      return response.json()
-    })
-    .then(function(myJson) {
-      console.log(myJson);
-    });
-  }
+  //   fetch(url)
+  //   .then(function(response) {
+  //     return response.json()
+  //   })
+  //   .then(function(myJson) {
+  //     console.log(myJson);
+  //   });
+  // }
 
-  function callPhotosAPI() {
-    var prefix = "https://fastly.4sqi.net/img/general/";
-    var size = "300x500";
-    var suffix = "/yAzQ76qVZVdlkLyV5hi7wOEwZ4_kMzXBtl013qwcU28.jpg";
-    // https://igx.4sqi.net/img/general/300x500/5163668_xXFcZo7sU8aa1ZMhiQ2kIP7NllD48m7qsSwr1mJnFj4.jpg
-    var url = prefix + size + suffix;
-    console.log(url);
-  }
-
-
+  // function callPhotosAPI() {
+  //   var prefix = "https://fastly.4sqi.net/img/general/";
+  //   var size = "300x500";
+  //   var suffix = "/yAzQ76qVZVdlkLyV5hi7wOEwZ4_kMzXBtl013qwcU28.jpg";
+  //   // https://igx.4sqi.net/img/general/300x500/5163668_xXFcZo7sU8aa1ZMhiQ2kIP7NllD48m7qsSwr1mJnFj4.jpg
+  //   var url = prefix + size + suffix;
+  //   console.log(url);
+  // }
 
 
-  function callReviews() {
-    var venueID = "45f29bb2f964a520e0431fe3";
+
+
+  // function callReviews() {
+  //   var venueID = "45f29bb2f964a520e0431fe3";
     
-    var url = "https://api.foursquare.com/v2/venues/" + venueID +"/tips?client_secret=" + secretID + "&client_id=" + clientID + "&v=20161101";
-    console.log(url);
+  //   var url = "https://api.foursquare.com/v2/venues/" + venueID +"/tips?client_secret=" + secretID + "&client_id=" + clientID + "&v=20161101";
+  //   console.log(url);
     
-    fetch(url)
-    .then(function(response) {
-      return response.json()
-    })
-    .then(function(myJson) {
-      console.log(myJson);
-    });
+  //   fetch(url)
+  //   .then(function(response) {
+  //     return response.json()
+  //   })
+  //   .then(function(myJson) {
+  //     console.log(myJson);
+  //   });
     
-  }
+  // }
   function initializeSearchHistory() {
     let recentSearches = JSON.parse(localStorage.getItem('Recent Places Searches'));
     if (!recentSearches) {
@@ -282,67 +292,67 @@ $(document).ready(function() {
     } 
   };
 
-  function getseachList(data) {
+  // function getseachList(data) {
 
-    console.log(data.response.groups[0].items);
-    var itemList = data.response.groups[0].items;
+  //   console.log(data.response.groups[0].items);
+  //   var itemList = data.response.groups[0].items;
 
-      for (var i=0; i<itemList.length; i++ ){
-        var businessModel = Object.create(business);
-        businessModel.id = itemList[i].venue.id;
-        businessModel.name = itemList[i].venue.name;
-        businessModel.postalCode = itemList[i].venue.location.postalCode;
-        businessModel.state = itemList[i].venue.location.state;
-        businessModel.lat = itemList[i].venue.location.lat;
-        businessModel.location = itemList[i].venue.location.lon;
-        businessModel.tipCount = itemList[i].venue.id;
+  //     for (var i=0; i<itemList.length; i++ ){
+  //       var businessModel = Object.create(business);
+  //       businessModel.id = itemList[i].venue.id;
+  //       businessModel.name = itemList[i].venue.name;
+  //       businessModel.postalCode = itemList[i].venue.location.postalCode;
+  //       businessModel.state = itemList[i].venue.location.state;
+  //       businessModel.lat = itemList[i].venue.location.lat;
+  //       businessModel.location = itemList[i].venue.location.lon;
+  //       businessModel.tipCount = itemList[i].venue.id;
 
-        let address = itemList[i].venue.location.formattedAddress;
+  //       let address = itemList[i].venue.location.formattedAddress;
 
-        for (var j=0; j<address.length; j++) {
-          businessModel.address += address[j];
-        }
-        result.push(businessModel);
-    }
+  //       for (var j=0; j<address.length; j++) {
+  //         businessModel.address += address[j];
+  //       }
+  //       result.push(businessModel);
+  //   }
 
-    showList();
-    console.log(result);
-  }
+  //   showList();
+  //   console.log(result);
+  // }
 
-  function showList() {
-    for (var i=0; i<result.length; i++) {
-        var divEl = $('<div></div>');
-        divEl.addClass("grid-x grid-margin-x small-up-2 medium-up-3");
+  // function showList() {
+  //   for (var i=0; i<result.length; i++) {
+  //       var divEl = $('<div></div>');
+  //       divEl.addClass("grid-x grid-margin-x small-up-2 medium-up-3");
 
-        var divCellEl = $('<div></div>');
-        divCellEl.addClass("cell");
+  //       var divCellEl = $('<div></div>');
+  //       divCellEl.addClass("cell");
 
-        var divCardEl = $('<div></div>');
-        divCardEl.addClass('card');
+  //       var divCardEl = $('<div></div>');
+  //       divCardEl.addClass('card');
 
-        var imgEl = $('<img></img>');
-        imgEl.attr('src',"https://d19m59y37dris4.cloudfront.net/places/1-1-3/img/photo-top-1.jpg");
-        //const venuePhotoSrc = getVenuePhotos(result.id);
-      //console.log(venuePhotoSrc);
+  //       var imgEl = $('<img></img>');
+  //       imgEl.attr('src',"https://d19m59y37dris4.cloudfront.net/places/1-1-3/img/photo-top-1.jpg");
+  //       //const venuePhotoSrc = getVenuePhotos(result.id);
+  //     //console.log(venuePhotoSrc);
 
-        var divSection = $('<div></div>');
-        var h4El = $('<h4></h4>');
-        h4El.text(result[i].name);
-        var pEl = $('<p></p>');
-        pEl.text(result[i].address);
+  //       var divSection = $('<div></div>');
+  //       var h4El = $('<h4></h4>');
+  //       h4El.text(result[i].name);
+  //       var pEl = $('<p></p>');
+  //       pEl.text(result[i].address);
 
-        divSection.append(imgEl);
-        divSection.append(h4El);
-        divSection.append(pEl);
-        divCardEl.append(divSection);
-        divCellEl.append(divCardEl);
+  //       divSection.append(imgEl);
+  //       divSection.append(h4El);
+  //       divSection.append(pEl);
+  //       divCardEl.append(divSection);
+  //       divCellEl.append(divCardEl);
         
-        businessDetailContainerEl.append(divCellEl);
+  //       businessDetailContainerEl.append(divCellEl);
 
-        callVenueIconAPI(result[i].id);
+  //       callVenueIconAPI(result[i].id);
 
-    }
-  }
+  //   }
+  // }
 
   // const getVenuePhotos = async (venueId) => {
   //   const photoUrlToFetch =  photoUrl + venueId / '/photos?limit=1&client_id=' +  clientID + '&client_secret='  + secretID + '&v=20190903';
@@ -379,9 +389,10 @@ $(document).ready(function() {
 
   function addToSearchHistory() {
     let recentSearches = [ {
-      'searchString':searchEl.val(),
-      'location': locationEl.val(),
-      'categories':categoryEl.text()    
+      // 'searchString':searchEl.val(),
+      'searchString':cityEl.val(),
+      'location': searchEl.val()
+      // 'categories':categoryEl.text()    
           // 'results': {
           //   ''
           // }
@@ -389,6 +400,7 @@ $(document).ready(function() {
     ]
     localStorage.setItem('Recent Places Searches', JSON.stringify(recentSearches));
   };
+
   function select() {
     var valueDropdown = $('#select_id').val();
     var valueSearchBox = $('#getText').val()
