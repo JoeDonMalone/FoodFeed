@@ -414,6 +414,10 @@ function displayMapAt(lat, lon) {
          console.log(icon);
          
          if (i%3 == 0) {
+            if (i != 0) {
+               string += "</div>";
+
+            }
             string += '<div class="grid-x small-up-2 medium-up-3">';
          }
         // string += '<div class="cell"> <div class="card" onclick="clickCard(this.id)" data-open="modalDetail" id='+ i + '"> <div class= "text-center">  <img class="card-image" src=' + icon + '> </div> <h6 class="card-title">' + name + '</h6> <p> <span class="card-cuisine">' + cuisines + '<br> </span> <span class="card-rating">  ' + rating +   '</span> <span class="card-dist">' + dist+ ' miles </span> </p> <button type="button" class="success button">Save</button> <i class="fa fa-map-marker"></i><i class="fa fa-heart-o" aria-hidden="true"></i>   test  </button>  </div> </div>';
