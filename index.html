@@ -43,18 +43,9 @@
             <div class="top-bar-center">
                 <ul class="menu vertical medium-horizontal">
 
-                    <li><a href="#">Home </a></li>
-                    <li><a href="#">Favorite List</a></li>
+                    <li><a href="index.html">Home </a></li>
+                    <li><a href="list.html">Favorite List</a></li>
                     
-                </ul>
-            </div>
-            <div class="top-bar-right">
-                <ul class="menu vertical medium-horizontal">
-                    <li> <span> 75 F </span> </li>
-                    <li> <img src="" alt="icon" style="max-width: 30px; max-height: 30px;" id=""> </li>
-                    <li> <span> Clear Sky </span> </li>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="list.html">Favorites</a></li>
                 </ul>
             </div>
         </div>
@@ -151,19 +142,20 @@
 
                     <div class="text-center"><strong>Rating: </strong> <i class='fas fa-star'></i><span id="modalRatingText"></span></div>
                 </p>    
-                <br>
-                    <p style="text-align: left;">
+                <hr>
+                    <p class="modalDetails">
 
-                      <strong> Highlights: </strong> <span id="Highlights" class="text-left"> </span> <br>
-                       <strong> Address: </strong> <span id="modaladdres"> </span> <br>
+                      <!-- <strong> Highlights: </strong> <span id="Highlights" class="text-left"> </span> <br> -->
+                      <strong>Address: </strong> <span id="modaladdres"> </span> <br>
                       <strong>Phone:</strong>  <span id="modalphone"></span> <br>
                       <strong>Hours:</strong> <span id="timing"> 11:00 AM - 11:00 PM  </span> <br>
-                      <strong> Offers: </strong> <span id="offers ">    </span> <br>
+                      <!-- <strong> Offers: </strong> <span id="offers ">    </span> <br> -->
                     </p>
+                    <hr>
                     <p style="text-align: center;">
-                      <button type="button" class="success button"> Website  </button>
-                      <button type="button" class="success button" id="modalFavorite">  Favorite This Location <i class="fa fa-thumbs-down"></i>  </button>
-                      <button type="button" class="success button"> Menu  </button>
+                      <button type="button" class="success button"> Website </button>
+                      <button type="button" class="success button" id="modalFavorite">Favorite This Location <i class="fa fa-thumbs-up"></i>  </button>
+                      <button type="button" class="success button"> Menu </button>
                     </p>
                 
                 <div id="map" style="width: 100%;">
