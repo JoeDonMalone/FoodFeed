@@ -344,27 +344,27 @@ function displayMapAt(lat, lon) {
       for (var i=0; i<parseInt(result[selectedIndex].restaurant.price_range); i++) {
          pricetext += "$";
       }
-      price.text(pricetext);
+      // price.text(pricetext);
       
       
-      let hasdelivery = result[selectedIndex].restaurant.has_online_delivery;
+      // let hasdelivery = result[selectedIndex].restaurant.has_online_delivery;
       
-      if (hasdelivery == "1") {
-         delivery.text(" :YES");
-      } else {
-         delivery.text(" :NO");
+      // if (hasdelivery == "1") {
+      //    delivery.text(" :YES");
+      // } else {
+      //    delivery.text(" :NO");
          
-      price.text(" - " + pricetext);
+      price.text(pricetext);
 
 
       let hasdelivery = result[selectedIndex].restaurant.has_online_delivery;
       
       if (hasdelivery == "1") {
          delivery.text("YES");
-         delivery.attr("color", "green");
+         delivery.attr("style", "color: green;");
       } else {
          delivery.text("NO");
-         delivery.attr("color", "red");
+         delivery.attr("style", "color: red;");
 
       }
       // var highlight = result[selectedIndex].restaurant.highlights;
@@ -392,7 +392,7 @@ function displayMapAt(lat, lon) {
       }
       
    }
-}
+// }
    function createCard(response) {      
       var string = "";
       var name = "";
