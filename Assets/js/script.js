@@ -30,10 +30,10 @@ $(document).ready(function() {
          console.log("make it fav");
          // make it favorite
          makeItFavorite();
-         $(this).find("i").removeClass().addClass("fa fa-thumbs-down");
+         // $(this).find("i").removeClass().addClass("fa fa-thumbs-down");
          
       } else {
-         $(this).find("i").removeClass().addClass("fa fa-thumbs-up");
+         // $(this).find("i").removeClass().addClass("fa fa-thumbs-up");
          console.log("make it non-fav");
          makeItNonFavorite(result[selectedIndex].restaurant.id);
       }
@@ -367,18 +367,18 @@ function displayMapAt(lat, lon) {
          delivery.attr("color", "red");
 
       }
-      var highlight = result[selectedIndex].restaurant.highlights;
-      if (highlight.length > 0 ){
-         let text = "";
-         for (var i=0 ; i<highlight.length; i++) {
-            text += " " + highlight[i];
-               text += highlight[i] + ", ";
-         }
-         console.log("higj " + highlight);
+      // var highlight = result[selectedIndex].restaurant.highlights;
+      // if (highlight.length > 0 ){
+      //    let text = "";
+      //    for (var i=0 ; i<highlight.length; i++) {
+      //       text += " " + highlight[i];
+      //          text += highlight[i] + ", ";
+      //    }
+      //    console.log("higj " + highlight);
 
-        highlights.text(text);
+      //   highlights.text(text);
          
-      }
+      // }
       var savedData = localStorage.getItem("FavoritePlaces");
       savedData = JSON.parse(savedData);
       
@@ -421,7 +421,7 @@ function displayMapAt(lat, lon) {
             string += '<div class="grid-x small-up-2 medium-up-3">';
          }
         // string += '<div class="cell"> <div class="card" onclick="clickCard(this.id)" data-open="modalDetail" id='+ i + '"> <div class= "text-center">  <img class="card-image" src=' + icon + '> </div> <h6 class="card-title">' + name + '</h6> <p> <span class="card-cuisine">' + cuisines + '<br> </span> <span class="card-rating">  ' + rating +   '</span> <span class="card-dist">' + dist+ ' miles </span> </p> <button type="button" class="success button">Save</button> <i class="fa fa-map-marker"></i><i class="fa fa-heart-o" aria-hidden="true"></i>   test  </button>  </div> </div>';
-         string += '<div class="cell"> <div class="card card-size" onclick="clickCard(this.id)" data-open="modalDetail" id='+ i + '"> <div class= "text-center">  <img class="card-image" src=' + icon + '> </div> <h6 class="card-title">' + name + " - <i class='fas fa-star'></i>" + rating + '</h6> <br> <p><span class="card-cuisine">Cuisine(s): </span><br>' + cuisines + '<br> <span class="card-dist text-primary">Distance:<br> ' + dist+ ' miles </span> </p> </div> </div>';
+         string += '<div class="cell"> <div class="card card-size" onclick="clickCard(this.id)" data-open="modalDetail" id='+ i + '"> <div class= "text-center">  <img class="card-image" src=' + icon + '> </div> <h6 class="card-title">' + name + " - <i class='fas fa-star'></i>" + rating + '</h6><br><p><span class="card-cuisine">Cuisine(s): </span><br>' + cuisines + '<br> <span class="card-dist text-primary">Distance:<br> ' + dist+ ' miles </span> </p> </div> </div>';
       })
       
       $('#card').append(string);

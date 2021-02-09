@@ -312,3 +312,10 @@ section h1 , .text-hero {
 .wrapper{
   padding-top: 20px;
 }
+
+.modalDetails {
+  /* background-color: blue; */
+  width: 80%;
+  text-align: left;
+  margin-left: 12%;
+}
