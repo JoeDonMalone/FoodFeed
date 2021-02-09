@@ -6,7 +6,8 @@ var businessDetailContainerEl = $("#business-detail");
 var result = [];
 var currentLocation = {
    lat: "",
-   lon: ""
+   lon: "",
+   city: ""
 }
 var result = "";
 var selected = 0;
@@ -73,9 +74,21 @@ $(document).ready(function() {
          currentLocation.lon = long;
          
          callWeatherInfo(lat, long);
+         getCity(lat, long);
          
       });
    }
+   function getCity(latitude, longitude) {
+      var apiUrl = "https://api.openweathermap.org/data/2.5/forecast?lat=" + latitude + "&lon=" + longitude + "&appid=" + apiKey;
+
+      fetch(apiUrl)
+      .then(function(resp) { return resp.json() })
+      .then(function(data) {
+         console.log(data);
+         currentLocation.city = data.city.name;
+      })
+   }
+
    function showPopUp(message) {
       console.log($("#alert"));
       $("#alert").find("#alertMessage").text(message);
@@ -95,7 +108,7 @@ $(document).ready(function() {
          // console.log(data.current.temp);
          
          let temp = document.getElementById("temp");
-         temp.innerText = "Current Temperature: " +  Math.floor(data.current.temp) + "\u00B0" + "F";
+         temp.innerText = currentLocation.city + "'s Temperature: " +  Math.floor(data.current.temp) + "\u00B0" + "F";
          let icon = document.getElementById("weather-icon");
          let details = document.getElementById("weather");
          
