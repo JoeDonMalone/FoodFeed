@@ -66,6 +66,7 @@
                 <div class="small-4 cell">
                     <select id="select_id" class="form-control form-control-lg">
                         <option value="Select City" hidden>Select City</option>
+                        <option value="278">Austin</option>
                         <option value="280">New York</option>
                         <option value="281">Los Angeles</option>
                         <option value="282" >Las Vegas</option>
@@ -151,9 +152,9 @@
                     </p>
                     <hr>
                     <p style="text-align: center;">
-                      <button type="button" class="success button"> Website </button>
+                      <button type="button" class="success button" id="modalWebsite"> Website </button>
                       <button type="button" class="success button" id="modalFavorite">Favorite This Location <i class="fa fa-thumbs-up"></i>  </button>
-                      <button type="button" class="success button"> Menu </button>
+                      <button type="button" class="success button" id="modalMenu"> Menu </button>
                     </p>
                 
                 <div id="map" style="width: 100%;">
@@ -164,6 +165,18 @@
                     </button>
                 </div>
             </div>
+      </div>
+
+      <div class="pagination">
+        <a href="#">&laquo;</a>
+        <button id=10 onclick="myFunction(this)" > </button>
+        <a href="#" id="1" onclick="myFunction(this)">1</a>
+        <a class="active"onclick="myFunction(this)" id=2>2</a>
+        <a href="#" id=3  >3</a>
+        <a href="#" id=4 >4</a>
+        <a href="#" id=5 >5</a>
+        <a href="#" id=6 >6</a>
+        <a href="#">&raquo;</a>
       </div>
       <!-- Footer -->
       <div class="mobile-bottom-bar footer">
@@ -176,9 +189,13 @@
       <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
       <!-- <script src="js/vendor/jquery.js"></script> -->
       <script src="./Foundation/js/foundation.js"></script>
-      <script type="text/javascript" src="./Assets/js/script.js"></script>
       <!-- <script src="/Foundation/js/vendor/jquery.min.js"></script> -->
       <!-- <script src="/Foundation/js/foundation.js"></script> -->
+      <script src="/Foundation/js/vendor/jquery.min.js"></script> 
+      <script type="text/javascript" src="js/jquery-1.9.1.js"></script>
+      <script type="text/javascript" src="js/functions.js"></script>
+  
+      <script type="text/javascript" src="./Assets/js/script.js"></script>
 
 <script>
     $(document).ready(function() {

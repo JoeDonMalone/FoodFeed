@@ -11,7 +11,7 @@ var currentLocation = {
 }
 var result = "";
 var selected = 0;
-
+var current_page = 0;
 
 let map, infoWindow;
 var favorites; 
@@ -20,6 +20,21 @@ var favorites;
 $(document).ready(function() {
    //  initializeSearchHistory();
    getLocation();
+
+   $(".page").click(function (e) {
+     console.log(e);
+   });
+   $("#modalWebsite").click(function (e) {
+      console.log(result[selectedIndex].restaurant.url);
+      let website = result[selectedIndex].restaurant.url;
+      window.open(website);
+   });
+   $("#modalMenu").click(function (e) {
+      console.log(result[selectedIndex].restaurant.menu_url);
+      let menu = result[selectedIndex].restaurant.menu_url;
+      window.open(menu);
+
+   });
    $("#modalLauncher").click(function (e) {
       $('#exampleModal1').foundation('reveal', 'open');
    });
@@ -28,14 +43,12 @@ $(document).ready(function() {
       
       var className = $(this).find("i") .attr("class");
       if (className == "fa fa-thumbs-up") {
-         console.log("make it fav");
          // make it favorite
          makeItFavorite();
          // $(this).find("i").removeClass().addClass("fa fa-thumbs-down");
          
       } else {
          // $(this).find("i").removeClass().addClass("fa fa-thumbs-up");
-         console.log("make it non-fav");
          makeItNonFavorite(result[selectedIndex].restaurant.id);
       }
       
@@ -64,8 +77,7 @@ $(document).ready(function() {
       console.log("submit button clicked" + " AND searchtext: " + searchEl.val() +  " ANd category: "+ categoryEl.val());
    })
    
-   
-   // https://itunes.apple.com/search?term=jack+johnson
+
    function getLocation() {
       navigator.geolocation.getCurrentPosition(function(position) {
          let lat = position.coords.latitude;
@@ -78,6 +90,7 @@ $(document).ready(function() {
          
       });
    }
+  
    function getCity(latitude, longitude) {
       var apiUrl = "https://api.openweathermap.org/data/2.5/forecast?lat=" + latitude + "&lon=" + longitude + "&appid=" + apiKey;
 
@@ -112,7 +125,7 @@ $(document).ready(function() {
          let icon = document.getElementById("weather-icon");
          let details = document.getElementById("weather");
          
-         var todayiconurl = "http://openweathermap.org/img/wn/" +  data.current.weather[0].icon + ".png";
+         var todayiconurl = "https://openweathermap.org/img/wn/" +  data.current.weather[0].icon + ".png";
          // console.log(todayiconurl);
          icon.setAttribute("src", todayiconurl);
          // console.log(data.current.weather[0].description);
@@ -168,9 +181,6 @@ function addToSearchHistory() {
       'searchString':searchEl.val(),
       'location': locationEl.val(),
       'categories':categoryEl.text()    
-      // 'results': {
-      //   ''
-      // }
    }
 ]
 localStorage.setItem('Recent Places Searches', JSON.stringify(recentSearches));
@@ -188,14 +198,41 @@ function createRequest(myurl) {
    }
    return request;
 }
-function createURL(search, cityID) {
-   return "https://developers.zomato.com/api/v2.1/search?entity_id="+ cityID + "&entity_type=city&q="+  search +  "&count=" + 20;
-   
+function createURL(search, cityID,start) {
+
+   return "https://developers.zomato.com/api/v2.1/search?entity_id="+ cityID + "&entity_type=city&q="+  search +  "&count=" + 9 + "&start=" +  start;
 }
-function select() {
+function newwin() {   
+   console.log($(this).id);
+            
+   //myWindow=window.open('lead_data.php?leadid=1','myWin','width=400,height=650')
+}
+function changePage(id) {
+   console.log($(this).id);
+
+ //  select(pageNo);
+
+}
+function nextPage() {
+   if (current_page < numPages()) {
+      current_page++;
+      select(current_page);
+      //changePage(current_page);
+  }
+}
+function prevPage() {
+   if (current_page > 1) {
+      current_page--;
+      select(current_page);
+
+      changePage(current_page);
+  }
+
+}
+function select(start) {
    var valueDropdown = $('#select_id').val();
    var valueSearchBox = $('#getText').val()
-   let url = createURL(valueSearchBox, valueDropdown);
+   let url = createURL(valueSearchBox, valueDropdown, start);
    let request = createRequest(url);
    
    $.getJSON(request, function(data) {
@@ -211,7 +248,7 @@ function select() {
 function displayMapAt(lat, lon) {
    $("#map")
    .html(
-      "<iframe src=\"http://maps.google.com/maps?q=" + lat +  "," + lon + "&z=15&output=embed\"></iframe>");
+      "<iframe src=\"https://maps.google.com/maps?q=" + lat +  "," + lon + "&z=15&output=embed\"></iframe>");
    }
    
    function distance(lat1, lon1, lat2, lon2) {
@@ -405,6 +442,7 @@ function displayMapAt(lat, lon) {
       }
       
    }
+
    
    function createCard(response) {      
       var string = "";
