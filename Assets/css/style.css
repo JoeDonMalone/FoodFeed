@@ -319,3 +319,20 @@ section h1 , .text-hero {
   text-align: left;
   margin-left: 12%;
 }
+
+.pagination {
+  display: inline-block;
+}
+
+.pagination a {
+  color: white;
+  background-color: teal;
+  float: left;
+  padding: 8px 16px;
+  text-decoration: none;
+}
+
+.pagination a.active {
+  background-color: #4CAF50;
+  color: white;
+}
