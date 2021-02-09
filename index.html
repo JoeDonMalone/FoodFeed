@@ -4,8 +4,10 @@
     <link rel="stylesheet" href="./Foundation/css/foundation.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.0.1/js/vendor/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.5.1/dist/js/foundation.min.js" integrity="sha256-WUKHnLrIrx8dew//IpSEmPN/NT3DGAEmIePQYIEJLLs= sha384-53StQWuVbn6figscdDC3xV00aYCPEz3srBdV/QGSXw3f19og3Tq2wTRe0vJqRTEO sha512-X9O+2f1ty1rzBJOC8AXBnuNUdyJg0m8xMKmbt9I3Vu/UOWmSg5zG+dtnje4wAZrKtkopz/PEDClHZ1LXx5IeOw==" crossorigin="anonymous"></script>
-    
-    <link rel="stylesheet" href="./Assets/css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.0.1/js/vendor/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+        <link rel="stylesheet" href="./Assets/css/style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <!-- Foundation files -->
@@ -16,8 +18,7 @@
     <link rel="stylesheet" href="./Foundation/css/foundation.css ">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
 
-    
-    <link href="/Foundation/css/foundation.min.css" rel="stylesheet" />
+        <link href="/Foundation/css/foundation.min.css" rel="stylesheet" />
 
     <title>Anywhere But Here</title>
 </head>
@@ -41,6 +42,17 @@
             </div>
             <div class="top-bar-center">
                 <ul class="menu vertical medium-horizontal">
+
+                    <li><a href="#">Home </a></li>
+                    <li><a href="#">Favorite List</a></li>
+                    
+                </ul>
+            </div>
+            <div class="top-bar-right">
+                <ul class="menu vertical medium-horizontal">
+                    <li> <span> 75 F </span> </li>
+                    <li> <img src="" alt="icon" style="max-width: 30px; max-height: 30px;" id=""> </li>
+                    <li> <span> Clear Sky </span> </li>
                     <li><a href="index.html">Home</a></li>
                     <li><a href="list.html">Favorites</a></li>
                 </ul>
@@ -115,6 +127,14 @@
     </button>
     </div>
 
+    <div class="reveal" id="alert" data-reveal>
+        <h1>Alert</h1>
+        <p class="lead" id="alertMessage">Please enter Search Query</p>
+        <button class="close-button" data-close aria-label="Close modal" type="button">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
       <div class="row">
         <div class="columns">
             <div class="reveal text-center" id="modalDetail" data-reveal>
@@ -130,17 +150,22 @@
                     <div class="text-center"><strong>Delivery Available: </strong> <span id="modalDelivery"> </span></div>
 
                     <div class="text-center"><strong>Rating: </strong> <i class='fas fa-star'></i><span id="modalRatingText"></span></div>
-                    <br>
-                    
-                    <!-- <strong>Highlights: </strong> <span id="Highlights"> </span></p> -->
-                    <strong>Address: </strong> <span id="modaladdres"> </span> <br>
-                    <strong>Phone:</strong>  <span id="modalphone"></span> <br>
-                    <strong>Hours:</strong> <span id="timing"></span> <br><br>
-                    <!-- <strong>Offers: </strong> <span id="offers ">    </span> <br> -->
-                    <button type="button" class="success button" id="modalWebsite">Website  </button>
-                    <button type="button" class="success button">Favorite This Location</button>
-               
-                </p>
+                </p>    
+                <br>
+                    <p style="text-align: left;">
+
+                      <strong> Highlights: </strong> <span id="Highlights" class="text-left"> </span> <br>
+                       <strong> Address: </strong> <span id="modaladdres"> </span> <br>
+                      <strong>Phone:</strong>  <span id="modalphone"></span> <br>
+                      <strong>Hours:</strong> <span id="timing"> 11:00 AM - 11:00 PM  </span> <br>
+                      <strong> Offers: </strong> <span id="offers ">    </span> <br>
+                    </p>
+                    <p style="text-align: center;">
+                      <button type="button" class="success button"> Website  </button>
+                      <button type="button" class="success button" id="modalFavorite">  Favorite This Location <i class="fa fa-thumbs-down"></i>  </button>
+                      <button type="button" class="success button"> Menu  </button>
+                    </p>
+                
                 <div id="map" style="width: 100%;">
                         
                 </div>
@@ -172,5 +197,5 @@
 </script>
 
         
-    </body>
-    </html>
+</body>
+</html>
