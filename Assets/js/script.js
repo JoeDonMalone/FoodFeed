@@ -114,7 +114,7 @@ $(document).ready(function() {
          let icon = document.getElementById("weather-icon");
          let details = document.getElementById("weather");
          
-         var todayiconurl = "http://openweathermap.org/img/wn/" +  data.current.weather[0].icon + ".png";
+         var todayiconurl = "https://openweathermap.org/img/wn/" +  data.current.weather[0].icon + ".png";
          // console.log(todayiconurl);
          icon.setAttribute("src", todayiconurl);
          // console.log(data.current.weather[0].description);
@@ -237,7 +237,7 @@ function select(start) {
 function displayMapAt(lat, lon) {
    $("#map")
    .html(
-      "<iframe src=\"http://maps.google.com/maps?q=" + lat +  "," + lon + "&z=15&output=embed\"></iframe>");
+      "<iframe src=\"https://maps.google.com/maps?q=" + lat +  "," + lon + "&z=15&output=embed\"></iframe>");
    }
    
    function distance(lat1, lon1, lat2, lon2) {
