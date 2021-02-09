@@ -3,15 +3,41 @@
   box-sizing: border-box;
 }
 
+
 header {
   background-color: #ffffff;
   height: 50px;
 }
+
+/*
 .logo {
   padding-top: 20px;
 }
 .topbar-center-logo .top-bar-center {
   flex: 1 0 auto;
+}
+.selected{
+  border: 1px solid #888;
+  background-color: lightblue;
+}
+li {
+  color: gray;
+  font-size: large;
+  padding:0px;
+  border: 1px solid lightgrey;
+  height: 100px;
+  text-align: center;
+  padding-top: 10px;
+  font-family:'Segoe UI';
+  background-color: white;
+  overflow: hidden;
+}
+ul { 
+  list-style-type: none;
+  list-style-position:inside;
+  margin-top: 20px;
+  padding:0;
+  border-bottom: 1px solid lightgrey;
 }
 .topbar-center-logo-mobile {
   
@@ -21,12 +47,12 @@ header {
 }
 
 section {
-  padding: 100px;
+  padding: 10px;
   height: 100%;
-  background: url('https://d19m59y37dris4.cloudfront.net/places/1-1-3/img/hero-bg.jpg') no-repeat;
+  /*https://d19m59y37dris4.cloudfront.net/places/1-1-3/img/hero-bg.jpg') no-repeat;
+ 
   width: 100%;
   height: 100vh;
-  top: cover;
   position: relative;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -35,7 +61,7 @@ section {
   
 }
 .text-hero {
-  color: white;
+  color: black;
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   font-size: 15px;
 }
@@ -73,7 +99,7 @@ section h1 {
   font-family: "Vidaloka",serif;
   font-weight: 500;
   line-height: 1.1;
-  color: white;
+  color: black;
 }
 .backgroundblue {
   background-color: rebeccapurple;
@@ -91,5 +117,205 @@ section h1 {
 .top-listings {
     padding-top: 30px;
 }
+section {
+  padding: 0px;
+  margin: 0px;
+}
+
+*/
+
+ul.breadcrumb {
+  padding: 10px 16px;
+  list-style: none;
+  background-color: #eee;
+}
+ul.breadcrumb li {
+  display: inline;
+  font-size: 18px;
+}
+ul.breadcrumb li+li:before {
+  padding: 8px;
+  color: black;
+  content: "/\00a0";
+}
+ul.breadcrumb li a {
+  color: #0275d8;
+  text-decoration: none;
+}
+ul.breadcrumb li a:hover {
+  color: #01447e;
+  text-decoration: underline;
+}
+
+.searchbar {
+  background-color: lightgray;
+  border-radius: 10px;
+  border: gray solid 1px;
+  padding: 10px 5px 10px 5px;
+  margin: 10px;
+  width: 50%;
+  margin-left: 25%;
+  text-align: center;
+  -webkit-box-shadow: 0 0 5px rgb(0 0 0 / 15%);
+}
+section h1 , .text-hero {
+  color: whitesmoke;
+}
+.text-primary {
+  color: green;
+}
 
 
+.card {
+  width: 300px;
+  height: 200px;
+  overflow: auto;
+  text-align: center;
+  float: right;
+}
+.card-info {
+  padding: 1rem;
+  display: grid;
+  grid-template-rows: 1fr 2.5rem;
+  grid-template-columns: 3fr 1fr;
+}
+
+.card-title {
+  width: 100%;
+  max-height: 100px;
+  font-size: 20px;
+  font-style: normal;
+  font-family: 'Trebuchet MS';
+  text-align: center;
+  font-size-adjust: initial;
+  font-weight: bold;
+}
+.card-image{
+  width: 60%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 10px;
+  border: lightblue solid 1px;
+}
+.card-rating {
+  background-color: LightBlue;
+  border-radius: 100%;
+  padding:10px;
+  justify-items: center;
+  align-items: center;
+  padding-top: 5px;
+  width: fit-content;
+
+}
+
+.card-cuisine {
+  text-align: center;
+  font-family: 'Trebuchet MS';
+  padding-bottom: 10px;
+  width: 100%;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.card-stats {
+  align-self: bottom;
+  text-align: center;
+
+
+}
+.card-dist {
+  text-align: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-weight: bold;
+  font-family: 'Trebuchet MS';
+}
+
+.card-size {
+  height: 90%;
+  width: 80%;
+  margin-top: 10%;
+  margin-right: 10%;
+  font-size: 16px;
+  overflow: auto;
+}
+
+#weather-icon {
+  height: 40%;
+}
+
+.motto {
+  text-align: center;
+  font-weight: bold;
+  padding-top: 3.5%;
+  padding-bottom: 1.5%;
+  font-family: "Vidaloka",serif;
+}
+
+.current-weather {
+  text-align: center;
+  background-color: transparent;
+  width: 100%;
+  color: white;
+  font-weight: bold;
+  margin-bottom: 4%;
+  font-size: 20px;
+}
+
+#submit {
+  width: 100px;
+  font-weight: bold;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.background-style {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  background-repeat: repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center center;
+}
+
+.fa-star {
+  color: gold;
+}
+
+#select_id, #select_category, #getText {
+  border-radius: 10px;
+}
+
+#modalDelivery, #modalRatingText, #name, #modalCuisine, #modalPrice {
+  font-weight: bold;
+}
+
+.success {
+  font-weight: bold;
+}
+
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: lightgray;
+  font-size: 18px;
+  text-align: center;
+  height: 3.5%;
+  padding-top: 3.5px;
+}
+
+.wrapper{
+  padding-top: 20px;
+}
+
+.modalDetails {
+  /* background-color: blue; */
+  width: 80%;
+  text-align: left;
+  margin-left: 12%;
+}
