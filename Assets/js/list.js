@@ -1,26 +1,6 @@
 var noResultl = $("#NoResult");
 var selectedIndex;
 var favorites; 
-
-$(document).ready(function() {
-   favorites = localStorage.getItem("FavoritePlaces");
- 
-       if (favorites === null) {
-          $("#NoResult").attr("hidden", false);
-        } else {
-          $("#NoResult").attr("hidden", true);
-          favorites = JSON.parse(favorites);
-         showFavoriteList(favorites);
-       }
-       $("#modalWebsite").click(function (e) {
-          let website = favorites[selectedIndex].details.restaurant.url;
-          window.open(website);
-       });
-       $("#modalMenu").click(function (e) {
-          let menu = result[selectedIndex].restaurant.menu_url;
-          window.open(menu);
-       });
- });
 var categoryEl = $("#category option:selected");
 var id;
 var favorites; 
@@ -29,6 +9,37 @@ var currentLocation = {
    lat: "",
    lon: ""
 }
+
+
+$(document).ready(function() {
+   // getLocation();
+   handlePermission();
+   favorites = localStorage.getItem("FavoritePlaces");
+   favorites = JSON.parse(favorites);
+   if (favorites === null) {
+
+   } else {
+      showFavoriteList();
+   }
+
+   $('.favorites-cell').hover(function() {
+         $( this ).addClass( "hover" );
+         console.log('hover');
+      }, function() {
+         $( this ).removeClass( "hover" );
+      }
+   ); 
+      
+       $("#modalWebsite").click(function (e) {
+          console.log(favorites[selectedIndex].restaurant.url);
+          let website = favorites[selectedIndex].restaurant.url;
+          window.open(website);
+       });
+       $("#modalMenu").click(function (e) {
+          let menu = favorites[selectedIndex].restaurant.url;;
+          window.open(menu);
+       });
+ });
 
 
 function displayBusiness(){
@@ -49,26 +60,6 @@ function displayBusiness(){
 
 var favorite;
 
-$(document).ready(function() {
-   // getLocation();
-   handlePermission();
-   favorites = localStorage.getItem("FavoritePlaces");
-   favorites = JSON.parse(favorites);
-   if (favorites === null) {
-
-   } else {
-      showFavoriteList();
-   }
-
-   $('.favorites-cell').hover(
-      function() {
-         $( this ).addClass( "hover" );
-         console.log('hover');
-      }, function() {
-         $( this ).removeClass( "hover" );
-      }
-      );
-});
 
 function handlePermission() {
    navigator.permissions.query({name:'geolocation'}).then(function(result) {
@@ -78,7 +69,7 @@ function handlePermission() {
      } else if (result.state == 'prompt') {
       console.log(result.state);
       //  geoBtn.style.display = 'none';
-       navigator.geolocation.getCurrentPosition(revealPosition,positionDenied,geoSettings);
+      // navigator.geolocation.getCurrentPosition(currentLocation,positionDenied,geoSettings);
      } else if (result.state == 'denied') {
       console.log(result.state);
       //  geoBtn.style.display = 'inline';
@@ -168,9 +159,11 @@ function getThumbImage(source) {
  } else {
     "./Assets/images/img.png";
  }
+}
 
 
-function clickCard(id) {
+function clickCard1(id) 
+{
       
 //   console.log("click " + parseInt(id));
   id = parseInt(id);
@@ -235,6 +228,7 @@ function clickCard(id) {
      favButton.find("i").removeClass().addClass("fa fa-thumbs-down");
 
 }
+}
 function getPriceText(price) {
    let text = "";
 
@@ -248,7 +242,7 @@ function clickCard(id) {
    let result = favorites[selectedIndex].restaurant;
    
    var modal = $("#modalDetail");
-   modal.find( "#modal-title").text(result.name);
+   modal.find( "#name").text(result.name);
    modal.find( "#modalCuisine").text(result.cuisines);
    modal.find( "#modalPrice").text(getPriceText(parseInt(result.price_range)));
    modal.find( "#modalRatingText").text(result.user_rating.aggregate_rating);
@@ -266,9 +260,9 @@ function displayMapAt(lat, lon) {
    $("#map")
    .html(
       "<iframe src=\"https://maps.google.com/maps?q=" + lat +  "," + lon + "&z=15&output=embed\"></iframe>");
-   }
+}
 
-function showFavoriteList(response) {
+function showFavoriteList1(response) {
 
    var string = "";
    var name = "";
@@ -298,6 +292,7 @@ function showFavoriteList(response) {
       string += '<div class="cell"> <div class="card card-size" onclick="clickCard(this.id)" data-open="modalDetail" id='+ i + '"> <div class= "text-center">  <img class="card-image" src=' + icon + '> </div> <h6 class="card-title">' + name + " " + rating  +" <i class='fas fa-star'></i> </h6><p>'" + cuisines + '</p> </div> </div>';
    })
    $('#card').append(string);
+}
 function showFavoriteList() {      
   var string = "";
   var name = "";
@@ -308,8 +303,9 @@ function showFavoriteList() {
   var location;
   console.log(favorites[0]);
 
-  $.each(favorites, function (i) {
-     favorites[i] = favorites[i].restaurant;
+  $.each(favorites, function (i) 
+  {
+     favorites[i] = favorites[i].details;
      var dist = "";
      var dist = distance(favorites[i].restaurant.location.latitude,favorites[i].restaurant.location.longitude, currentLocation.lat, currentLocation.lon );
      name = favorites[i].restaurant.name;
@@ -319,13 +315,7 @@ function showFavoriteList() {
      if (icon == "" || icon == null) {
       icon = './Assets/images/img.png';
      }
-      
-      
-   //   if (i%3 == 0) {
-   //      string += '<div class="grid-x small-up-2 medium-up-3">';
-   //   }
-      string += 
-      `<div class="favorites-cell"> 
+      string += `<div class="favorites-cell"> 
          <div class="flex-card" onclick="clickCard(this.id)" data-open="modalDetail" id=${i}"> 
             <div class= "flex-pic-center">  
                <img class="flex-card-image" src=${icon}>
@@ -337,7 +327,6 @@ function showFavoriteList() {
                   <span class="card-rating"><strong>Rating: ${rating} </strong></span>
                   <span class="card-dist">${dist} miles </span> 
                </p> 
-               <button type="button" class="success button">Remove</button>
             </div>
          </div> 
       </div>`;
