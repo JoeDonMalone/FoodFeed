@@ -41,7 +41,7 @@ body {
     border-radius: 10px;
     background: lightgray;
     margin: 20px;
-    max-width: 250px;
+    max-width: 200px;
     /* margin-bottom: 20px; */
 }
 
@@ -63,18 +63,25 @@ body {
     flex-basis: 55%;
     align-items: center;
     align-content: space-between;
-    justify-content: center;
 }
 
-.card-rating {
+.flex-card-rating {
     background-color: rgb(228, 248, 95);
     display:flex;
     border-radius: 50%;
-    padding-top: 10px;
+    padding: 15px;
     justify-items: center;
+    align-content: center;
     flex-wrap: wrap;
     align-items: center;
+    width: 110px;
     width: fit-content;
+}
+
+.flex-p {
+    display: flex;
+    flex-direction: column;
+    justify-items: space-around;
 }
 
 .hover{
