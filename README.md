@@ -1,7 +1,7 @@
-# Project-1-Group-4
+# FoodFeed
 
 <h1>Description</h1>
-<p>BLANK is a web app for users that want to search for a place to eat whether it's local or in another city. Currently there are only a few default cities supported.</p>
+<p>FoodFeed is a web app for users that want to search for a place to eat whether it's local or in another city. Currently there are only a few default cities supported.</p>
 
 <h1>Tech Stack</h1>
 <ul>
