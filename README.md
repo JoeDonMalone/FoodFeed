@@ -3,6 +3,11 @@
 <h1>Description</h1>
 <p>FoodFeed is a web app for users that want to search for a place to eat whether it's local or in another city. Currently there are only a few default cities supported.</p>
 
+<h1>Links</h1>
+<a href="https://joedonmalone.github.io/Project-1-Group-4/" target="_blank">Deployed Link<a>
+<br>
+<a href="https://github.com/JoeDonMalone/Project-1-Group-4" target="_blank">GitHub Repo<a>
+
 <h1>Tech Stack</h1>
 <ul>
     <li>HTML</li>
@@ -50,8 +55,3 @@
     <li>Enable online ordering and order status</li>
     <li>Ability to share on social media</li>
 </ul>
-
-<h1>Links</h1>
-<a href="https://joedonmalone.github.io/Project-1-Group-4/" target="_blank">Deployed Link<a>
-<br>
-<a href="https://github.com/JoeDonMalone/Project-1-Group-4" target="_blank">GitHub Repo<a>
