@@ -1,0 +1,82 @@
+.top-bar, .topbar-center-logo {
+    /* margin-bottom: 200px; */
+    display: flex;    
+    width: 100vw;
+    /* justify-content: space-evenly; */
+}
+.title-bar {
+    min-width: 100vw;
+}
+body {
+    display:flex;
+    flex-direction: column;
+    background: url(https://d19m59y37dris4.cloudfront.net/places/1-1-4/img/hero-bg.jpg);
+    align-items: center;
+    /* justify-content: space-around; */
+}
+
+.flex-container{
+    padding-top: 30px;
+    display: flex;
+    flex-direction: row;
+    /* flex-basis: 10%; */
+    /* flex-shrink: 1; */
+    justify-content: space-between;
+    justify-items: center;
+    flex-wrap: wrap;
+    max-width: 60%;
+    /* background: #d4d4d4; */
+    /* background: #0a0a0a; */
+}
+
+.favorites-cell {
+    display: flex;
+    flex-direction: column;
+    flex-basis: 33%;
+    flex-shrink: 1;
+    flex-wrap: wrap;
+    justify-items: center;
+    justify-content: space-evenly;
+    border: 1px solid #d4d4d4;
+    border-radius: 10px;
+    background: lightgray;
+    margin: 20px;
+    max-width: 250px;
+    /* margin-bottom: 20px; */
+}
+
+.flex-pic-center {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+}
+
+.flex-card-image {
+    min-width: 150px;
+    height: 150px;
+    border-radius: 10px;
+}
+.favorites-details-column {
+    display: flex;
+    flex-direction: column;
+    flex-basis: 55%;
+    align-items: center;
+    align-content: space-between;
+    justify-content: center;
+}
+
+.card-rating {
+    background-color: rgb(228, 248, 95);
+    display:flex;
+    border-radius: 50%;
+    padding-top: 10px;
+    justify-items: center;
+    flex-wrap: wrap;
+    align-items: center;
+    width: fit-content;
+}
+
+.hover{
+    border: 3px solid #3ADB76;
+}
