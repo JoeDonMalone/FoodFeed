@@ -1,4 +1,51 @@
-# Project-1-Group-4
+# Find My Restaurant
+
+<strong> Project Summary: </strong> <br>
+Application allowing user to find nearby or city specific restaurant and mark it as favorite.
+
+<div align="left">
+        <img src="./Assets/images/SS1.png">
+        <img src="./Assets/images/SS2.png">
+        <img src="./Assets/images/SS3.png">
+</div>
+<br>
+
+<strong> Purpose: </strong> <br>
+Apply learnings from Javascript with HTML, CSS & Bootstrap to build a multi-page Quiz application  <br>
+
+<strong> Description: </strong> <br>
+ This application allows users to search for nearby or city specific restaurants based on cuisine type. Few default city searches are supported. If relevant results are available, those are displayed using Zomato APIs. Details like photo, restaurant name, cuisine type are displayed in
+their individual result containers. These results are presently restricted to 9.
+
+More details of the restaurant can be viewed by clicking on it & this opens a modal view with additional details such as:
+Average User Ratings, Address, Hours, Contact Number, Price indicator, Mark as Favorite/Non-Favorite.
+A Small location pin of the restaurant address is displayed using Google APIs.
+
+If a user denies access to their present location, the base location is considered as Austin, TX & the distance of the restaurant from it's actual
+address is calculated from Austin.
+
+If a user allows access to their present location, distance of the restaurant is considered from that location.
+<br>
+
+<strong>API's used : </strong> <br>
+Zomato API <br>
+https://developers.zomato.com/documentation <br>
+
+Open Weather map <br>
+https://openweathermap.org/api
+ 
+<strong>Testing: </strong> <br>
+Unit tested the page on Windows (Chrome, IE11 & Edge), Mac, Mobile to ensure that the layout is consistent in full view as well as in the responsive mode.
+
+<strong> Code Installation: </strong> <br>
+$ cd [path_to_save_codebase] <br>
+$ git clone https://github.com/JoeDonMalone/Project-1-Group-4 <br>
+
+<strong> Code-base: </strong> <br>
+https://github.com/JoeDonMalone/Project-1-Group-4
+
+<strong> Application Live URL: </strong> <br>
+https://joedonmalone.github.io/Project-1-Group-4/
 
 # pages 
 https://joedonmalone.github.io/Project-1-Group-4/
@@ -7,87 +54,3 @@ https://joedonmalone.github.io/Project-1-Group-4/
 https://github.com/JoeDonMalone/Project-1-Group-4
 
 
-# App Criteria & Status
-01)
-     1) Foursquare
-     2) Maybe weather api
-02)
-    1) Foundation
-03) 
-    Joe Needs to implement recents searches
-04)
-    In progress
-05)
-    Structured Well
-06)
-    Too many alerts that will go away
-07)
-    deployed
-08)
-    Interactive 
-
-
-
-
-
-
-
-Favorite places : 
-
-Description:
-user can search and save favorite places and its reviews at one place along with directions.
-
-# User story:
-
-USERS 
-    Area locals, and tourists alike
-    
-I WANT 
-    We want an app to search places, reviews, addresses and see these thing on live map which drop down for greater detail, within radius of current location. 
-
-SO THAT 
-    I can save, recall, 'Go-to' directions, leave reviews, remove pin/favorites
-
-
-GIVEN a dashboard with form inputs and Dropdowns
-WHEN I select the category dropdown
-THEN I am preseneted with a list of categories to choose from
-WHEN I select a category
-THEN I can select a search radius from a dropdown
-WHEN I enter a serch radius
-THEN I am provided with a list of results within a give radius preference
-
-
-4. When user enter search criteria and click on Submit, list detail is open with corresponding category m radius.
-4. When user clicks on any list item - detail page is open 
-5. Detail page should have details like Name, adders, hours, distance 
-6. Detail page - user should be able to navigate to that place 
-6. Details page -user should be able to view street view 
-
-https://app.moqups.com/53Vl5RFqOD/view/page/a9deca8fe
-
-# API:
-
-google search API https://developers.google.com/places/web-service/search?hl=en_US
-https://maps.googleapis.com/maps/api/place/findplacefromtext/output?parameters 
-https://developers.google.com/maps/documentation/javascript/examples/place-search-pagination 
-https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=Museum%20of%20Contemporary%20Art%20Australia&inputtype=textquery&fields=photos,formatted_address,name,rating,opening_hours,geometry&key=YOUR_API_KEY
-
-Place detail API: 
-https://developers.google.com/places/web-service/details https://maps.googleapis.com/maps/api/place/details/json?place_id=ChIJN1t_tDeuEmsRUsoyG83frY4&fields=name,rating,formatted_phone_number&key=YOUR_API_KEY
-
-navigation API: 
-https://developers.google.com/maps/documentation/javascript/examples/geometry-headings 
-https://maps.googleapis.com/maps/api/directions/json? origin=Toronto&destination=Montreal &key=YOUR_API_KEY
-
-# Tasks: 
-1. HTMl page - index.html - 
-detail page.html - 
-2. CSS - Kyle
-3. Javascript {
-    google search api: Arti
-    google detail api:  Arti 
-    google navigation api: Kyle
-    street view api: Brodie
-    Yelp API - reviews:  Joe
-    }
