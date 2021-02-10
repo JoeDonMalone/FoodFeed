@@ -2,13 +2,6 @@
 *, ::after, ::before {
   box-sizing: border-box;
 }
-
-
-header {
-  background-color: #ffffff;
-  height: 50px;
-}
-
 .searchbar {
   background-color: lightgray;
   border-radius: 30px;
@@ -66,9 +59,8 @@ section h1 , .text-hero {
   font-weight: bold;
   font-size: 18px;
 }
-#topbar-center-logo a {
-  color: black
-}
+
+
 
 .motto {
   text-align: center;
@@ -145,23 +137,6 @@ section h1 , .text-hero {
   text-align: left;
   float: left;
 }
-
-.pagination {
-  display: inline-block;
-}
-
-.pagination a {
-  color: white;
-  background-color: teal;
-  float: left;
-  padding: 8px 16px;
-  text-decoration: none;
-}
-
-.pagination a.active {
-  background-color: #4CAF50;
-  color: white;
-}
 .circle-icon {
   background: #183151;
   padding:10px;
@@ -200,4 +175,23 @@ section h1 , .text-hero {
   text-align: center;
   height: 50px;
   padding-bottom: 20px;
+}
+#topbar-center-logo {
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+}
+#topbar-center-logo  {
+  background-color: #be1119;
+}
+#topbar-center-logo  ul {
+  background-color: #be1119;
+}
+.top-bar-center a  {
+  color:  white;
+}
+.logo-title {
+  color: white;
+  font-family: cursive;
+  font-size: 22px;
 }

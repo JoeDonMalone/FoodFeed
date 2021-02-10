@@ -11,7 +11,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
      <link rel="stylesheet" href="./Foundation/css/foundation.css ">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
-  
+    <link rel="stylesheet" href="./Assets/css/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Foundation files -->
+    <!-- <link rel="stylesheet" href="css/foundation.css">
+    <link rel="stylesheet" href="css/app.css"> -->
+    <!-- <link rel="stylesheet" href="css/normalize.css"> -->
+    <!-- <link rel="stylesheet" href="./Foundation/css/foundation.css "> -->
+    <!-- <link href="/Foundation/css/foundation.min.css" rel="stylesheet" /> -->
+    <link rel="stylesheet" href="./Assets/css/list_style.css">
+
     <title>Anywhere But Here</title>
 </head>
 <body>
@@ -21,6 +31,7 @@
             <div class="title-bar-left">
                 <div class="title-bar-title">
                 <img src="./Assets/images/Restaurant-icon.png" alt="" style="width: 50px; height: 50px;"/></div>
+                <div class="title-bar-title"><img src="https://d19m59y37dris4.cloudfront.net/places/1-1-3/img/logo.png" alt="" /></div>
             </div>
             <div class="title-bar-right">
                 <button class="menu-icon" type="button" data-toggle="topbar-center-logo"></button>
@@ -90,12 +101,71 @@
 
         <div class="grid-container" id="card"></div>
         <script src="./Foundation/js/vendor.js"></script>
+                    <li><a href="./index.html">Home </a></li>
+                    <!-- <li><a href="./list.html">Favorite List</a></li> -->
+                </ul>
+            </div>
+         </div>
+    </header>
+    <section class = 'spacer'></section>
+    <div class= "flex-container" id="card">
+    </div>
+    <!-- <div class="grid-container" id="card">
+    </div> -->
+  
+    <!-- <div class="wrapper">
+        <div class="grid-container" id="card">
+        </div>
+    </div> -->
+
+    <div class="row">
+        <div class="columns">
+            <div class="reveal" id="modalDetail" data-reveal>
+                <h1 class="lead">
+                    <span id="name"></span> <br>
+                    <span id="modalCuisine" class="text-center" style="font-size: smaller;"> </span>
+                    <span id="modalPrice" class="text-center" style="font-size: smaller;"> </span>
+                </h1>
+                <p>
+                <img id="icon-img" src="./Assets/images/img.jpeg" class="text-center" style="margin-left:10px;margin-right:10px; max-height:250px;max-width:250px;">
+                </p> 
+                    <button type="button" class="success button text-center">Delivery Available: <span id="modalDelivery"></span></button>
+                    <button type="button" class="alert button text-center" id="modalRatingText"></button> <br>
+                <p>
+                    <strong> Highlights: </strong> <span id="Highlights"> </span><br>
+                    <strong> Address: </strong> <span id="modaladdres"> </span> <br>
+                    <strong>Phone:</strong>  <span id="modalphone"></span> <br>
+                    <strong>Hours:</strong> <span id="timing"> 11:00 AM - 11:00 PM  </span> <br>
+                    <strong> Offers: </strong> <span id="offers ">    </span> <br>
+                </p> 
+                <p>
+                    <button type="button" class="success button"> Website  </button>
+                    <button type="button" class="success button" id="modalFavorite"> <i class="fa fa-thumbs-down"></i>  </button>
+                    <button type="button" class="success button"> Menu  </button>
+                </p>
+                <div id="map" style="width: 100%;">
+                        
+                </div>
+                <button class="close-button" data-close aria-label="Close reveal" type="button">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        </div>
+    </div>
+      <script src="./Foundation/js/vendor.js"></script>
       <script src="./Foundation/js/foundation.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
       <script src="./Foundation/js/foundation.js"></script>
       
      <script type="text/javascript" src="./Assets/js/list.js"></script>
       
+      <!-- <script src="js/vendor/jquery.js"></script> -->
+      <script type="text/javascript" src="./Assets/js/list.js"></script>
+      <!-- <script src="/Foundation/js/vendor/jquery.min.js"></script> -->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.0.1/js/vendor/jquery.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.5.1/dist/js/foundation.min.js" integrity="sha256-WUKHnLrIrx8dew//IpSEmPN/NT3DGAEmIePQYIEJLLs= sha384-53StQWuVbn6figscdDC3xV00aYCPEz3srBdV/QGSXw3f19og3Tq2wTRe0vJqRTEO sha512-X9O+2f1ty1rzBJOC8AXBnuNUdyJg0m8xMKmbt9I3Vu/UOWmSg5zG+dtnje4wAZrKtkopz/PEDClHZ1LXx5IeOw==" crossorigin="anonymous"></script>
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+      <script src="js/vendor/modernizr.js"></script>
 <script>
     $(document).ready(function() {
         $(document).foundation();
