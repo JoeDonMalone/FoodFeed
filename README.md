@@ -38,7 +38,11 @@
 <p>Unit tested the page on Windows (Chrome, IE11 & Edge), Mac, Mobile to ensure that the layout is consistent in full view as well as in the responsive mode.</p>
 
 <h1>Challenges</h1>
-<p>We had issues with pull requests and it deleting previous code written by other members. </p>
+<ul>
+    <li>Finding free, working APIs</li>
+    <li>Foundation CSS framework took time getting acquainted to</li>
+    <li>Git issues and merge conflicts</li>
+</ul>
 
 <h1>Future Development</h1>
 <ul>
