@@ -78,10 +78,22 @@ body {
     width: fit-content;
 }
 
+.flex-card-title {
+    padding-top: 10px;
+    text-align: center;
+}
+
 .flex-p {
     display: flex;
     flex-direction: column;
     justify-items: space-around;
+}
+
+.flex-card {
+    height: 90%;
+    width: 100%;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 .hover{
@@ -104,4 +116,16 @@ body {
     padding-top: 3.5px;
     font-weight: 500;
     font-family: 'Trebuchet MS';
+  }
+
+  #modalCuisine, #modalRatingText {
+      font-size: 16px;
+  }
+
+  .text-center {
+    text-align: center;
+  }
+
+  #icon-img {
+      text-align: center;
   }

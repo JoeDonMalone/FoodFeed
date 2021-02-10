@@ -360,11 +360,10 @@ function showFavoriteList() {
                <img class="flex-card-image" src=${icon}>
             </div> 
             <div class = "favorites-details-column">
-               <h6 class="flex-card-title"><strong>${name}</strong></h6> 
+               <h6 class="flex-card-title"><strong>${name} - ${rating}<i class='fas fa-star'></i></strong></h6><br>
                <p class = "flex-p"> 
-                  <span class="card-cuisine">${cuisines}</span> <br>
-                  <span class="flex-card-rating"><strong>Rating: ${rating} </strong></span>
-                  <span class="card-dist">${dist} miles </span> 
+                  <span class="card-cuisine">Cuisine(s): ${cuisines}</span>
+                  <span class="card-dist">Distance: ${dist} miles </span> 
               
                </p>
             </div>
