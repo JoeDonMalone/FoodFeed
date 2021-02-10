@@ -432,7 +432,7 @@ function displayMapAt(lat, lon) {
             }
             string += '<div class="grid-x small-up-2 medium-up-3">';
          }
-         string += '  <div class="cell"> <div class="card card-size" onclick="clickCard(this.id)" data-open="modalDetail" id="' + i+ '">  <span class="card-image text-center">  <img class="card-image" src=' + icon + '></span><br> <span class="card-title">' + name +'<span><br> ' + rating + '<i class="fas fa-star"></i> </span> </span><br> <span class="card-cuisine">Cuisine(s): '+ cuisines + '</span> <span class="card-dist"> <strong> Distance: </strong>'+ dist +' miles</span>   </div> </div>'
+         string += '  <div class="cell"> <div class="card card-size" onclick="clickCard(this.id)" data-open="modalDetail" id="' + i+ '">  <span class="text-center">  <img class="card-image" src=' + icon + '></span><br> <span class="card-title">' + name +'<span><br> ' + rating + '<i class="fas fa-star"></i> </span> </span><br> <span class="card-cuisine">Cuisine(s): '+ cuisines + '</span> <span class="card-dist"> <strong> Distance: </strong>'+ dist +' miles</span>   </div> </div>'
      //    string += '<div class="cell"> <div class="card card-size" onclick="clickCard(this.id)" data-open="modalDetail" id='+ i + '"> <div class= "text-center">  <img class="card-image" src=' + icon + '> </div> <h6 class="card-title">' + name + " " + rating + " - <i class='fas fa-star'></i>" + rating + '</h6><br><p><span class="card-cuisine">Cuisine(s): </span><br>' + cuisines + '<br> <span class="card-dist text-primary">Distance:<br> ' + dist+ ' miles </span> </p> </div> </div>';
       })
       $('#card').append(string);

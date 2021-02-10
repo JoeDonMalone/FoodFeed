@@ -202,8 +202,9 @@ section h1 , .text-hero {
 .card-image {
   width: 185px;
   height: 185px;
-  margin-left: 12.5%;
+  /* margin-left: 12.5%; */
   border-radius: 5%;
+  text-align: center;
 }
 
 .card-title {
