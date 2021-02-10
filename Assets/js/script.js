@@ -5,9 +5,16 @@ var locationEl = $("#location");
 var businessDetailContainerEl = $("#business-detail");
 var result = [];
 var currentLocation = {
-   lat: "",
-   lon: "",
-   city: ""
+   latitude: null,
+   longitude: null,
+   city: "",
+   temp: "",
+   icon: "",
+   description: ""
+}
+let defaultLocation = {
+   lat: 30.2672,
+   lon: -97.7431
 }
 var result = "";
 var selected = 0;
@@ -15,52 +22,43 @@ var current_page = 0;
 
 let map, infoWindow;
 var favorites; 
-
+var favIcon = {
+   Fav: "fas fa-thumbs-up circle-icon",
+   nonFav: "fas fa-thumbs-down circle-icon"
+}
 /*================Page load method  ================*/
 $(document).ready(function() {
-   //  initializeSearchHistory();
-   getLocation();
 
-   $(".page").click(function (e) {
-     console.log(e);
-   });
+   if (currentLocation.latitude === null && currentLocation.longitude === null) {
+         navigator.geolocation.getCurrentPosition(success, error, {maximumAge:60000, timeout:5000, enableHighAccuracy:true});
+   }
+
    $("#modalWebsite").click(function (e) {
-      console.log(result[selectedIndex].restaurant.url);
       let website = result[selectedIndex].restaurant.url;
       window.open(website);
    });
    $("#modalMenu").click(function (e) {
-      console.log(result[selectedIndex].restaurant.menu_url);
       let menu = result[selectedIndex].restaurant.menu_url;
       window.open(menu);
-
-   });
-   $("#modalLauncher").click(function (e) {
-      $('#exampleModal1').foundation('reveal', 'open');
    });
    
    $("#modalFavorite").click( function() {
-      
       var className = $(this).find("i") .attr("class");
-      if (className == "fa fa-thumbs-up") {
-         // make it favorite
-         makeItFavorite();
-         // $(this).find("i").removeClass().addClass("fa fa-thumbs-down");
+      if (className == favIcon.Fav) {
+           makeItFavorite();
+         $(this).find("i").removeClass().addClass(favIcon.nonFav);
+         showPopUp("Marked as Favorite");
          
       } else {
-         // $(this).find("i").removeClass().addClass("fa fa-thumbs-up");
-         makeItNonFavorite(result[selectedIndex].restaurant.id);
+           makeItNonFavorite(result[selectedIndex].restaurant.id);
+         $(this).find("i").removeClass().addClass(favIcon.Fav);
+         showPopUp("Marked as Non-Favorite");
       }
-      
    });
    
    $(".card").click(function(e) {
       alert("card" + $(this) + "clicked");
-      
    });
-   //displayMapAt(38.9168127,-77.0309828,5);
-   // initializeSearchHistory();
-   // getLocation();
    
    $("#submit").on("click", function() {
       var valueSearchBox = $('#getText').val()
@@ -68,189 +66,123 @@ $(document).ready(function() {
          showPopUp("Please enter search Query!");
          return;
       }
-      select();
+      APIcall();
    });
-   ///=====   Button click events  ===== ////
-   $( "#submi2t" ).click(function() {
-      
-      addToSearchHistory();
-      console.log("submit button clicked" + " AND searchtext: " + searchEl.val() +  " ANd category: "+ categoryEl.val());
-   })
-   
 
-   function getLocation() {
-      navigator.geolocation.getCurrentPosition(function(position) {
-         let lat = position.coords.latitude;
-         let long = position.coords.longitude;
-         currentLocation.lat = lat;
-         currentLocation.lon = long;
-         
-         callWeatherInfo(lat, long);
-         getCity(lat, long);
-         
-      });
-   }
   
-   function getCity(latitude, longitude) {
-      var apiUrl = "https://api.openweathermap.org/data/2.5/forecast?lat=" + latitude + "&lon=" + longitude + "&appid=" + apiKey;
+});
 
-      fetch(apiUrl)
-      .then(function(resp) { return resp.json() })
-      .then(function(data) {
-         console.log(data);
-         currentLocation.city = data.city.name;
-      })
-   }
+ /*==========================  Weather Info ========================*/ 
+ function success(position) {
+   currentLocation.latitude = position.coords.latitude;
+   currentLocation.longitude = position.coords.longitude;
+   getWeatherUsingLocation(position.coords);
+}
+ function error(err) {
+    currentLocation.latitude = defaultLocation.latitude;
+    currentLocation.longitude = defaultLocation.longitude;
+    currentLocation.city = "Austin";
+    getWeatherUsingCityName(currentLocation.city);
+ }
+ function getWeatherUsingLocation(loc) {
+   var url = "https://api.openweathermap.org/data/2.5/forecast?lat=" + loc.latitude + "&lon=" + loc.longitude + "&units=imperial&appid=" + apiKey;
+   console.log(url);
+   
+   fetch(url)  
+   .then(function(resp) { return resp.json() }) // Convert data to json
+   .then(function(data) {
+   getWeatherDetails(data.city.coord,data.list[0].main.temp,data.list[0].weather[0].description, data.list[0].weather[0].icon, data.city.name);
+})
+   .catch(function() {
+      getWeatherDetails(defaultLocation , "00" , "NA", "04d", "Austin");
+   });
+ }
 
-   function showPopUp(message) {
-      console.log($("#alert"));
-      $("#alert").find("#alertMessage").text(message);
-      
-      var popup = new Foundation.Reveal($('#alert'));
-      popup.open();
-   }
-   function callWeatherInfo( latitude, longitude ) {
-      var url = "https://api.openweathermap.org/data/2.5/onecall?lat=" + latitude+ "&lon=" + longitude +"&units=imperial&appid=" + apiKey;
-      // console.log(url);
-      
-      fetch(url)  
-      .then(function(resp) { return resp.json() }) // Convert data to json
-      .then(function(data) {
-         //
-         // console.log(data);
-         // console.log(data.current.temp);
-         
-         let temp = document.getElementById("temp");
-         temp.innerText = currentLocation.city + "'s Temperature: " +  Math.floor(data.current.temp) + "\u00B0" + "F";
-         let icon = document.getElementById("weather-icon");
-         let details = document.getElementById("weather");
-         
-         var todayiconurl = "https://openweathermap.org/img/wn/" +  data.current.weather[0].icon + ".png";
-         // console.log(todayiconurl);
-         icon.setAttribute("src", todayiconurl);
-         // console.log(data.current.weather[0].description);
-         
-         details.innerText = data.current.weather[0].description;
-         
-         //let icon = position.coords.longitude;
-         //getWeather(data); 
-         // toggleFrontside(false);
-      })
-      .catch(function() {
-         // catch any errors
-      });
-   }
-   
-   
-   
-   function initializeSearchHistory() {
-      let recentSearches = JSON.parse(localStorage.getItem('Recent Places Searches'));
-      if (!recentSearches) {
-         let recentSearches = [ {
-            'searchString': '',
-            'location':'',
-            'categories':[] 
-            // 'results': {
-            //   ''
-            // }
-         }
-      ]
-      localStorage.setItem('Recent Places Searches', JSON.stringify(recentSearches));
-   } 
-};
+ function getWeatherDetails(position, Temperature, desc, iconurl, cityName) {
+   var iconurl = "https://openweathermap.org/img/wn/" +  iconurl + ".png";
+   currentLocation.temp = Math.floor(Temperature) + "\u00B0" + "F";
+   currentLocation.description = desc;
+   currentLocation.icon = iconurl;
+   currentLocation.latitude = position.lat;
+   currentLocation.longitude = position.lon;
+   currentLocation.city = cityName;
+   showWeatherInfo(currentLocation);
+ }
 
-function initializeSearchHistory() {
-   let recentSearches = JSON.parse(localStorage.getItem('Recent Places Searches'));
-   if (!recentSearches) {
-      let recentSearches = [ {
-         'searchString': '',
-         'location':'',
-         'categories':[] 
-         // 'results': {
-         //   ''
-         // }
-      }
-   ]
-   localStorage.setItem('Recent Places Searches', JSON.stringify(recentSearches));
-} 
-};
-
-function addToSearchHistory() {
+ function getWeatherUsingCityName(cityName) {
+   let url = 'https://api.openweathermap.org/data/2.5/weather?q=' + cityName + '&units=imperial&appid=' + apiKey;
+   console.log(url);
    
-   let recentSearches = [ {
-      'searchString':searchEl.val(),
-      'location': locationEl.val(),
-      'categories':categoryEl.text()    
-   }
-]
-localStorage.setItem('Recent Places Searches', JSON.stringify(recentSearches));
-};
+   fetch(url)  
+   .then(function(resp) { return resp.json() }) // Convert data to json
+   .then(function(data) {
+      getWeatherDetails(data.coord, data.main.temp , data.weather[0].description, data.weather[0].icon, cityName);
+   })
+   .catch(function() {
+      getWeatherDetails(defaultLocation , "00" , "NA", "04d", "Austin");
+   });
+
+ }
+ function showWeatherInfo(info) {
+
+   let temperture = $("#temp");
+   let description = $("#weather");
+   let icon = $("#weather-icon");
+   temperture.text(currentLocation.city +  "'s Temperature: " +  currentLocation.temp);
+   description.text(currentLocation.description);
+   icon.attr("src", currentLocation.icon);
+ }
+ /*==========================================================*/
+
+function showPopUp(message) {
+   $("#alert").find("#alertMessage").text(message);
+   
+   var popup = new Foundation.Reveal($('#alert'));
+   popup.open();
+}
 
 function createRequest(myurl) {
-   var request = {
-      "async": true,
-      "url": myurl,
-      "method": "GET",
-      "headers": {
-         "user-key": "481db5811d8a67ef43f399d26909b835",
-         'Content-Type': 'application/x-www-form-urlencoded'
-      }
+var request = {
+   "async": true,
+   "url": myurl,
+   "method": "GET",
+   "headers": {
+      "user-key": "481db5811d8a67ef43f399d26909b835",
+      'Content-Type': 'application/x-www-form-urlencoded'
    }
-   return request;
 }
-function createURL(search, cityID,start) {
+return request;
+}
+function createURL(search, cityID) {
 
-   return "https://developers.zomato.com/api/v2.1/search?entity_id="+ cityID + "&entity_type=city&q="+  search +  "&count=" + 9 + "&start=" +  start;
+return "https://developers.zomato.com/api/v2.1/search?entity_id="+ cityID + "&entity_type=city&q="+  search +  "&count=" + 9 ;
 }
-function newwin() {   
-   console.log($(this).id);
-            
-   //myWindow=window.open('lead_data.php?leadid=1','myWin','width=400,height=650')
-}
-function changePage(id) {
-   console.log($(this).id);
+function APIcall() {
+var valueDropdown = $('#select_id').val();
+var valueSearchBox = $('#getText').val()
+let url = createURL(valueSearchBox, valueDropdown);
+let request = createRequest(url);
 
- //  select(pageNo);
-
-}
-function nextPage() {
-   if (current_page < numPages()) {
-      current_page++;
-      select(current_page);
-      //changePage(current_page);
-  }
-}
-function prevPage() {
-   if (current_page > 1) {
-      current_page--;
-      select(current_page);
-
-      changePage(current_page);
-  }
-
-}
-function select(start) {
-   var valueDropdown = $('#select_id').val();
-   var valueSearchBox = $('#getText').val()
-   let url = createURL(valueSearchBox, valueDropdown, start);
-   let request = createRequest(url);
-   
-   $.getJSON(request, function(data) {
-      if (data.restaurants == null || data.restaurants == "") {
-         showPopUp("Something went wrong, Please try again!");
-      }
-      result = data.restaurants;
-      createCard(result);
-   });
-}
+$.getJSON(request, function(data) {
+   if (data.restaurants == null || data.restaurants == "") {
+      showPopUp("Something went wrong, Please try again!");
+   }
+   result = data.restaurants;
+   createCard(result);
 });
+}
+
+   /*==========================  Show map ========================*/ 
 
 function displayMapAt(lat, lon) {
    $("#map")
    .html(
       "<iframe src=\"https://maps.google.com/maps?q=" + lat +  "," + lon + "&z=15&output=embed\"></iframe>");
    }
+   /*=============================================================*/
    
+   /*========================== Calculate distance ========================*/ 
+
    function distance(lat1, lon1, lat2, lon2) {
       if ((lat1 == lat2) && (lon1 == lon2)) {
          return 0;
@@ -271,6 +203,7 @@ function displayMapAt(lat, lon) {
          return dist.toFixed(2);
       }
    }
+   /*================================================================*/
    
    function checkIfItemIsFavorite(array, _item) {
       if (array == null) {
@@ -290,13 +223,17 @@ function displayMapAt(lat, lon) {
       if (savedData != null) { 
          savedData =  JSON.parse(savedData);
          savedData= removeItem(savedData, _id);
-         localStorage.setItem('FavoritePlaces', JSON.stringify(savedData));
+         if (savedData.length == 0) {
+            localStorage.clear("FavoritePlaces");
+         } else {
+            localStorage.setItem('FavoritePlaces', JSON.stringify(savedData));
+         }
+
       }
    }
    
    function makeItFavorite() {
       let object = createFavorite(result[selectedIndex]);
-      console.log(object);
       
       var savedData = localStorage.getItem("FavoritePlaces");
       
@@ -319,11 +256,9 @@ function displayMapAt(lat, lon) {
    function removeItem(array, _item) {
       
       for (var i=0; i<array.length; i++) {
-         console.log(array[i].id, _item);
          if (array[i].id == _item) {
-            console.log("in delete" + array[i].id + _item);
             
-            array.splice(1, 1);
+            array.splice(i, 1);
             return array;
          } 
       }
@@ -333,7 +268,6 @@ function displayMapAt(lat, lon) {
    function filterItem(array, _item) {
       
       for (var i=0; i<array.length; i++) {
-         console.log(array[i].id, _item);
          if (array[i].id == _item) {
             return false;
          } 
@@ -348,18 +282,69 @@ function displayMapAt(lat, lon) {
       
       var object = {
          "id": info.restaurant.id,
-         "restaurant": info, 
+         "details": info, 
       }
       return object;
-   }
+   }   
 
+   function getHighlight(array) {
+      let text = "";
+   
+      for (var i=0; i<array.length && i < 5 ; i++) {
+         text +=  array[i];
+         if (i < 4){
+            text +=  ", "
+         }
+      }
+      return text;
+   }
+   function getThumbImage(source) {
+    if (source) {
+       return source
+    } else {
+       "./Assets/images/img.png";
+    }
+   
+   }
+   function getPriceText(price) {
+      let text = "";
+   
+      for (var i=0; i<price ; i++) {
+         text += "$";
+      }
+      return text;
+   }
    function clickCard(id) {
       selectedIndex = parseInt(id);
-     
-      let index = parseInt(id);
-      console.log(result[index].restaurant);
+  // result = result[selectedIndex].restaurant;
+   
+   var modal = $("#modalDetail");
+   modal.find( "#modal-title").text(result[selectedIndex].restaurant.name);
+   modal.find( "#modalCuisine").text(result[selectedIndex].restaurant.cuisines);
+   modal.find( "#modalPrice").text(getPriceText(parseInt(result[selectedIndex].restaurant.price_range)));
+   modal.find( "#modalRatingText").text(result[selectedIndex].restaurant.user_rating.aggregate_rating);
+   modal.find( "#modaladdres").text(result[selectedIndex].restaurant.location.address); 
+   modal.find( "#modalphone").text(result[selectedIndex].restaurant.phone_numbers);
+   modal.find( "#timing").text(result[selectedIndex].restaurant.timings);
+   modal.find( "#offers").text(result[selectedIndex].restaurant.offers);
+   modal.find( "#Highlights").text(getHighlight(result[selectedIndex].restaurant.highlights));
+   modal.find( "#icon-img").attr("src", getThumbImage(result[selectedIndex].restaurant.thumb));
+   result[selectedIndex].restaurant.has_online_delivery == "1" ? modal.find( "#modalDelivery").text("YES").attr("style", "color: green;") :       modal.find( "#modalDelivery").text("NO").attr("style", "color: red;");
+   displayMapAt(result[selectedIndex].restaurant.location.latitude, result[selectedIndex].restaurant.location.longitude);
+
+   var savedData = localStorage.getItem("FavoritePlaces");
+   savedData = JSON.parse(savedData);
+         
+    if (checkIfItemIsFavorite(savedData, result[selectedIndex].restaurant.id)) {
+            modal.find( "#modalFavorite").find("i").removeClass().addClass(favIcon.nonFav); 
+   } else {
+      modal.find( "#modalFavorite").find("i").removeClass().addClass(favIcon.Fav);
+   }
+   }
+   function clickCard1(id) {
+      selectedIndex = parseInt(id);
       var modal = $("#modalDetail");
-      var name = modal.find( "#name");
+      var name = modal.find( "#modal-title");
       var cusine = modal.find( "#modalCuisine");
       var price = modal.find( "#modalPrice");
       var rating = modal.find( "#modalRatingText");
@@ -381,31 +366,23 @@ function displayMapAt(lat, lon) {
       offers.text(result[selectedIndex].restaurant.offers);
       
       displayMapAt(result[selectedIndex].restaurant.location.latitude, result[selectedIndex].restaurant.location.longitude);
-      var thumb = $("#icon-img");
-      // var website = $("#modalWebsite");
+      var thumb = modal.find("#icon-img");
+
       thumb.attr("src", result[selectedIndex].restaurant.thumb);
       thumb.attr("onError", "this.onerror=null;this.src='./Assets/images/img.png';")
-
-      // website.attr("onclick", open(result[index].restaurant.url));
-
-      displayMapAt(result[index].restaurant.location.latitude, result[index].restaurant.location.longitude);
       let pricetext = "";
-      
+      let highText = "";
+
+      for (var i=0; i<result[selectedIndex].restaurant.highlights.length; i++) {
+         highText +=  result[selectedIndex].restaurant.highlights[i] + ",";
+      }
+      highlights.text(highText);
+
+
       for (var i=0; i<parseInt(result[selectedIndex].restaurant.price_range); i++) {
          pricetext += "$";
       }
       price.text(pricetext);
-      
-      
-      // let hasdelivery = result[selectedIndex].restaurant.has_online_delivery;
-      
-      // if (hasdelivery == "1") {
-      //    delivery.text(" :YES");
-      // } else {
-      //    delivery.text(" :NO");
-         
-      // price.text(" - " + pricetext);
-
 
       let hasdelivery = result[selectedIndex].restaurant.has_online_delivery;
       
@@ -417,32 +394,17 @@ function displayMapAt(lat, lon) {
          delivery.attr("style", "color: red;");
 
       }
-      // var highlight = result[selectedIndex].restaurant.highlights;
-      // if (highlight.length > 0 ){
-      //    let text = "";
-      //    for (var i=0 ; i<highlight.length; i++) {
-      //       text += " " + highlight[i];
-      //          text += highlight[i] + ", ";
-      //    }
-      //    console.log("higj " + highlight);
-
-      //   highlights.text(text);
-         
-      // }
+     
       var savedData = localStorage.getItem("FavoritePlaces");
       savedData = JSON.parse(savedData);
-      
-      favButton.find("i").removeClass().addClass("fa fa-thumbs-up");
-      
-      if (checkIfItemIsFavorite(savedData, result[selectedIndex].restaurant.id)) {
-         favButton.find("i").removeClass().addClass("fa fa-thumbs-up");
+            
+       if (checkIfItemIsFavorite(savedData, result[selectedIndex].restaurant.id)) {
+         favButton.find("i").removeClass().addClass(favIcon.nonFav); 
       } else {
-         favButton.find("i").removeClass().addClass("fa fa-thumbs-down");
-         
+         favButton.find("i").removeClass().addClass(favIcon.Fav);
       }
       
    }
-
    
    function createCard(response) {      
       var string = "";
@@ -454,7 +416,7 @@ function displayMapAt(lat, lon) {
       $('#card').html('');
       
       $.each(response, function (i) {
-         var dist = distance(response[i].restaurant.location.latitude,response[i].restaurant.location.longitude, currentLocation.lat, currentLocation.lon );
+         var dist = distance(response[i].restaurant.location.latitude,response[i].restaurant.location.longitude, currentLocation.latitude, currentLocation.longitude );
          name = response[i].restaurant.name;
          cuisines = response[i].restaurant.cuisines;
          rating = response[i].restaurant.user_rating.aggregate_rating;
@@ -462,7 +424,6 @@ function displayMapAt(lat, lon) {
          if (icon == "" || icon == null) {
             icon = "./Assets/images/img.png";
          }
-         console.log(icon);
          
          if (i%3 == 0) {
             if (i != 0) {
@@ -471,9 +432,8 @@ function displayMapAt(lat, lon) {
             }
             string += '<div class="grid-x small-up-2 medium-up-3">';
          }
-        // string += '<div class="cell"> <div class="card" onclick="clickCard(this.id)" data-open="modalDetail" id='+ i + '"> <div class= "text-center">  <img class="card-image" src=' + icon + '> </div> <h6 class="card-title">' + name + '</h6> <p> <span class="card-cuisine">' + cuisines + '<br> </span> <span class="card-rating">  ' + rating +   '</span> <span class="card-dist">' + dist+ ' miles </span> </p> <button type="button" class="success button">Save</button> <i class="fa fa-map-marker"></i><i class="fa fa-heart-o" aria-hidden="true"></i>   test  </button>  </div> </div>';
-         string += '<div class="cell"> <div class="card card-size" onclick="clickCard(this.id)" data-open="modalDetail" id='+ i + '"> <div class= "text-center">  <img class="card-image" src=' + icon + '> </div> <h6 class="card-title">' + name + " - <i class='fas fa-star'></i>" + rating + '</h6><br><p><span class="card-cuisine">Cuisine(s): </span><br>' + cuisines + '<br> <span class="card-dist text-primary">Distance:<br> ' + dist+ ' miles </span> </p> </div> </div>';
+         string += '  <div class="cell"> <div class="card card-size" onclick="clickCard(this.id)" data-open="modalDetail" id="' + i+ '">  <span class="card-image text-center">  <img class="card-image" src=' + icon + '> </span> <span class="card-title">' + name +'<span><br> ' + rating + '<i class="fas fa-star"></i> </span> </span> <span class="card-cuisine">'+ cuisines + '</span> <span class="card-dist"> <strong> Distance: </strong>'+ dist +'</span>   </div> </div>'
+     //    string += '<div class="cell"> <div class="card card-size" onclick="clickCard(this.id)" data-open="modalDetail" id='+ i + '"> <div class= "text-center">  <img class="card-image" src=' + icon + '> </div> <h6 class="card-title">' + name + " " + rating + " - <i class='fas fa-star'></i>" + rating + '</h6><br><p><span class="card-cuisine">Cuisine(s): </span><br>' + cuisines + '<br> <span class="card-dist text-primary">Distance:<br> ' + dist+ ' miles </span> </p> </div> </div>';
       })
-      
       $('#card').append(string);
    }

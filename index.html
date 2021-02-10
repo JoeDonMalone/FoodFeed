@@ -8,21 +8,12 @@
 
     <link rel="stylesheet" href="./Assets/css/style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!-- Foundation files -->
-    <!-- <link rel="stylesheet" href="css/foundation.css"> -->
-    <!-- <link rel="stylesheet" href="css/app.css"> -->
-    <!-- <script src="js/vendor/modernizr.js"></script> -->
-    <!-- <link rel="stylesheet" href="css/normalize.css"> -->
-    <link rel="stylesheet" href="./Foundation/css/foundation.css ">
+     <link rel="stylesheet" href="./Foundation/css/foundation.css ">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
-
-    <!-- <link href="/Foundation/css/foundation.min.css" rel="stylesheet" /> -->
-
     <title>Anywhere But Here</title>
 </head>
 <body style="background: url('https://d19m59y37dris4.cloudfront.net/places/1-1-4/img/hero-bg.jpg');" class="hero d-flex align-items-center background-style">
-    <header>
+    <header class="header">
         <!-- mobile nav bar -->
         <div class="title-bar topbar-center-logo-mobile" data-responsive-toggle="topbar-center-logo" data-hide-for="medium">
             <div class="title-bar-left">
@@ -40,8 +31,7 @@
                 <a href="#"><img src="https://d19m59y37dris4.cloudfront.net/places/1-1-3/img/logo.png" alt="" /></a>
             </div>
             <div class="top-bar-center">
-                <ul class="menu vertical medium-horizontal">
-
+                <ul class="menu vertical medium-horizontal text-center">
                     <li><a href="index.html">Home </a></li>
                     <li><a href="list.html">Favorites List</a></li>
                     
@@ -53,11 +43,10 @@
     <section>
         <h1 class="motto">Find the <span class="text-primary">Best</span> Restaurant For <span class="text-primary">You</span></h1>
         <div class="current-weather">
-                <div> <span id="temp"></span> </div>
-                <div> <img id="weather-icon"></img> </div>
-                <div> <span id="weather"></span> </div>
+            <span id="temp"></span> 
+            <img id="weather-icon" src=""></img> 
+            <span id="weather"></span>
         </div>
-        
         <div class="searchbar">
             <div class="grid-x grid-padding-x">
                 <div class="small-4 cell">
@@ -106,16 +95,7 @@
             </div>
         </div>
     </section>
-    <button id="modalLauncher" data-reveal="exampleModal1"> open modal  </button>
-    <div class="grid-container" id="card"></div>
-
-    <div class="reveal" id="exampleModal1" data-reveal>
-    <h1>Awesome. I Have It.</h1>
-    <p class="lead">Your couch. It is mine.</p>
-    <p>I'm a cool paragraph that lives inside of an even cooler modal. Wins!</p>
-    <button class="close-button" data-close aria-label="Close modal" type="button">
-    <span aria-hidden="true">&times;</span>
-    </button>
+    <div class="grid-container" id="card">
     </div>
 
     <div class="reveal" id="alert" data-reveal>
@@ -124,60 +104,80 @@
         <button class="close-button" data-close aria-label="Close modal" type="button">
           <span aria-hidden="true">&times;</span>
         </button>
-      </div>
+    </div>
+      
+    <div class="reveal text-center" id="modalDetail" data-reveal>
+    <p class="modalDetails">
+        <span class="modal-title"> 
+            <span id="modal-title">  
+                <span id="modalPrice" class="text-center" style="font-size: smaller;"> $$</span> 
+            </span>
+        </span>
+        <button type="button"  id="modalFavorite">  <i class="fas fa-thumbs-up circle-icon"></i>  </button>
+        <br> <span id="modalCuisine" class="text-center" style="font-size: smaller;">American/Italian/ Mexican </span>
+       <span id="modalRatingText"></span>  <i class='fas fa-star'></i>
+        <br> 
+        <img id="icon-img" src="./Assets/images/img.png"  style="margin-left:10px;margin-right:10px; max-height:150px;max-width:90%; padding-left: 200px;"/>
+    </p>
+    <p>
 
-      <div class="row">
-        <div class="columns">
-            <div class="reveal text-center" id="modalDetail" data-reveal>
-                <h1 class="lead">
-                    <span id="name"></span> - <span id="modalPrice" class="text-center" style="font-size: smaller;"> </span> 
-                    <br>
-                    <span id="modalCuisine" class="text-center" style="font-size: smaller;"> </span>
-                </h1>
-                <p>
-                  <img id="icon-img" src="" class="text-center" style="margin-left:10px;margin-right:10px; max-height:250px;max-width:250px;"/>
-                <p> 
-                    <div class="text-center"><strong>Delivery Available: </strong> <span id="modalDelivery"> </span></div>
+    <hr>
+    <p class="modalDetails">
+        <strong> Highlights: </strong> <span id="Highlights" class="text-left"> lunch, dinner, outdoo </span> <br> 
+        <strong>Address: </strong> <span id="modaladdres"> 1234 emala st uSA sliga  </span> <br>
+        <strong>Phone:</strong>  <span id="modalphone"> 4455-333-33232</span> <br>
+        <strong>Hours:</strong> <span id="timing"> 11:00 AM - 11:00 PM  </span> <br>
+    </p>
+    <hr>
+    <p style="text-align: center;">
+        <button type="button" class="success button"> Delivery Available: <span id="modalDelivery"> YES </span></button>
+        <button type="button" class="success button" id="modalWebsite"> Website </button>
+        <button type="button" class="success button" id="modalMenu"> Menu </button>
+    </p>
 
-                    <div class="text-center"><strong>Rating: </strong> <i class='fas fa-star'></i><span id="modalRatingText"></span></div>
-                </p>    
-                <hr>
-                    <p class="modalDetails">
+    <div id="map" style="width: 100%;">
+    </div>
+    <button class="close-button" data-close aria-label="Close reveal" type="button">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    </div>
 
-                      <!-- <strong> Highlights: </strong> <span id="Highlights" class="text-left"> </span> <br> -->
-                      <strong>Address: </strong> <span id="modaladdres"> </span> <br>
-                      <strong>Phone:</strong>  <span id="modalphone"></span> <br>
-                      <strong>Hours:</strong> <span id="timing"> 11:00 AM - 11:00 PM  </span> <br>
-                      <!-- <strong> Offers: </strong> <span id="offers ">    </span> <br> -->
-                    </p>
-                    <hr>
-                    <p style="text-align: center;">
-                      <button type="button" class="success button" id="modalWebsite"> Website </button>
-                      <button type="button" class="success button" id="modalFavorite">Favorite This Location <i class="fa fa-thumbs-up"></i>  </button>
-                      <button type="button" class="success button" id="modalMenu"> Menu </button>
-                    </p>
-                
-                <div id="map" style="width: 100%;">
-                        
-                </div>
-                    <button class="close-button" data-close aria-label="Close reveal" type="button">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+    <div class="grid-container" id="card2">
+      
+     <!--   <div class="grid-x small-up-2 medium-up-3">
+            <div class="cell">
+                <div class="card card-size" onclick="clickCard(this.id)" data-open="modalDetail" id="0"> 
+                    <span class="card-image text-center"> 
+                        <img src="./Assets/images/img.png"> </span>
+                        <span class="card-title"> 
+                            <span> <i class="fas fa-star"></i> </span>
+                        </span>
+                        <span class="card-cuisine"></span>
+                        <span class="card-dist"></span>  
                 </div>
             </div>
-      </div>
+            <div class="cell">
+                <div class="card card-size" onclick="clickCard(this.id)" data-open="modalDetail" id="0"> 
+                    <span class="card-image"> <img class="card-image" src="./Assets/images/img.png"> </span>
+                    <span> Cuisies:  Italian, Pizza, Vegetarian</span>
+                    <span>4.2 <i class="fas fa-star"></i></span>
+                </div>
+            </div>
+            <div class="cell">
+                <div class="card card-size" onclick="clickCard(this.id)" data-open="modalDetail" id="0"> 
+                    <span class="card-image"> <img class="card-image" src="./Assets/images/img.png"> </span>
+                    <span> Cuisies:  Italian, Pizza, Vegetarian</span>
+                    <span>4.2 <i class="fas fa-star"></i></span>
+                </div>
+            </div>
+          
+            
+            
+        </div>
+        -->
+    </div>
 
-      <div class="pagination">
-        <a href="#">&laquo;</a>
-        <button id=10 onclick="myFunction(this)" > </button>
-        <a href="#" id="1" onclick="myFunction(this)">1</a>
-        <a class="active"onclick="myFunction(this)" id=2>2</a>
-        <a href="#" id=3  >3</a>
-        <a href="#" id=4 >4</a>
-        <a href="#" id=5 >5</a>
-        <a href="#" id=6 >6</a>
-        <a href="#">&raquo;</a>
-      </div>
+
       <!-- Footer -->
       <div class="mobile-bottom-bar footer">
         <p>Website Name</p>
@@ -185,16 +185,9 @@
        
       <script src="./Foundation/js/vendor.js"></script>
       <script src="./Foundation/js/foundation.js"></script>
-      <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/motion-ui/1.1.1/motion-ui.min.css"></script> -->
       <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-      <!-- <script src="js/vendor/jquery.js"></script> -->
       <script src="./Foundation/js/foundation.js"></script>
-      <!-- <script src="/Foundation/js/vendor/jquery.min.js"></script> -->
-      <!-- <script src="/Foundation/js/foundation.js"></script> -->
-      <script src="/Foundation/js/vendor/jquery.min.js"></script> 
-      <script type="text/javascript" src="js/jquery-1.9.1.js"></script>
-      <script type="text/javascript" src="js/functions.js"></script>
-  
+      
       <script type="text/javascript" src="./Assets/js/script.js"></script>
 
 <script>
