@@ -27,13 +27,13 @@ section h1 , .text-hero {
   color: green;
 }
 
-
 .card {
   width: 200px;
   height: 50px;
   overflow: auto;
   text-align: center;
   float: right;
+  padding-bottom: 10%;
 }
 .card-size {
   height: 85%;
@@ -64,7 +64,8 @@ section h1 , .text-hero {
   font-family: 'Trebuchet MS';
   width: 100%;
   font-weight: bold;
-  font-size: 18px;
+  color: black;
+  font-size: 16px;
 }
 #topbar-center-logo a {
   color: black
@@ -73,10 +74,19 @@ section h1 , .text-hero {
 .motto {
   text-align: center;
   font-weight: bold;
+  padding-bottom: 1.5%;
+  font-family: "Vidaloka",serif;
+  color: white;
+}
+
+.site-name {
+  text-align: center;
+  font-weight: bold;
   padding-top: 2.5%;
   padding-bottom: 1.5%;
   font-family: "Vidaloka",serif;
   color: white;
+  font-size: 100px;
 }
 
 .current-weather {
@@ -90,8 +100,8 @@ section h1 , .text-hero {
 
 #submit {
  font-weight: bold;
- border-radius: 30px;
- border: lightblue 1px solid;
+ /* border-radius: 30px; */
+ /* border: black 1px solid; */
 }
 
 .text-center {
@@ -113,7 +123,7 @@ section h1 , .text-hero {
 }
 
 #select_id, #select_category, #getText {
-  border-radius: 10px;
+  border-radius: 15px;
 }
 
 #modalDelivery, #modalRatingText, #name, #modalCuisine, #modalPrice {
@@ -129,11 +139,12 @@ section h1 , .text-hero {
   left: 0;
   bottom: 0;
   width: 100%;
-  background-color: lightgray;
-  font-size: 18px;
+  background-color: #212529;
+  font-size: 16px;
   text-align: center;
   height: 3.5%;
-  padding-top: 3.5px;
+  padding-top: 8px;
+  font-weight: 500;
 }
 
 .wrapper{
@@ -172,7 +183,7 @@ section h1 , .text-hero {
   font-family: 'Trebuchet MS';
   color: #01447e;
   font-weight: bold;
-  text-align: left;
+  text-align: center;
   font-size: 22px;
 }
 #modalPrice {
@@ -187,6 +198,20 @@ section h1 , .text-hero {
   font-style: italic;
   color: black;
 }
+
+.card-image {
+  width: 185px;
+  height: 185px;
+  margin-left: 12.5%;
+  border-radius: 5%;
+}
+
+.card-title {
+  font-weight: bold;
+  color: #002e57;
+  font-size: 20px;
+}
+
 /*--------------------------------------------------------------
 # Footer
 --------------------------------------------------------------*/
@@ -198,6 +223,7 @@ section h1 , .text-hero {
   background-color: #212529;
   color: white;
   text-align: center;
-  height: 50px;
+  height: 40px;
   padding-bottom: 20px;
+  font-family: 'Trebuchet MS';
 }

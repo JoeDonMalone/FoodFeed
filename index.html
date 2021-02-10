@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
      <link rel="stylesheet" href="./Foundation/css/foundation.css ">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
-    <title>Anywhere But Here</title>
+    <title>FoodFeed</title>
 </head>
 <body style="background: url('./Assets/images/bg.jpeg" class="hero d-flex align-items-center background-style">
     <header class="header">
@@ -28,7 +28,7 @@
         <!-- medium and larger nav bar -->
         <div class="top-bar topbar-center-logo" id="topbar-center-logo">
             <div class="top-bar-left">
-                <a href="#"><img src="./Assets/images/Restaurant-icon.png" alt="" style="width: 50px; height: 50px;"/></a>
+                <a href="index.html"><img src="./Assets/images/Restaurant-icon.png" alt="" style="width: 50px; height: 50px;"/></a>
             </div>
             <div class="top-bar-center">
                 <ul class="menu vertical medium-horizontal text-center">
@@ -41,7 +41,8 @@
     </header>
     
     <section>
-        <h1 class="motto">Find the <span class="text-primary">Best</span> Restaurant For <span class="text-primary">You</span></h1>
+        <h1 class="site-name">Food <img src="./Assets/images/Restaurant-icon.png" alt="" style="width: 50px; height: 50px;"/> <span class="text-primary"> Feed</span></h1>
+        <h2 class="motto">Find the <span class="text-primary">Best</span> Restaurant For <span class="text-primary">You</span></h2>
         <div class="current-weather">
             <span id="temp"></span> 
             <img id="weather-icon" src=""></img> 
@@ -97,8 +98,8 @@
     </div>
 
     <div class="reveal" id="alert" data-reveal>
-        <h1>Alert</h1>
-        <p class="lead" id="alertMessage">Please enter Search Query</p>
+        <h2 class="text-center">Notification:</h2>
+        <h4 class="lead text-center" id="alertMessage">Please enter search query</h4>
         <button class="close-button" data-close aria-label="Close modal" type="button">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -116,19 +117,20 @@
        <span id="modalRatingText"></span>  <i class='fas fa-star'></i>
         <br> 
         <img id="icon-img" src="./Assets/images/img.png"  style="margin-left:10px;margin-right:10px; max-height:150px;max-width:90%; padding-left: 200px;"/>
+        <div class="delivery-opt"><strong>Delivery Available:</strong> <span id="modalDelivery"> YES </span></div>
     </p>
     <p>
 
     <hr>
     <p class="modalDetails">
-        <strong> Highlights: </strong> <span id="Highlights" class="text-left"> lunch, dinner, outdoo </span> <br> 
+        <!-- <strong> Highlights: </strong> <span id="Highlights" class="text-left"> lunch, dinner, outdoo </span> <br>  -->
         <strong>Address: </strong> <span id="modaladdres"> 1234 emala st uSA sliga  </span> <br>
         <strong>Phone:</strong>  <span id="modalphone"> 4455-333-33232</span> <br>
         <strong>Hours:</strong> <span id="timing"> 11:00 AM - 11:00 PM  </span> <br>
     </p>
     <hr>
     <p style="text-align: center;">
-        <button type="button" class="success button"> Delivery Available: <span id="modalDelivery"> YES </span></button>
+        <!-- <div> Delivery Available: <span id="modalDelivery"> YES </span></div> -->
         <button type="button" class="success button" id="modalWebsite"> Website </button>
         <button type="button" class="success button" id="modalMenu"> Menu </button>
     </p>
@@ -146,10 +148,10 @@
     </div>
 
 
-      <!-- Footer -->
+      <!-- Footer
       <div class="mobile-bottom-bar footer">
         <p>Website Name</p>
-      </div>
+      </div> -->
        
       <script src="./Foundation/js/vendor.js"></script>
       <script src="./Foundation/js/foundation.js"></script>
@@ -167,7 +169,7 @@
  <!-- ======= Footer ======= -->
  <footer class="footer">
     <div class="container">
-      <span class="text-muted">© Copyright 2021. Designed & Developed Coding Bootcamp</spa>
+      <span class="text-muted">Food<span class="text-primary">Feed</span> © Copyright 2021</spa>
     </div>
   </footer>
   <!-- End  Footer -->
