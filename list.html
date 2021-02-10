@@ -61,26 +61,27 @@
             <div class="reveal" id="modalDetail" data-reveal>
                 <h1 class="lead">
                     <span id="name"></span> <br>
-                    <span id="modalCuisine" class="text-center" style="font-size: smaller;"> </span>
-                    <span id="modalPrice" class="text-center" style="font-size: smaller;"> </span>
+                    <span id="modalCuisine" class="text-center"> </span> - <span type="button" class="text-center" id="modalRatingText"></span><i class='fas fa-star'></i>
+                    <!-- <span id="modalPrice" class="text-center" style="font-size: smaller;"> </span> -->
                 </h1>
                 <p>
-                <img id="icon-img" src="./Assets/images/img.png" class="text-center" style="margin-left:10px;margin-right:10px; max-height:250px;max-width:250px;">
+                <img id="icon-img" src="./Assets/images/img.png" style="text-align: center;max-height:150px;max-width:90%; padding-left: 200px;">
                 </p> 
-                    <button type="button" class="success button text-center">Delivery Available: <span id="modalDelivery"></span></button>
-                    <button type="button" class="alert button text-center" id="modalRatingText"></button> <br>
+                    <div class="text-center"><strong>Delivery Available:</strong> <span id="modalDelivery"></span></div>
+                <hr>
                 <p>
-                    <strong> Highlights: </strong> <span id="Highlights"> </span><br>
+                    <!-- <strong> Highlights: </strong> <span id="Highlights"> </span><br> -->
                     <strong> Address: </strong> <span id="modaladdres"> </span> <br>
                     <strong>Phone:</strong>  <span id="modalphone"></span> <br>
                     <strong>Hours:</strong> <span id="timing"> 11:00 AM - 11:00 PM  </span> <br>
-                    <strong> Offers: </strong> <span id="offers ">    </span> <br>
+                    <!-- <strong> Offers: </strong> <span id="offers ">    </span> <br> -->
                 </p> 
-                <p>
+                <hr>
+                <p class="text-center">
                     <button type="button" class="success button" id="modalWebsite"> Website  </button>
                     <button type="button" class="success button" id="modalMenu"> Menu  </button>
                    </p>
-                <div id="map" style="width: 100%;">
+                <div id="map" class="text-center" style="width: 100%;">
                         
                 </div>
                 <button class="close-button" data-close aria-label="Close reveal" type="button">
