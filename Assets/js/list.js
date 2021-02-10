@@ -2,11 +2,66 @@ var noResultl = $("#NoResult");
 var selectedIndex;
 var favorites; 
 var categoryEl = $("#category option:selected");
+var id;
+var favorites; 
+
 // var id;
 var currentLocation = {
    lat: "",
    lon: ""
 }
+
+
+$(document).ready(function() {
+   // getLocation();
+   handlePermission();
+   favorites = localStorage.getItem("FavoritePlaces");
+   favorites = JSON.parse(favorites);
+   if (favorites === null) {
+      $("#NoResult").attr("hidden", false);
+   } else {
+      $("#NoResult").attr("hidden", true);
+      showFavoriteList();
+   }
+
+   $('.favorites-cell').hover(function() {
+         $( this ).addClass( "hover" );
+         console.log('hover');
+      }, function() {
+         $( this ).removeClass( "hover" );
+      }
+   ); 
+      
+       $("#modalWebsite").click(function (e) {
+          console.log(favorites[selectedIndex].restaurant.url);
+          let website = favorites[selectedIndex].restaurant.url;
+          window.open(website);
+       });
+       $("#modalMenu").click(function (e) {
+          let menu = favorites[selectedIndex].restaurant.url;;
+          window.open(menu);
+       });
+ });
+
+
+function displayBusiness(){
+  var idEl = document.querySelector(".card-section");
+
+  var name = document.createElement("h4");
+  var phoneNum = document.createElement("p");
+  var address = document.createElement("p");
+  var rating = document.createElement("p");
+
+  rating.textContent = `Rating: ${venue.rating}`;
+  name.textContent = `${venue.name}`;
+  phoneNum.textContent = `Phone Number: ${venue.phone}`;
+  address.textContent = `Address: ${venue.location.address}, ${venue.location.city}, ${venue.location.state}`;
+
+  idEl.append(name, rating, phoneNum, address);
+}
+
+var favorite;
+/*
 
 $(document).ready(function() {
    handlePermission();
@@ -16,7 +71,7 @@ $(document).ready(function() {
       $("#NoResult").attr("hidden", false);
    } else {
       $("#NoResult").attr("hidden", true);
-      favorites = JSON.parse(favorites);
+     // favorites = JSON.parse(favorites);
       // showFavoriteList(favorites);
    }
    $("#modalWebsite").click(function (e) {
@@ -40,6 +95,7 @@ $(document).ready(function() {
    // $('.remove').click(function () {
    // })
 });
+*/
 
 
 function displayBusiness(){
@@ -63,7 +119,7 @@ function handlePermission() {
      } else if (result.state == 'prompt') {
       console.log(result.state);
       //  geoBtn.style.display = 'none';
-       navigator.geolocation.getCurrentPosition(revealPosition,positionDenied,geoSettings);
+      // navigator.geolocation.getCurrentPosition(currentLocation,positionDenied,geoSettings);
      } else if (result.state == 'denied') {
       console.log(result.state);
       //  geoBtn.style.display = 'inline';
@@ -116,6 +172,34 @@ function getHighlight(array) {
    return text;
 }
 function getThumbImage(source) {
+ if (source) {
+    return source
+ } else {
+    "./Assets/images/img.png";
+ }
+}
+
+
+function clickCard1(id) 
+{
+      
+//   console.log("click " + parseInt(id));
+  id = parseInt(id);
+//   console.log(favorites[id].restaurant.name);
+  
+  var modal = $("#modalDetail");
+  var name = modal.find( "#name");
+  var cuisine = modal.find( "#modalCuisine");
+  var highlights = modal.find( "#highlights");
+  var price = modal.find( "#modalPrice");
+  var rating = modal.find( "#modalRatingText");
+  var address = modal.find( "#modaladdres"); 
+  var phone = modal.find( "#modalphone");
+  var timing = modal.find( "#timing");
+  var offers = modal.find( "#offers");
+  var offers = modal.find( "#modalDelivery");
+  var delivery = modal.find( "#modalDelivery");
+  var favButton = modal.find( "#modalFavorite");
    if (source) {
       return source
    } else {
@@ -197,7 +281,7 @@ function clickCard(id) {
    let result = favorites[selectedIndex].restaurant;
    
    var modal = $("#modalDetail");
-   modal.find( "#modal-title").text(result.name);
+   modal.find( "#name").text(result.name);
    modal.find( "#modalCuisine").text(result.cuisines);
    modal.find( "#modalPrice").text(getPriceText(parseInt(result.price_range)));
    modal.find( "#modalRatingText").text(result.user_rating.aggregate_rating);
@@ -215,8 +299,39 @@ function displayMapAt(lat, lon) {
    $("#map")
    .html(
       "<iframe src=\"https://maps.google.com/maps?q=" + lat +  "," + lon + "&z=15&output=embed\"></iframe>");
-   }
+}
 
+function showFavoriteList1(response) {
+
+   var string = "";
+   var name = "";
+   var cuisines = "";
+   var rating = "";
+   var icon = "";
+   var favButton = "";
+   $('#card').html('');
+   
+   $.each(response, function (i) {
+      response[i] = response[i].details;
+      name = response[i].restaurant.name;
+      cuisines = response[i].restaurant.cuisines;
+      rating = response[i].restaurant.user_rating.aggregate_rating;
+      icon = response[i].restaurant.thumb;
+      if (icon == "" || icon == null) {
+         icon = "./Assets/images/img.png";
+      }
+      
+      if (i%3 == 0) {
+         if (i != 0) {
+            string += "</div>";
+
+         }
+         string += '<div class="grid-x small-up-2 medium-up-3">';
+      }
+      string += '<div class="cell"> <div class="card card-size" onclick="clickCard(this.id)" data-open="modalDetail" id='+ i + '"> <div class= "text-center">  <img class="card-image" src=' + icon + '> </div> <h6 class="card-title">' + name + " " + rating  +" <i class='fas fa-star'></i> </h6><p>'" + cuisines + '</p> </div> </div>';
+   })
+   $('#card').append(string);
+}
 function showFavoriteList() {      
   var string = "";
   var name = "";
@@ -225,7 +340,7 @@ function showFavoriteList() {
   var icon;
   var favButton = "";
   var location;
-  console.log(favorites[0]);
+
 
   $.each(favorites, function (i) {
      favorites[i] = favorites[i].details;
@@ -250,6 +365,7 @@ function showFavoriteList() {
                   <span class="card-cuisine">${cuisines}</span> <br>
                   <span class="flex-card-rating"><strong>Rating: ${rating} </strong></span>
                   <span class="card-dist">${dist} miles </span> 
+              
                </p>
             </div>
          </div> 
