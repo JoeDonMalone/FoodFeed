@@ -1,6 +1,13 @@
 var noResultl = $("#NoResult");
 var selectedIndex;
 var favorites; 
+var currentLocation = {
+   lat: "",
+   lon: ""
+}
+var categoryEl = $("#category option:selected");
+var id;
+var favorites; 
 
 $(document).ready(function() {
    favorites = localStorage.getItem("FavoritePlaces");
@@ -21,14 +28,9 @@ $(document).ready(function() {
           window.open(menu);
        });
  });
-var categoryEl = $("#category option:selected");
-var id;
-var favorites; 
 
-var currentLocation = {
-   lat: "",
-   lon: ""
-}
+
+
 
 
 function displayBusiness(){
@@ -168,6 +170,7 @@ function getThumbImage(source) {
  } else {
     "./Assets/images/img.png";
  }
+}
 
 
 function clickCard(id) {
@@ -227,9 +230,7 @@ function clickCard(id) {
   }
   var savedData = localStorage.getItem("FavoritePlaces");
 
-  favButton.find("i").removeClass().addClass("fa fa-thumbs-up");
-
-   if (checkIfItemIsFavorite(savedData, result[id].restaurant.id)) {
+  if (checkIfItemIsFavorite(savedData, result[id].restaurant.id)) {
      favButton.find("i").removeClass().addClass("fa fa-thumbs-up");
   } else {
      favButton.find("i").removeClass().addClass("fa fa-thumbs-down");
@@ -300,7 +301,7 @@ function showFavoriteList(response) {
    })
    $('#card').append(string);
 }
-function showFavoriteList() {      
+function showFavoriteList1() {      
   var string = "";
   var name = "";
   var cuisines = "";
