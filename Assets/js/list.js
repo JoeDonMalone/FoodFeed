@@ -18,8 +18,9 @@ $(document).ready(function() {
    favorites = localStorage.getItem("FavoritePlaces");
    favorites = JSON.parse(favorites);
    if (favorites === null) {
-
+      $("#NoResult").attr("hidden", false);
    } else {
+      $("#NoResult").attr("hidden", true);
       showFavoriteList();
    }
 
